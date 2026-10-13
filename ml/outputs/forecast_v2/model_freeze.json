@@ -1,0 +1,42 @@
+{
+  "selected_candidate": "extra_trees_3",
+  "selected_family": "extra_trees",
+  "model_files": {
+    "xgboost": "xgboost_model.joblib",
+    "random_forest": "random_forest_model.joblib",
+    "extra_trees": "extra_trees_model.joblib",
+    "hist_gradient_boosting": "hist_gradient_boosting_model.joblib",
+    "mean": "mean_model.joblib",
+    "median": "median_model.joblib",
+    "selected": "selected_model.joblib"
+  },
+  "model_sha256": {
+    "xgboost": "e14d240cf06aced5d714ec67c0a7fade9ec7ebab763d1925bd5dfd3a886009df",
+    "random_forest": "0bc95ec06ac2f11a7f2e0aa71e85e77601cd249b8fc03b5e3aae2b9429817c5b",
+    "extra_trees": "27357f01f7b48442d46339433dee89706dbe7d257c34551c6ff37579b596ca3e",
+    "hist_gradient_boosting": "fcf0e430799a9b9721eb6ecea25a0aed0164766fa1836d85824e1c360c5e93dc",
+    "mean": "c7881d2c7641edada52550c84407ca5b9b03bee3ef9b9922b22a704bd6909062",
+    "median": "67669e9fd633a70a21d84a013f00864a7f08a3aa29b9109ece11a4eced70a45d",
+    "selected": "27357f01f7b48442d46339433dee89706dbe7d257c34551c6ff37579b596ca3e"
+  },
+  "selection_file_sha256": "eaa3b4652353d1e5ea40750dbd099ca654ef39ba41c85cff1c5de88108cb4d83",
+  "protocol_sha256": "0a4dcf04eea7ecb8aef1469d185caa5bf78ba4d9c39320c09799c18c69b1081d",
+  "final_training_start": "2024-12-01 00:00:00",
+  "final_training_end": "2025-04-29 23:00:00",
+  "final_training_rows": 46800,
+  "equipment": 13,
+  "frozen_utc": "2026-10-13T11:13:13.152642+00:00",
+  "frozen_before_current_run_reference_read": true,
+  "evaluation_notice": "April and May were inspected during earlier experiments. These results are retrospective reevaluations, not fresh unseen tests. This run freezes the AI choice using March factory MAE before evaluating April/May; no April/May-based reselection is allowed.",
+  "unit_contract": {
+    "sensor_power_assumption": "activePower is W, supported by the supplied course rules and accumulator increments",
+    "physical_energy_formula": "sum of 5-second mean activePower(W) / 720000 = kWh",
+    "course_native_formula": "course_native hourly_pow = physical kWh * 1000",
+    "course_native_is_physical_kWh": false,
+    "physical_cost_formula": "physical kWh * 180 KRW/kWh",
+    "physical_carbon_formula": "physical kWh * 0.424 kgCO2/kWh",
+    "reference_cost_formula": "course-native hourly_pow * 180; this is not a physical KRW bill under the W assumption",
+    "reference_carbon_formula": "course-native hourly_pow * 0.424; this is not physical kgCO2 under the W assumption",
+    "provider_unit_confirmation_pending": true
+  }
+}

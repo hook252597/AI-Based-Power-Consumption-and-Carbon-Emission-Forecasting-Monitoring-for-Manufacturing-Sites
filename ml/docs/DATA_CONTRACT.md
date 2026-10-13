@@ -18,9 +18,11 @@ CLI 출력은 설비당·시간당 한 행입니다.
 
 원본 `activePower`는 강의자료와 누적 계량값의 관계상 **W**로 해석했습니다. 5초 동안의 평균값이므로 물리적 전력량은 `Σ(activePower) ÷ 720,000` kWh입니다. 제공된 5월 정답은 이 값의 1,000배 수치인 `hourly_pow`에 180과 0.424를 곱합니다.
 
-- `outputs/forecast/selected/may_physical.csv`: `datetime`, `energy_kWh`, `cost_KRW_estimate`, `carbon_kgCO2_estimate`. 공장 전체 물리 단위 환산.
-- `outputs/forecast/selected/may_equipment_physical.csv`: `datetime`, `module(equipment)`, `prediction_kWh`. 설비별 물리 단위 결과. CLI의 `energy_kWh`와 같은 단위입니다.
-- `outputs/forecast/selected/may_reference_convention.csv`: 과제 정답의 원본 수치 규칙. `hourly_pow`를 kWh로 그대로 표시하거나 그 요금·탄소 수치를 물리 단위로 표시하지 않습니다.
+- `outputs/forecast_v2/selected/may_physical.csv`: `datetime`, `energy_kWh`, `cost_KRW_estimate`, `carbon_kgCO2_estimate`. 공장 전체 물리 단위 환산.
+- `outputs/forecast_v2/selected/may_equipment_physical.csv`: `datetime`, `module(equipment)`, `prediction_kWh`. 설비별 물리 단위 결과. CLI의 `energy_kWh`와 같은 단위입니다.
+- `outputs/forecast_v2/selected/may_reference_convention.csv`: 과제 정답의 원본 수치 규칙. `hourly_pow`를 kWh로 그대로 표시하거나 그 요금·탄소 수치를 물리 단위로 표시하지 않습니다.
+
+`outputs/forecast/`는 첫 실험의 평균 예측 기록입니다. 현재 기본 모델과 결과는 `forecast_v2/`를 사용합니다.
 
 공식 단위 설명의 충돌은 아직 확인이 필요합니다. 1,000배 관계는 단위 변환이며 5월 오차를 줄이기 위해 학습한 보정계수가 아닙니다.
 

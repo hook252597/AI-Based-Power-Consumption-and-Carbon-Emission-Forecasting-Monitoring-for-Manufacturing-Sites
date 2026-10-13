@@ -1,0 +1,386 @@
+{
+  "selected": {
+    "serialized_class": "manufacturing_ai.forecast.ForecastModel",
+    "kind": "extra_trees",
+    "module_count": 13,
+    "modules": [
+      "1(PM-3)",
+      "11(우측분전반1)",
+      "12(4호기)",
+      "13(3호기)",
+      "14(2호기)",
+      "15(예비건조기)",
+      "16(호이스트)",
+      "17(6호기)",
+      "18(우측분전반2)",
+      "2(L-1전등)",
+      "3(분쇄기(2))",
+      "4(분쇄기(1))",
+      "5(좌측분전반)"
+    ],
+    "required_inference_columns": [
+      "datetime",
+      "module(equipment)"
+    ],
+    "feature_columns": [
+      "hour",
+      "weekday",
+      "weekend",
+      "equipment_0",
+      "equipment_1",
+      "equipment_2",
+      "equipment_3",
+      "equipment_4",
+      "equipment_5",
+      "equipment_6",
+      "equipment_7",
+      "equipment_8",
+      "equipment_9",
+      "equipment_10",
+      "equipment_11",
+      "equipment_12"
+    ],
+    "feature_policy": "hour, weekday, weekend, equipment one-hot only",
+    "forbidden_future_inputs": [
+      "future activePower",
+      "future current/voltage",
+      "actual future energy",
+      "May reference values or lags"
+    ],
+    "prediction_unit": "physical kWh per equipment-hour",
+    "course_native_scale": 1000.0,
+    "last_training_time": "2025-04-29 23:00:00",
+    "nonnegative_output": true
+  },
+  "family_schemas": {
+    "xgboost": {
+      "serialized_class": "manufacturing_ai.forecast.ForecastModel",
+      "kind": "xgboost",
+      "module_count": 13,
+      "modules": [
+        "1(PM-3)",
+        "11(우측분전반1)",
+        "12(4호기)",
+        "13(3호기)",
+        "14(2호기)",
+        "15(예비건조기)",
+        "16(호이스트)",
+        "17(6호기)",
+        "18(우측분전반2)",
+        "2(L-1전등)",
+        "3(분쇄기(2))",
+        "4(분쇄기(1))",
+        "5(좌측분전반)"
+      ],
+      "required_inference_columns": [
+        "datetime",
+        "module(equipment)"
+      ],
+      "feature_columns": [
+        "hour",
+        "weekday",
+        "weekend",
+        "equipment_0",
+        "equipment_1",
+        "equipment_2",
+        "equipment_3",
+        "equipment_4",
+        "equipment_5",
+        "equipment_6",
+        "equipment_7",
+        "equipment_8",
+        "equipment_9",
+        "equipment_10",
+        "equipment_11",
+        "equipment_12"
+      ],
+      "feature_policy": "hour, weekday, weekend, equipment one-hot only",
+      "forbidden_future_inputs": [
+        "future activePower",
+        "future current/voltage",
+        "actual future energy",
+        "May reference values or lags"
+      ],
+      "prediction_unit": "physical kWh per equipment-hour",
+      "course_native_scale": 1000.0,
+      "last_training_time": "2025-04-29 23:00:00",
+      "nonnegative_output": true
+    },
+    "random_forest": {
+      "serialized_class": "manufacturing_ai.forecast.ForecastModel",
+      "kind": "random_forest",
+      "module_count": 13,
+      "modules": [
+        "1(PM-3)",
+        "11(우측분전반1)",
+        "12(4호기)",
+        "13(3호기)",
+        "14(2호기)",
+        "15(예비건조기)",
+        "16(호이스트)",
+        "17(6호기)",
+        "18(우측분전반2)",
+        "2(L-1전등)",
+        "3(분쇄기(2))",
+        "4(분쇄기(1))",
+        "5(좌측분전반)"
+      ],
+      "required_inference_columns": [
+        "datetime",
+        "module(equipment)"
+      ],
+      "feature_columns": [
+        "hour",
+        "weekday",
+        "weekend",
+        "equipment_0",
+        "equipment_1",
+        "equipment_2",
+        "equipment_3",
+        "equipment_4",
+        "equipment_5",
+        "equipment_6",
+        "equipment_7",
+        "equipment_8",
+        "equipment_9",
+        "equipment_10",
+        "equipment_11",
+        "equipment_12"
+      ],
+      "feature_policy": "hour, weekday, weekend, equipment one-hot only",
+      "forbidden_future_inputs": [
+        "future activePower",
+        "future current/voltage",
+        "actual future energy",
+        "May reference values or lags"
+      ],
+      "prediction_unit": "physical kWh per equipment-hour",
+      "course_native_scale": 1000.0,
+      "last_training_time": "2025-04-29 23:00:00",
+      "nonnegative_output": true
+    },
+    "extra_trees": {
+      "serialized_class": "manufacturing_ai.forecast.ForecastModel",
+      "kind": "extra_trees",
+      "module_count": 13,
+      "modules": [
+        "1(PM-3)",
+        "11(우측분전반1)",
+        "12(4호기)",
+        "13(3호기)",
+        "14(2호기)",
+        "15(예비건조기)",
+        "16(호이스트)",
+        "17(6호기)",
+        "18(우측분전반2)",
+        "2(L-1전등)",
+        "3(분쇄기(2))",
+        "4(분쇄기(1))",
+        "5(좌측분전반)"
+      ],
+      "required_inference_columns": [
+        "datetime",
+        "module(equipment)"
+      ],
+      "feature_columns": [
+        "hour",
+        "weekday",
+        "weekend",
+        "equipment_0",
+        "equipment_1",
+        "equipment_2",
+        "equipment_3",
+        "equipment_4",
+        "equipment_5",
+        "equipment_6",
+        "equipment_7",
+        "equipment_8",
+        "equipment_9",
+        "equipment_10",
+        "equipment_11",
+        "equipment_12"
+      ],
+      "feature_policy": "hour, weekday, weekend, equipment one-hot only",
+      "forbidden_future_inputs": [
+        "future activePower",
+        "future current/voltage",
+        "actual future energy",
+        "May reference values or lags"
+      ],
+      "prediction_unit": "physical kWh per equipment-hour",
+      "course_native_scale": 1000.0,
+      "last_training_time": "2025-04-29 23:00:00",
+      "nonnegative_output": true
+    },
+    "hist_gradient_boosting": {
+      "serialized_class": "manufacturing_ai.forecast.ForecastModel",
+      "kind": "hist_gradient_boosting",
+      "module_count": 13,
+      "modules": [
+        "1(PM-3)",
+        "11(우측분전반1)",
+        "12(4호기)",
+        "13(3호기)",
+        "14(2호기)",
+        "15(예비건조기)",
+        "16(호이스트)",
+        "17(6호기)",
+        "18(우측분전반2)",
+        "2(L-1전등)",
+        "3(분쇄기(2))",
+        "4(분쇄기(1))",
+        "5(좌측분전반)"
+      ],
+      "required_inference_columns": [
+        "datetime",
+        "module(equipment)"
+      ],
+      "feature_columns": [
+        "hour",
+        "weekday",
+        "weekend",
+        "equipment_0",
+        "equipment_1",
+        "equipment_2",
+        "equipment_3",
+        "equipment_4",
+        "equipment_5",
+        "equipment_6",
+        "equipment_7",
+        "equipment_8",
+        "equipment_9",
+        "equipment_10",
+        "equipment_11",
+        "equipment_12"
+      ],
+      "feature_policy": "hour, weekday, weekend, equipment one-hot only",
+      "forbidden_future_inputs": [
+        "future activePower",
+        "future current/voltage",
+        "actual future energy",
+        "May reference values or lags"
+      ],
+      "prediction_unit": "physical kWh per equipment-hour",
+      "course_native_scale": 1000.0,
+      "last_training_time": "2025-04-29 23:00:00",
+      "nonnegative_output": true
+    },
+    "mean": {
+      "serialized_class": "manufacturing_ai.forecast.ForecastModel",
+      "kind": "mean",
+      "module_count": 13,
+      "modules": [
+        "1(PM-3)",
+        "11(우측분전반1)",
+        "12(4호기)",
+        "13(3호기)",
+        "14(2호기)",
+        "15(예비건조기)",
+        "16(호이스트)",
+        "17(6호기)",
+        "18(우측분전반2)",
+        "2(L-1전등)",
+        "3(분쇄기(2))",
+        "4(분쇄기(1))",
+        "5(좌측분전반)"
+      ],
+      "required_inference_columns": [
+        "datetime",
+        "module(equipment)"
+      ],
+      "feature_columns": [
+        "hour",
+        "weekday",
+        "weekend",
+        "equipment_0",
+        "equipment_1",
+        "equipment_2",
+        "equipment_3",
+        "equipment_4",
+        "equipment_5",
+        "equipment_6",
+        "equipment_7",
+        "equipment_8",
+        "equipment_9",
+        "equipment_10",
+        "equipment_11",
+        "equipment_12"
+      ],
+      "feature_policy": "hour, weekday, weekend, equipment one-hot only",
+      "forbidden_future_inputs": [
+        "future activePower",
+        "future current/voltage",
+        "actual future energy",
+        "May reference values or lags"
+      ],
+      "prediction_unit": "physical kWh per equipment-hour",
+      "course_native_scale": 1000.0,
+      "last_training_time": "2025-04-29 23:00:00",
+      "nonnegative_output": true
+    },
+    "median": {
+      "serialized_class": "manufacturing_ai.forecast.ForecastModel",
+      "kind": "median",
+      "module_count": 13,
+      "modules": [
+        "1(PM-3)",
+        "11(우측분전반1)",
+        "12(4호기)",
+        "13(3호기)",
+        "14(2호기)",
+        "15(예비건조기)",
+        "16(호이스트)",
+        "17(6호기)",
+        "18(우측분전반2)",
+        "2(L-1전등)",
+        "3(분쇄기(2))",
+        "4(분쇄기(1))",
+        "5(좌측분전반)"
+      ],
+      "required_inference_columns": [
+        "datetime",
+        "module(equipment)"
+      ],
+      "feature_columns": [
+        "hour",
+        "weekday",
+        "weekend",
+        "equipment_0",
+        "equipment_1",
+        "equipment_2",
+        "equipment_3",
+        "equipment_4",
+        "equipment_5",
+        "equipment_6",
+        "equipment_7",
+        "equipment_8",
+        "equipment_9",
+        "equipment_10",
+        "equipment_11",
+        "equipment_12"
+      ],
+      "feature_policy": "hour, weekday, weekend, equipment one-hot only",
+      "forbidden_future_inputs": [
+        "future activePower",
+        "future current/voltage",
+        "actual future energy",
+        "May reference values or lags"
+      ],
+      "prediction_unit": "physical kWh per equipment-hour",
+      "course_native_scale": 1000.0,
+      "last_training_time": "2025-04-29 23:00:00",
+      "nonnegative_output": true
+    }
+  },
+  "unit_contract": {
+    "sensor_power_assumption": "activePower is W, supported by the supplied course rules and accumulator increments",
+    "physical_energy_formula": "sum of 5-second mean activePower(W) / 720000 = kWh",
+    "course_native_formula": "course_native hourly_pow = physical kWh * 1000",
+    "course_native_is_physical_kWh": false,
+    "physical_cost_formula": "physical kWh * 180 KRW/kWh",
+    "physical_carbon_formula": "physical kWh * 0.424 kgCO2/kWh",
+    "reference_cost_formula": "course-native hourly_pow * 180; this is not a physical KRW bill under the W assumption",
+    "reference_carbon_formula": "course-native hourly_pow * 0.424; this is not physical kgCO2 under the W assumption",
+    "provider_unit_confirmation_pending": true
+  }
+}

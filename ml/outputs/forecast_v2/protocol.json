@@ -1,0 +1,233 @@
+{
+  "created_utc": "2026-10-13T11:12:55.071429+00:00",
+  "sha256": "0a4dcf04eea7ecb8aef1469d185caa5bf78ba4d9c39320c09799c18c69b1081d",
+  "protocol": {
+    "version": 1,
+    "seed": 42,
+    "thread_limit": 2,
+    "hourly_source_name": "hourly_observed.csv",
+    "hourly_source_sha256": "2fa37970f05b8d7c390ef2520022f7d16aa3cadcaeb475491965874f8d5935e5",
+    "training_window": "2024-12-01 <=datetime<2025-03-01",
+    "selection_window": "2025-03-10 00:00<=datetime<=2025-03-31 00:00",
+    "selection_policy": "Select the AI candidate with the smallest factory-total MAE on March 10 00:00 through March 31 00:00 inclusive (505 hours). Mean/median are reference-only. Ties use fixed candidate order. April/May never select or replace the winner.",
+    "candidates": [
+      {
+        "name": "xgboost_1",
+        "family": "xgboost",
+        "parameters": {
+          "max_depth": 2,
+          "n_estimators": 100,
+          "learning_rate": 0.03,
+          "min_child_weight": 100,
+          "reg_lambda": 20
+        },
+        "reference_only": false
+      },
+      {
+        "name": "xgboost_2",
+        "family": "xgboost",
+        "parameters": {
+          "max_depth": 3,
+          "n_estimators": 300,
+          "learning_rate": 0.03,
+          "min_child_weight": 200,
+          "reg_lambda": 50
+        },
+        "reference_only": false
+      },
+      {
+        "name": "xgboost_3",
+        "family": "xgboost",
+        "parameters": {
+          "max_depth": 4,
+          "n_estimators": 300,
+          "learning_rate": 0.03,
+          "min_child_weight": 200,
+          "reg_lambda": 50
+        },
+        "reference_only": false
+      },
+      {
+        "name": "random_forest_1",
+        "family": "random_forest",
+        "parameters": {
+          "n_estimators": 128,
+          "max_depth": null,
+          "min_samples_leaf": 50,
+          "max_features": 1.0,
+          "bootstrap": true
+        },
+        "reference_only": false
+      },
+      {
+        "name": "random_forest_2",
+        "family": "random_forest",
+        "parameters": {
+          "n_estimators": 128,
+          "max_depth": null,
+          "min_samples_leaf": 200,
+          "max_features": 1.0,
+          "bootstrap": true
+        },
+        "reference_only": false
+      },
+      {
+        "name": "random_forest_3",
+        "family": "random_forest",
+        "parameters": {
+          "n_estimators": 128,
+          "max_depth": null,
+          "min_samples_leaf": 800,
+          "max_features": 1.0,
+          "bootstrap": true
+        },
+        "reference_only": false
+      },
+      {
+        "name": "extra_trees_1",
+        "family": "extra_trees",
+        "parameters": {
+          "n_estimators": 128,
+          "max_depth": null,
+          "min_samples_leaf": 50,
+          "max_features": 1.0,
+          "bootstrap": false
+        },
+        "reference_only": false
+      },
+      {
+        "name": "extra_trees_2",
+        "family": "extra_trees",
+        "parameters": {
+          "n_estimators": 128,
+          "max_depth": null,
+          "min_samples_leaf": 200,
+          "max_features": 1.0,
+          "bootstrap": false
+        },
+        "reference_only": false
+      },
+      {
+        "name": "extra_trees_3",
+        "family": "extra_trees",
+        "parameters": {
+          "n_estimators": 128,
+          "max_depth": null,
+          "min_samples_leaf": 800,
+          "max_features": 1.0,
+          "bootstrap": false
+        },
+        "reference_only": false
+      },
+      {
+        "name": "hist_gradient_boosting_1",
+        "family": "hist_gradient_boosting",
+        "parameters": {
+          "loss": "absolute_error",
+          "learning_rate": 0.05,
+          "max_iter": 200,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50,
+          "l2_regularization": 10.0,
+          "early_stopping": false
+        },
+        "reference_only": false
+      },
+      {
+        "name": "hist_gradient_boosting_2",
+        "family": "hist_gradient_boosting",
+        "parameters": {
+          "loss": "absolute_error",
+          "learning_rate": 0.05,
+          "max_iter": 200,
+          "max_leaf_nodes": 31,
+          "min_samples_leaf": 200,
+          "l2_regularization": 30.0,
+          "early_stopping": false
+        },
+        "reference_only": false
+      },
+      {
+        "name": "hist_gradient_boosting_3",
+        "family": "hist_gradient_boosting",
+        "parameters": {
+          "loss": "absolute_error",
+          "learning_rate": 0.05,
+          "max_iter": 200,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 800,
+          "l2_regularization": 100.0,
+          "early_stopping": false
+        },
+        "reference_only": false
+      }
+    ],
+    "baselines": [
+      {
+        "name": "mean",
+        "reference_only": true
+      },
+      {
+        "name": "median",
+        "reference_only": true
+      }
+    ],
+    "features": [
+      "hour",
+      "weekday",
+      "weekend",
+      "equipment one-hot"
+    ],
+    "future_sensor_inputs": false,
+    "lag_inputs": false,
+    "random_time_split": false,
+    "hist_gradient_early_stopping": false,
+    "xgboost_fixed_options": {
+      "objective": "reg:absoluteerror",
+      "eval_metric": "mae",
+      "tree_method": "hist",
+      "random_state": 42,
+      "n_jobs": 2,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0
+    },
+    "ensemble_fixed_options": {
+      "random_state": 42,
+      "n_jobs": 2,
+      "criterion": "squared_error"
+    },
+    "unit_contract": {
+      "sensor_power_assumption": "activePower is W, supported by the supplied course rules and accumulator increments",
+      "physical_energy_formula": "sum of 5-second mean activePower(W) / 720000 = kWh",
+      "course_native_formula": "course_native hourly_pow = physical kWh * 1000",
+      "course_native_is_physical_kWh": false,
+      "physical_cost_formula": "physical kWh * 180 KRW/kWh",
+      "physical_carbon_formula": "physical kWh * 0.424 kgCO2/kWh",
+      "reference_cost_formula": "course-native hourly_pow * 180; this is not a physical KRW bill under the W assumption",
+      "reference_carbon_formula": "course-native hourly_pow * 0.424; this is not physical kgCO2 under the W assumption",
+      "provider_unit_confirmation_pending": true
+    },
+    "evaluation_notice": "April and May were inspected during earlier experiments. These results are retrospective reevaluations, not fresh unseen tests. This run freezes the AI choice using March factory MAE before evaluating April/May; no April/May-based reselection is allowed.",
+    "versions": {
+      "python": "3.10.10",
+      "numpy": "1.26.4",
+      "pandas": "2.2.1",
+      "sklearn": "1.4.2",
+      "xgboost": "3.1.3"
+    },
+    "forest_inference_workers": 1,
+    "forest_inference_worker_reason": "Deterministic tree summation order for exact serialized prediction replay; training uses2 workers."
+  },
+  "metric_definitions": {
+    "factory_mae_kWh": "Mean absolute error of hourly sums across all equipment, in physical kWh for the observed training-series aggregation",
+    "normalized_mae": "Hourly factory MAE divided by the mean actual hourly factory total; a ratio, not a percentage",
+    "factory_bias_kWh": "Mean(predicted factory kWh - actual factory kWh)",
+    "module_mae_mean_kWh": "Unweighted mean of equipment-specific hourly MAE values",
+    "all": "All hours in the evaluation month available in the source",
+    "focus": "Multiweek task-like evaluation window: March10-March31 00:00 or April10-April29 23:00, both inclusive",
+    "mae_course_native": "MAE for supplied reference columns hourly_pow, may_bill, may_carbon using the supplied numerical convention",
+    "mae_kWh_if_reference_is_Wh": "MAE of reference hourly_pow divided by1000; physical interpretation is conditional on the provider confirming hourly_pow is Wh",
+    "may_normalized_mae": "Course-native hourly_pow MAE divided by mean reference hourly_pow",
+    "basic_error_target_passed": "Normalized hourly factory MAE <=0.01; a proposed internal goal, not an official acceptance criterion"
+  }
+}

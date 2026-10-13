@@ -1,18 +1,19 @@
 {
   "status": "passed",
   "prepared_component": "ml/",
-  "unit_tests_passed": 26,
+  "unit_tests_passed": 35,
   "inference_imports_from_prepared_package": true,
   "forecast_equipment_hours_checked": 6565,
   "anomaly_cli_rows_checked": 15,
   "compact_model_equivalence_rows": 7163,
-  "documentation_links_checked": 12,
-  "text_files_scanned": 41,
+  "documentation_links_checked": 18,
+  "text_files_scanned": 69,
   "credential_patterns_found": 0,
   "personal_absolute_paths_found": 0,
   "source_data_included": false,
-  "upload_performed": false,
+  "validation_phase": "Local export before publication",
+  "forecast_selected_kind": "extra_trees",
+  "forecast_estimator_class": "ExtraTreesRegressor",
   "new_os_install_tested": false,
-  "runtime": "Existing pinned Windows Python 3.10 environment",
-  "forecast_model_overwrite_guard_verified": true
+  "runtime": "Existing pinned Windows Python 3.10 environment"
 }

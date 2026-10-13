@@ -14,6 +14,7 @@ local_data/
 *.pem
 # New runtime predictions are local. Curated experiment results stay tracked.
 outputs/forecast/custom_prediction.csv
+outputs/forecast_v2/custom_prediction.csv
 outputs/anomaly_v2/new_observations.csv
 outputs/demo_*.csv
 # Original multi-GB datasets must not enter this component.

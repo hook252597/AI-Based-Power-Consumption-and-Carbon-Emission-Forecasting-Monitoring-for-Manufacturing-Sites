@@ -11,7 +11,7 @@ import pandas as pd
 # 팀 저장소 루트의 dashboard_app.py에서 사용하는 경우
 ML_ROOT = Path(__file__).resolve().parent / "ml"
 forecast = pd.read_csv(
-    ML_ROOT / "outputs/forecast/selected/may_physical.csv",
+    ML_ROOT / "outputs/forecast_v2/selected/may_physical.csv",
     parse_dates=["datetime"],
 )
 anomalies = pd.read_csv(
@@ -46,5 +46,5 @@ predicted = predict_observations(sensor_rows, model)
 - 전력: `예측 전력량(kWh)`, `고정 단가 기준 예상 요금(원)`, `전력량 기반 예상 탄소(kgCO₂)`.
 - 이상탐지: `모델 이상 판정`과 `전압·역률 기준 위반`을 구분합니다.
 - 성능: `4월 기존 표시 대비 재평가: 정밀도 97.77%, 재현율 98.28%`.
-- 전력 모델은 평균 예측을 선택했습니다. 이를 XGBoost 예측 결과로 표시하지 않습니다.
+- 전력 모델은 3월 성능으로 선택한 AI 모델입니다. 이름은 `outputs/forecast_v2/summary.json`의 `selected_family`를 읽어 표시합니다. XGBoost 등 다른 비교 모델의 결과와 섞지 않습니다.
 - 현재 예시는 저장 모델을 호출하는 연결 지침입니다. 기존 `dashboard_app.py` 수정·연결·배포는 수행하지 않았습니다.
