@@ -1,0 +1,11 @@
+# 마가렛트 대시보드 설정
+# 테마(라이트/다크) 색상은 앱 내부 CSS(theme_css)가 전적으로 제어한다.
+# 여기서는 배경/글자색을 고정하지 않는다. (고정하면 사이드바가 토글에 반응하지 않음)
+
+[theme]
+base = "light"
+primaryColor = "#16a34a"   # 강조색: 초록(정상/실제값 계열)
+font = "sans serif"
+
+[server]
+headless = true
