@@ -1,0 +1,261 @@
+{
+  "prepared_date": "2026-10-13",
+  "upload_performed": false,
+  "repository_component": "ml/",
+  "files_excluding_manifest": 48,
+  "total_bytes_excluding_manifest": 42621260,
+  "contents": [
+    {
+      "path": ".gitattributes",
+      "bytes": 143,
+      "sha256": "7c31aa385247eaa3b89891ec4e695d67db58db340477bfb0badc0a700b8e6215"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 439,
+      "sha256": "4264240af61cca92b62ec587592b21bb6056984117141a4c90f04d518ac66b84"
+    },
+    {
+      "path": "docs/DATA_CONTRACT.md",
+      "bytes": 3757,
+      "sha256": "73b56986aa1e69766c127cc80f1d3d065e88d6cc682ba69656f545bbc2835f18"
+    },
+    {
+      "path": "docs/INTEGRATION.md",
+      "bytes": 2269,
+      "sha256": "9bd7fff9bab76ae5b4f9221d43aa8c44dc5be8822221a4354593986a416333f8"
+    },
+    {
+      "path": "docs/MODEL_RESULTS.md",
+      "bytes": 5099,
+      "sha256": "67c5935c550a13f24be181dc6298a500e739d34025f08f7803bd3f7d337eef2c"
+    },
+    {
+      "path": "docs/REPRODUCIBILITY.md",
+      "bytes": 2795,
+      "sha256": "8dfe991a67a3c8e368ec2bf01e2319545c40016e84ea1a2a093e9cfd4336a20e"
+    },
+    {
+      "path": "examples/sensor_demo.csv",
+      "bytes": 1147,
+      "sha256": "8ad13dd923af4deecc079d0576f5bd8f85536ec35cca8103aa743f716d6ac6fd"
+    },
+    {
+      "path": "models/anomaly_v2/export_manifest.json",
+      "bytes": 4273,
+      "sha256": "ac465e96c51ca03af4dc8c7707725f51a38c87a50b2c82330ef6cb41ce8a74cc"
+    },
+    {
+      "path": "models/anomaly_v2/selected_model.joblib",
+      "bytes": 40667551,
+      "sha256": "4a4f976c46789c4bd86f2bdd9fa44616bcb206807d9d95f11585461a39101046"
+    },
+    {
+      "path": "models/forecast/selected_model.joblib",
+      "bytes": 545,
+      "sha256": "48a34debab5e43138032ec949c7de301996d44b653619d15703b6a87ed1f703e"
+    },
+    {
+      "path": "models/forecast/xgboost_model.joblib",
+      "bytes": 94611,
+      "sha256": "67844df46f97d2734598a2dfd0a0db8abfbedd355f854ccec09d4efb28ed9e73"
+    },
+    {
+      "path": "models/forecast/xgboost_native.json",
+      "bytes": 72844,
+      "sha256": "7d55a6a38adc9635f025670a752bf6283b2c365598e190931dc5a474b27a0d4c"
+    },
+    {
+      "path": "outputs/anomaly/summary.json",
+      "bytes": 5127,
+      "sha256": "b656fe3687ff2cd1d315e769044c55fdf8c1832d145851b892d9b1a6a56825fe"
+    },
+    {
+      "path": "outputs/anomaly_v2/april_comparison.csv",
+      "bytes": 2097,
+      "sha256": "2a82e7032a9701e97e72124e2e816900883b376194e78397f31101328fc3717b"
+    },
+    {
+      "path": "outputs/anomaly_v2/april_equipment_proxy_metrics.csv",
+      "bytes": 19832,
+      "sha256": "688a551925905d53058eb3e436c75ddadd019e75ca70a284ab3aee06a07269ee"
+    },
+    {
+      "path": "outputs/anomaly_v2/april_evaluation_gate.json",
+      "bytes": 321,
+      "sha256": "c4cee89e039b3367088815fc63d7a04e7920c3d83087ea5665fb564327d78918"
+    },
+    {
+      "path": "outputs/anomaly_v2/april_hourly_anomalies.csv",
+      "bytes": 590610,
+      "sha256": "603416995b641cf021c0a1804ffc64148de1e864865c25d91c949af5a39beee7"
+    },
+    {
+      "path": "outputs/anomaly_v2/april_reason_proxy_recall.csv",
+      "bytes": 21100,
+      "sha256": "784494faf4c3fdb3a7bcaea81a2b90bfce31a4a29aaf4702dd19c59ae572bdf7"
+    },
+    {
+      "path": "outputs/anomaly_v2/calibration_thresholds.csv",
+      "bytes": 16854,
+      "sha256": "db0f029aadbe9d21beaa8450a7cba1b191609ed62c8016c7ad1e8a097bcfec28"
+    },
+    {
+      "path": "outputs/anomaly_v2/label_audit.json",
+      "bytes": 50722,
+      "sha256": "767160d0f7d9e2ab61b2d1b18a72855a86fa8e6136c5e301f4ef562b654842f4"
+    },
+    {
+      "path": "outputs/anomaly_v2/march_selection_comparison.csv",
+      "bytes": 2024,
+      "sha256": "fcd265c3a9b1e8130561d790ad6d04ae367e15a8899c7ccdfd46b9fd98443b8d"
+    },
+    {
+      "path": "outputs/anomaly_v2/protocol.json",
+      "bytes": 8130,
+      "sha256": "fda40d89b2ce824e6ca25b9516f9caedd30d58b54e436be277821647cc58c3e3"
+    },
+    {
+      "path": "outputs/anomaly_v2/selection.json",
+      "bytes": 13068,
+      "sha256": "c98390dc2384f91a457b7315976b104ca131b1f181337196b922a80982c1a31b"
+    },
+    {
+      "path": "outputs/anomaly_v2/summary.json",
+      "bytes": 17301,
+      "sha256": "0ff3628ed1a3f19cb94c31703c1922230ed417e1986e7c5638af5f0678ee21b0"
+    },
+    {
+      "path": "outputs/anomaly_v2/synthetic_probe.json",
+      "bytes": 54929,
+      "sha256": "a0cf6b8457803db97b7ed59c94e2d7661c3699352009a4e4e46dc94b1658575b"
+    },
+    {
+      "path": "outputs/forecast/experiment_policy.json",
+      "bytes": 912,
+      "sha256": "aa50590ebf7994414044e9171b9a16ef5cf0534223200ae1ed1f57955eb05fb6"
+    },
+    {
+      "path": "outputs/forecast/march_selection.json",
+      "bytes": 15677,
+      "sha256": "6eeb71e53bc0d6794308220ccbb6e5f1ff8a05e74dfe5b09f8a92ec86c9da3d3"
+    },
+    {
+      "path": "outputs/forecast/may_comparison_selected.csv",
+      "bytes": 64223,
+      "sha256": "dd30972c66923775fa5f262e60ad4c7605d0104b3c61eaa3b18241130c2c637d"
+    },
+    {
+      "path": "outputs/forecast/may_comparison_xgboost.csv",
+      "bytes": 64266,
+      "sha256": "9e73b3a0c3c32d7b9176742ed1395e9c570e81a049c8ef57ff5287a78ae7b4c9"
+    },
+    {
+      "path": "outputs/forecast/results.json",
+      "bytes": 8852,
+      "sha256": "8ff1f291edc5381fb3b9ff9b6448a5f7e74c32ae7d05c780eebf6882130475dd"
+    },
+    {
+      "path": "outputs/forecast/selected/may_equipment_physical.csv",
+      "bytes": 360616,
+      "sha256": "cbe2295d6365f98bc20e2ce088e62852317742704c97de4aea6e4fcf466f0ca0"
+    },
+    {
+      "path": "outputs/forecast/selected/may_physical.csv",
+      "bytes": 38949,
+      "sha256": "daaec2df9d7e82beab7550828b15f2cfed81aa056e4c513075ccac1e07ab1114"
+    },
+    {
+      "path": "outputs/forecast/selected/may_reference_convention.csv",
+      "bytes": 38418,
+      "sha256": "0476b37e05e57245018905d9f5aab6d771662d56c8031f08182c9c03cdeb9d24"
+    },
+    {
+      "path": "pytest.ini",
+      "bytes": 84,
+      "sha256": "da9aa6cac4779d9019a66f2f772b50835a35d596c675de633fa82706a25f788b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4778,
+      "sha256": "71ed43c957dbb57cd045dbd4392bc18f9eec869c02c1027ffb54fbd758f8b095"
+    },
+    {
+      "path": "reports/anomaly_improvement.png",
+      "bytes": 39314,
+      "sha256": "7918dab237740eb9ad0125f17342642afa74d2339423ac4e4c0c126d5b291237"
+    },
+    {
+      "path": "reports/forecast_results.png",
+      "bytes": 246178,
+      "sha256": "3510c2e99c5b46e3beafd00007c4984884358600b0ac0325eadd03b6e8311f70"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 123,
+      "sha256": "727780ae78f36e16b1e7d4a05908bdf8d9c0a1ed9be0c1905f8980a20092645c"
+    },
+    {
+      "path": "scripts/predict_anomaly_v2.py",
+      "bytes": 2650,
+      "sha256": "7125e5ea3e00ed8b88ad30389f239feee5b61933ef7e247cc03a47f48725ac57"
+    },
+    {
+      "path": "scripts/predict_power.py",
+      "bytes": 1464,
+      "sha256": "e205007a0af90f0ef7497471b7d771d9697ec952a5f094cb5ff505b52d2268cf"
+    },
+    {
+      "path": "src/manufacturing_ai/__init__.py",
+      "bytes": 78,
+      "sha256": "f290e90a19e6fb5a752b9bfa4aeef09fa79e41cd45ce6774260e7c99b560016c"
+    },
+    {
+      "path": "src/manufacturing_ai/anomaly.py",
+      "bytes": 23196,
+      "sha256": "0b1a06300ff1c9ce83be1560bc664cda5a035fb602ba426b17b1b839a70df746"
+    },
+    {
+      "path": "src/manufacturing_ai/anomaly_v2.py",
+      "bytes": 25313,
+      "sha256": "1fc00d7272ac7343bf9e186a811de0144c72b5ce48c2ce13a26f26a982e6208d"
+    },
+    {
+      "path": "src/manufacturing_ai/forecast.py",
+      "bytes": 15301,
+      "sha256": "a89c57fc2a6a2e35c2264878c7cf18b37eae3c13c9802919e90ae33c29c7d5cd"
+    },
+    {
+      "path": "tests/test_anomaly.py",
+      "bytes": 5011,
+      "sha256": "92249bb1d0947a3ec132986f3d32a23a57c4bf26cf9351e9d8d617066c614437"
+    },
+    {
+      "path": "tests/test_anomaly_v2.py",
+      "bytes": 3847,
+      "sha256": "137e56ba621a214804c6c3fd6fbd00c2dfb2a3d0a7a0f8a4615e53956464ebaa"
+    },
+    {
+      "path": "tests/test_forecast.py",
+      "bytes": 3804,
+      "sha256": "ed84701413be892d7f0162208c0a85cd2171236b1b62033c34ba5ec9037cf4ac"
+    },
+    {
+      "path": "VALIDATION.json",
+      "bytes": 618,
+      "sha256": "ec89957fcecd05ba201777cae78ea4ba81098fd6fc5ff9a0e39fb8bb61a601db"
+    }
+  ],
+  "excluded": [
+    "raw datasets",
+    "course PDFs",
+    "virtual environment",
+    "cache",
+    "temporary files",
+    "personal environment metadata",
+    "credentials",
+    "duplicate experimental model bundles",
+    "local-only training/report scripts with missing dependencies"
+  ],
+  "scope": "Inference, saved models, reusable model source, unit tests, results and team documentation. Full local research environment is not bundled."
+}

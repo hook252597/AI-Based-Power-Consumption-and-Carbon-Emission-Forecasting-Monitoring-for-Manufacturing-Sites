@@ -1,0 +1,151 @@
+{
+  "created_utc": "2026-10-13T10:42:39.998426+00:00",
+  "source": "original research models/anomaly_v2/selected_model.joblib (not bundled)",
+  "export": "models/anomaly_v2/selected_model.joblib",
+  "method": "if_voltage_pf",
+  "candidate": "if_voltage_pf_f1_q099999",
+  "source_bytes": 79216256,
+  "export_bytes": 40667551,
+  "source_mib": 75.5465,
+  "export_mib": 38.7836,
+  "reduction_percent": 48.6626,
+  "source_sha256": "54c232d430dd316c2bf878b7727f52a84ce75c571f993e1f4db7f4da061dafb6",
+  "export_sha256": "4a4f976c46789c4bd86f2bdd9fa44616bcb206807d9d95f11585461a39101046",
+  "source_file_unchanged": true,
+  "removed_unused_detectors": [
+    "original_if",
+    "robust"
+  ],
+  "retained_detectors": [
+    "focused_if"
+  ],
+  "retained_detector_metadata": [
+    "identity"
+  ],
+  "equipment": 13,
+  "trees_compared": 1300,
+  "tree_state_arrays_exactly_equal": true,
+  "evaluation_rows": 7163,
+  "per_equipment": [
+    {
+      "module": "1(PM-3)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "11(우측분전반1)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "12(4호기)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "13(3호기)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "14(2호기)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "15(예비건조기)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "16(호이스트)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "17(6호기)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "18(우측분전반2)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "2(L-1전등)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "3(분쇄기(2))",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "4(분쇄기(1))",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    },
+    {
+      "module": "5(좌측분전반)",
+      "real_cached_rows": 512,
+      "boundary_rows": 18,
+      "synthetic_or_median_rows": 21,
+      "total_rows": 551,
+      "threshold_identical": true
+    }
+  ],
+  "score_and_all_output_columns_exactly_equal": true,
+  "shuffled_input_outputs_exactly_equal": true,
+  "inference_api_compatible": [
+    "load_selected",
+    "predict_observations"
+  ],
+  "private_absolute_path_scan": {
+    "recursive_metadata_and_estimator_state": true,
+    "strings_checked": 25334,
+    "objects_checked": 7952,
+    "hits": []
+  },
+  "model_retrained": false,
+  "thresholds_changed": false,
+  "network_or_remote_write_performed": false,
+  "notice": "Artifact size optimization only. Original learned behavior and known limitations are unchanged."
+}

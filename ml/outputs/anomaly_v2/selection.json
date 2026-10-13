@@ -1,0 +1,425 @@
+{
+  "selected_candidate": "if_voltage_pf_f1_q099999",
+  "selected_method": "if_voltage_pf",
+  "selected_march": {
+    "tp": 1243,
+    "fp": 41,
+    "fn": 19,
+    "tn": 669530,
+    "rows": 670833,
+    "precision": 0.9680685358255452,
+    "recall": 0.9849445324881141,
+    "f1": 0.97643362136685,
+    "false_positive_rate": 6.123323740126141e-05,
+    "proxy_target_met": true
+  },
+  "candidates": [
+    {
+      "name": "if_threshold_f1_q09999",
+      "method": "if_threshold",
+      "stage": 1,
+      "stage_name": "임계값 보정",
+      "description": "기존 10개 입력 IF의 판정 기준 보정",
+      "positive_f_beta": 1,
+      "zero_positive_quantile": 0.9999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1168,
+        "fp": 141,
+        "fn": 94,
+        "tn": 669430,
+        "rows": 670833,
+        "precision": 0.8922841864018335,
+        "recall": 0.9255150554675119,
+        "f1": 0.9085958770906263,
+        "false_positive_rate": 0.0002105825969165331,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "if_threshold_f1_q099999",
+      "method": "if_threshold",
+      "stage": 1,
+      "stage_name": "임계값 보정",
+      "description": "기존 10개 입력 IF의 판정 기준 보정",
+      "positive_f_beta": 1,
+      "zero_positive_quantile": 0.99999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1168,
+        "fp": 90,
+        "fn": 94,
+        "tn": 669481,
+        "rows": 670833,
+        "precision": 0.9284578696343402,
+        "recall": 0.9255150554675119,
+        "f1": 0.926984126984127,
+        "false_positive_rate": 0.00013441442356374453,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "if_threshold_f2_q09999",
+      "method": "if_threshold",
+      "stage": 1,
+      "stage_name": "임계값 보정",
+      "description": "기존 10개 입력 IF의 판정 기준 보정",
+      "positive_f_beta": 2,
+      "zero_positive_quantile": 0.9999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1190,
+        "fp": 215,
+        "fn": 72,
+        "tn": 669356,
+        "rows": 670833,
+        "precision": 0.8469750889679716,
+        "recall": 0.9429477020602218,
+        "f1": 0.8923884514435696,
+        "false_positive_rate": 0.0003211011229578342,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "if_threshold_f2_q099999",
+      "method": "if_threshold",
+      "stage": 1,
+      "stage_name": "임계값 보정",
+      "description": "기존 10개 입력 IF의 판정 기준 보정",
+      "positive_f_beta": 2,
+      "zero_positive_quantile": 0.99999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1190,
+        "fp": 164,
+        "fn": 72,
+        "tn": 669407,
+        "rows": 670833,
+        "precision": 0.8788774002954209,
+        "recall": 0.9429477020602218,
+        "f1": 0.9097859327217125,
+        "false_positive_rate": 0.00024493294960504564,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "if_voltage_pf_f1_q09999",
+      "method": "if_voltage_pf",
+      "stage": 2,
+      "stage_name": "입력 변수 개선",
+      "description": "전압·역률 6개 입력으로 IF 재학습",
+      "positive_f_beta": 1,
+      "zero_positive_quantile": 0.9999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1243,
+        "fp": 84,
+        "fn": 19,
+        "tn": 669487,
+        "rows": 670833,
+        "precision": 0.9366993217784476,
+        "recall": 0.9849445324881141,
+        "f1": 0.9602162997296254,
+        "false_positive_rate": 0.00012545346199282825,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "if_voltage_pf_f1_q099999",
+      "method": "if_voltage_pf",
+      "stage": 2,
+      "stage_name": "입력 변수 개선",
+      "description": "전압·역률 6개 입력으로 IF 재학습",
+      "positive_f_beta": 1,
+      "zero_positive_quantile": 0.99999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1243,
+        "fp": 41,
+        "fn": 19,
+        "tn": 669530,
+        "rows": 670833,
+        "precision": 0.9680685358255452,
+        "recall": 0.9849445324881141,
+        "f1": 0.97643362136685,
+        "false_positive_rate": 6.123323740126141e-05,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "if_voltage_pf_f2_q09999",
+      "method": "if_voltage_pf",
+      "stage": 2,
+      "stage_name": "입력 변수 개선",
+      "description": "전압·역률 6개 입력으로 IF 재학습",
+      "positive_f_beta": 2,
+      "zero_positive_quantile": 0.9999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1246,
+        "fp": 93,
+        "fn": 16,
+        "tn": 669478,
+        "rows": 670833,
+        "precision": 0.9305451829723674,
+        "recall": 0.9873217115689382,
+        "f1": 0.9580930411380238,
+        "false_positive_rate": 0.0001388949043492027,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "if_voltage_pf_f2_q099999",
+      "method": "if_voltage_pf",
+      "stage": 2,
+      "stage_name": "입력 변수 개선",
+      "description": "전압·역률 6개 입력으로 IF 재학습",
+      "positive_f_beta": 2,
+      "zero_positive_quantile": 0.99999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1246,
+        "fp": 50,
+        "fn": 16,
+        "tn": 669521,
+        "rows": 670833,
+        "precision": 0.9614197530864198,
+        "recall": 0.9873217115689382,
+        "f1": 0.9741985926505082,
+        "false_positive_rate": 7.467467975763586e-05,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "robust_distance_f1_q09999",
+      "method": "robust_distance",
+      "stage": 3,
+      "stage_name": "탐지 방법 비교",
+      "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+      "positive_f_beta": 1,
+      "zero_positive_quantile": 0.9999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1205,
+        "fp": 77,
+        "fn": 57,
+        "tn": 669494,
+        "rows": 670833,
+        "precision": 0.9399375975039002,
+        "recall": 0.9548335974643423,
+        "f1": 0.9473270440251572,
+        "false_positive_rate": 0.00011499900682675922,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "robust_distance_f1_q099999",
+      "method": "robust_distance",
+      "stage": 3,
+      "stage_name": "탐지 방법 비교",
+      "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+      "positive_f_beta": 1,
+      "zero_positive_quantile": 0.99999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1205,
+        "fp": 31,
+        "fn": 57,
+        "tn": 669540,
+        "rows": 670833,
+        "precision": 0.9749190938511327,
+        "recall": 0.9548335974643423,
+        "f1": 0.9647718174539631,
+        "false_positive_rate": 4.629830144973423e-05,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "robust_distance_f2_q09999",
+      "method": "robust_distance",
+      "stage": 3,
+      "stage_name": "탐지 방법 비교",
+      "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+      "positive_f_beta": 2,
+      "zero_positive_quantile": 0.9999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1216,
+        "fp": 103,
+        "fn": 46,
+        "tn": 669468,
+        "rows": 670833,
+        "precision": 0.9219105382865808,
+        "recall": 0.9635499207606973,
+        "f1": 0.9422704378148005,
+        "false_positive_rate": 0.00015382984030072987,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "robust_distance_f2_q099999",
+      "method": "robust_distance",
+      "stage": 3,
+      "stage_name": "탐지 방법 비교",
+      "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+      "positive_f_beta": 2,
+      "zero_positive_quantile": 0.99999,
+      "reference_only": false,
+      "march_selection": {
+        "tp": 1216,
+        "fp": 57,
+        "fn": 46,
+        "tn": 669514,
+        "rows": 670833,
+        "precision": 0.9552238805970149,
+        "recall": 0.9635499207606973,
+        "f1": 0.9593688362919132,
+        "false_positive_rate": 8.512913492370488e-05,
+        "proxy_target_met": true
+      }
+    },
+    {
+      "name": "v1_frozen_if",
+      "stage": 0,
+      "reference_only": true,
+      "description": "기존 IF 동결 참고값",
+      "march_selection": {
+        "tp": 1169,
+        "fp": 596,
+        "fn": 93,
+        "tn": 668975,
+        "rows": 670833,
+        "precision": 0.6623229461756374,
+        "recall": 0.9263074484944532,
+        "f1": 0.7723818962669309,
+        "false_positive_rate": 0.0008901221827110194,
+        "proxy_target_met": false
+      }
+    },
+    {
+      "name": "documented_rule",
+      "stage": 0,
+      "reference_only": true,
+      "description": "강의자료 210V/85% 고정 규칙",
+      "march_selection": {
+        "tp": 1262,
+        "fp": 0,
+        "fn": 0,
+        "tn": 669571,
+        "rows": 670833,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positive_rate": 0.0,
+        "proxy_target_met": true
+      }
+    }
+  ],
+  "stage_best": {
+    "1": "if_threshold_f1_q099999",
+    "2": "if_voltage_pf_f1_q099999",
+    "3": "robust_distance_f1_q099999"
+  },
+  "split_rows": {
+    "1(PM-3)": {
+      "train": 51000,
+      "calibration": 48341,
+      "selection": 51659,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "11(우측분전반1)": {
+      "train": 51000,
+      "calibration": 48730,
+      "selection": 51270,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "12(4호기)": {
+      "train": 51000,
+      "calibration": 48324,
+      "selection": 51676,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "13(3호기)": {
+      "train": 51000,
+      "calibration": 48508,
+      "selection": 51492,
+      "calibration_proxy_positive": 234,
+      "selection_proxy_positive": 239
+    },
+    "14(2호기)": {
+      "train": 51000,
+      "calibration": 48231,
+      "selection": 51769,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "15(예비건조기)": {
+      "train": 51000,
+      "calibration": 48308,
+      "selection": 51692,
+      "calibration_proxy_positive": 470,
+      "selection_proxy_positive": 502
+    },
+    "16(호이스트)": {
+      "train": 51000,
+      "calibration": 48350,
+      "selection": 51650,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "17(6호기)": {
+      "train": 51000,
+      "calibration": 48345,
+      "selection": 51655,
+      "calibration_proxy_positive": 497,
+      "selection_proxy_positive": 521
+    },
+    "18(우측분전반2)": {
+      "train": 51000,
+      "calibration": 48403,
+      "selection": 51597,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "2(L-1전등)": {
+      "train": 51000,
+      "calibration": 48426,
+      "selection": 51574,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "3(분쇄기(2))": {
+      "train": 51000,
+      "calibration": 48272,
+      "selection": 51728,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "4(분쇄기(1))": {
+      "train": 51000,
+      "calibration": 48569,
+      "selection": 51431,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    },
+    "5(좌측분전반)": {
+      "train": 51000,
+      "calibration": 48360,
+      "selection": 51640,
+      "calibration_proxy_positive": 0,
+      "selection_proxy_positive": 0
+    }
+  },
+  "policy": "Among candidates meeting precision>=0.70 and recall>=0.80, maximize pooled all-equipment F1; if none meet both, maximize F1 over all. Ties: recall, precision, simpler stage, listed candidate order.",
+  "identity": {
+    "protocol_sha256": "555641e29c900d50f46d4aaec21076004982bab82b272ec7e5f2aa21b2d44069",
+    "source_fingerprint": "6f78a356465f939e89c56e15ad841ee90f1bee58ff50a6d90486236163cc1ecd",
+    "seed": 20261012
+  },
+  "frozen_utc": "2026-10-13T10:22:15.366693+00:00",
+  "before_april_read": true,
+  "evaluation_notice": "April was inspected in V1 and in error analysis before V2 was designed. April V2 metrics are exploratory reevaluation, not a fresh held-out test. Supplied labels match the educational voltage<210/PF<85 rule throughout audited March samples and April rows, but are not confirmed physical fault labels."
+}

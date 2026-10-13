@@ -1,0 +1,1122 @@
+{
+  "scope": "Read-only search of supplied project/course source documents; CSV contents excluded from text search. AI_project generated code excluded as non-original evidence. No model retraining.",
+  "provenance_status": "documented_course_rule_matches_inspected_labels_exact_file_creator_and_generator_unverified",
+  "generation_code_found": false,
+  "search_terms": [
+    "rtu_data_full_flagged",
+    "is_outlier",
+    "outlier_reason",
+    "이상치",
+    "이상값",
+    "outlier",
+    "삽입"
+  ],
+  "source_inventory": {
+    "csv": 11,
+    "json": 8,
+    "markdown": 3,
+    "pdf": 19,
+    "python_or_notebook": 0
+  },
+  "text_document_search": {
+    "files": "8 JSON and 3 Markdown documents under 강의자료/프로젝트",
+    "matching_files": []
+  },
+  "pdf_search": [
+    {
+      "path": "강의자료\\1일차\\01_동의대학교_제조AI개요.pdf",
+      "pages": 66,
+      "pages_with_extractable_text": 66,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\1일차\\02_동의대학교_AWS제조AI아키텍처.pdf",
+      "pages": 42,
+      "pages_with_extractable_text": 42,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\1일차\\03_동의대학교_Kiro시작하기와Python기초.pdf",
+      "pages": 39,
+      "pages_with_extractable_text": 39,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\1일차\\04_동의대학교_Kiro코딩실습.pdf",
+      "pages": 37,
+      "pages_with_extractable_text": 37,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\1일차\\05_동의대학교_제조현장문제찾기.pdf",
+      "pages": 39,
+      "pages_with_extractable_text": 39,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\2일차\\session-01_제조 데이터 이해.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\2일차\\session-02_데이터 전처리 기초.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [
+        {
+          "page_1based": 23,
+          "terms": [
+            "is_outlier"
+          ]
+        }
+      ],
+      "anomaly_mentions": [
+        {
+          "page_1based": 2,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "orldLabs동의대학교 제조 AI 과정 2 01 데이터 점검 분석 전에 데이터를 확인한다 현장에서 수집한 데이터를 왜 바로 분석하면 안 될까? 결측치의 원인과 이상치 발견 방법을 설명한다 도메인 지식으로 실제 데이터의 이상치 후보를 찾는다 삭제 전에 정제 기준을 정하는 이유를 설명한다 ",
+            "검 분석 전에 데이터를 확인한다 현장에서 수집한 데이터를 왜 바로 분석하면 안 될까? 결측치의 원인과 이상치 발견 방법을 설명한다 도메인 지식으로 실제 데이터의 이상치 후보를 찾는다 삭제 전에 정제 기준을 정하는 이유를 설명한다 "
+          ]
+        },
+        {
+          "page_1based": 3,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "1 데이터 점검 > HelloworldLabs동의대학교 제조 AI 과정 3 값의 상태를 구분하고 전처리한다 결측치 · 이상치를 발견한 다음에는 왜 생겼는지 확인한다 데이터 전처리 데이터를 분석 목적에 맞게 정리하는 과정 결측치 값이 기록되지 않은 상태 이상치 다른 값과 비교했을 때 매우 크거나 작은 값",
+            "하고 전처리한다 결측치 · 이상치를 발견한 다음에는 왜 생겼는지 확인한다 데이터 전처리 데이터를 분석 목적에 맞게 정리하는 과정 결측치 값이 기록되지 않은 상태 이상치 다른 값과 비교했을 때 매우 크거나 작은 값"
+          ]
+        },
+        {
+          "page_1based": 8,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "> HelloworldLabs동의대학교 제조 AI 과정 8 03 이상치 판단 이상치를 보면 발생 이유를 확인한다 큰 값이나 작은 값이 실제 설비의 변화를 나타낼 수 있다 다른 값과 비교한다 센서 오류와 실제 변화를 구분한다 ",
+            "> HelloworldLabs동의대학교 제조 AI 과정 8 03 이상치 판단 이상치를 보면 발생 이유를 확인한다 큰 값이나 작은 값이 실제 설비의 변화를 나타낼 수 있다 다른 값과 비교한다 센서 오류와 실제 변화를 구분한다 "
+          ]
+        },
+        {
+          "page_1based": 9,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "3 이상치 판단 > HelloworldLabs동의대학교 제조 AI 과정 9 이상치를 지우기 전에 두 가능성을 확인한다 31, 32, 30, 31, 9999, 33 원인을 구분하지 않고 지우면 중요한 사건을 잃을 수 있다 같은 값도 발생 이유에 따라 의미가 달라진다 센서 오류 센서 오류로 값이 잘못 기록됐을 수 있다 실제 설비 변화 설비에서 큰 변화가 발생했을 수 있",
+            "3 이상치 판단 > HelloworldLabs동의대학교 제조 AI 과정 9 이상치를 지우기 전에 두 가능성을 확인한다 31, 32, 30, 31, 9999, 33 원인을 구분하지 않고 지우면 중요한 사건을 잃을 수 있다 같은 값도 발생 이유에 따라 의미가 달라진다 센서 오류 센서 오류로 값이 잘못 기록됐을 수 있다 실제 설비 변화 설비에서 큰 변화가 발생했을 수 있다"
+          ]
+        },
+        {
+          "page_1based": 10,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "> HelloworldLabs동의대학교 제조 AI 과정 10 04 발견 방법 알고 있는 기준으로 이상치 후보를 찾는다 규칙 기반 · 통계 기반 · 모델 기반 오늘은 규칙 기반 방법을 사용한다 기준을 벗어난 이유를 설명한다 "
+          ]
+        },
+        {
+          "page_1based": 11,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "4 발견 방법 > HelloworldLabs동의대학교 제조 AI 과정 11 이상치 판단 기준이 어디서 오는지 비교한다 기준을 알고 있으면 왜 이상한지 규칙으로 설명할 수 있다 방법 기준의 출처 규칙 기반 사람이 아는 지식과 허용 범위 통계 기반 데이터의 분포와 평균에서의 거리 모델 기반 학습한 모델의 평소와 다른지 판단"
+          ]
+        },
+        {
+          "page_1based": 14,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            " 범위를 판단 규칙으로 사용한다 이 데이터에서 사용하는 기준 숫자의 크기를 판단하려면 무엇을 재는 값인지 알아야 한다 상전압 210~220V 역률 85~100% 이상치 후보 판별 규칙 상전압 < 210V 또는 역률 < 85%"
+          ]
+        },
+        {
+          "page_1based": 15,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "학교 제조 AI 과정 15 06 정제 기준 데이터를 바꾸기 전에 처리 기준을 정한다 원본 보존부터 판단 근거 기록까지 원본 파일을 직접 수정하지 않는다 결측치와 이상치의 처리 기준을 남긴다 "
+          ]
+        },
+        {
+          "page_1based": 16,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "을 왜 삭제 · 대체했는지 기록한다 확인할 대상 처리 원칙 원본 데이터 원본 파일 별도 저장 원본 수정 금지 결측치 수 · 비율 확인 원인 확인 대체 기준 기록 이상치 범위 이탈 값 후보 표시 공정 이상 가능성 확인"
+          ]
+        },
+        {
+          "page_1based": 17,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "6 정제 기준 > HelloworldLabs동의대학교 제조 AI 과정 17 후보 표시에서 원인 확인과 기록으로 진행한다 이상치는 먼저 확인할 대상이다 후보 표시 발견한 직후 이상치를 바로 삭제하지 않고 표시한다 원인 확인 처리하기 전 실제 공정 이상일 가능성을 확인한다 근거 기록 판단한 뒤 판단 근거와 건수를 남긴다",
+            " > HelloworldLabs동의대학교 제조 AI 과정 17 후보 표시에서 원인 확인과 기록으로 진행한다 이상치는 먼저 확인할 대상이다 후보 표시 발견한 직후 이상치를 바로 삭제하지 않고 표시한다 원인 확인 처리하기 전 실제 공정 이상일 가능성을 확인한다 근거 기록 판단한 뒤 판단 근거와 건수를 남긴다"
+          ]
+        },
+        {
+          "page_1based": 20,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "> HelloworldLabs동의대학교 제조 AI 과정 20 08 Kiro 실습 Kiro에게 요청하고 설비별 결과를 확인한다 결측치와 이상치 후보를 실제 데이터에서 확인한다 결측치가 없다면 그 이유도 질문한다 상전압 문제인지 역률 문제인지 확인한다 이상치 후보와 정상 행의 전력을 비교한다 ",
+            "에게 요청하고 설비별 결과를 확인한다 결측치와 이상치 후보를 실제 데이터에서 확인한다 결측치가 없다면 그 이유도 질문한다 상전압 문제인지 역률 문제인지 확인한다 이상치 후보와 정상 행의 전력을 비교한다 "
+          ]
+        },
+        {
+          "page_1based": 22,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            " 과정 22 09 기준 정리 우리 팀의 정제 기준을 표로 정리한다 실습 결과를 바탕으로 처리 원칙과 판단 근거를 남긴다 원본 보존과 결측치 처리 기준을 정리한다 이상치 후보 표시 방법을 정리한다 뒤에서 Kiro에게 전달할 기준을 남긴다 "
+          ]
+        },
+        {
+          "page_1based": 23,
+          "terms": [
+            "is_outlier",
+            "이상치"
+          ],
+          "excerpts": [
+            " 데이터 처리에 적용한다 항목 우리 팀의 기준 원본 처리 원본은 수정하지 않고 결과는 새 파일로 저장한다 결측치 수와 비율을 확인하고 원인을 확인한 뒤 처리한다 이상치 판별 상전압 < 210V 또는 역률 < 85% 이상치 처리 삭제하지 않고 is_outlier 열로 표시한다 기록 판단 근거와 건수를 남긴다",
+            "리 원본은 수정하지 않고 결과는 새 파일로 저장한다 결측치 수와 비율을 확인하고 원인을 확인한 뒤 처리한다 이상치 판별 상전압 < 210V 또는 역률 < 85% 이상치 처리 삭제하지 않고 is_outlier 열로 표시한다 기록 판단 근거와 건수를 남긴다",
+            "과는 새 파일로 저장한다 결측치 수와 비율을 확인하고 원인을 확인한 뒤 처리한다 이상치 판별 상전압 < 210V 또는 역률 < 85% 이상치 처리 삭제하지 않고 is_outlier 열로 표시한다 기록 판단 근거와 건수를 남긴다"
+          ]
+        },
+        {
+          "page_1based": 24,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "9 기준 정리 > HelloworldLabs동의대학교 제조 AI 과정 24 데이터의 의미와 발생 원인을 바탕으로 정제한다 원본을 보존하고 이상치 후보의 원인을 확인한다 전처리는 데이터를 분석 목적에 맞게 정리하는 과정이다 결측치와 이상치는 먼저 왜 생겼는지 묻는다 이상치를 찾는 방법에는 규칙 기반 · 통계 기반 · 모델 기반이 있다 기준을 알고 있다면 규칙으로 이상치 후보를 찾는다 도메인 지식으로 판단 기준을 정하고 처리 근거를 기록한다",
+            "24 데이터의 의미와 발생 원인을 바탕으로 정제한다 원본을 보존하고 이상치 후보의 원인을 확인한다 전처리는 데이터를 분석 목적에 맞게 정리하는 과정이다 결측치와 이상치는 먼저 왜 생겼는지 묻는다 이상치를 찾는 방법에는 규칙 기반 · 통계 기반 · 모델 기반이 있다 기준을 알고 있다면 규칙으로 이상치 후보를 찾는다 도메인 지식으로 판단 기준을 정하고 처리 근거를 기록한다",
+            "바탕으로 정제한다 원본을 보존하고 이상치 후보의 원인을 확인한다 전처리는 데이터를 분석 목적에 맞게 정리하는 과정이다 결측치와 이상치는 먼저 왜 생겼는지 묻는다 이상치를 찾는 방법에는 규칙 기반 · 통계 기반 · 모델 기반이 있다 기준을 알고 있다면 규칙으로 이상치 후보를 찾는다 도메인 지식으로 판단 기준을 정하고 처리 근거를 기록한다"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "강의자료\\2일차\\session-03_데이터 정제.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": [
+        {
+          "page_1based": 17,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "를 함께 생각한다 합치는 방법 남는 것 쓰는 곳 평균 그 시간의 대표값 역률 등의 평소 수준 합 그 시간의 총량 전력량(Wh) 최솟값 · 최댓값 그 시간의 극단 이상치 탐지 개수 데이터가 있었던 수 불완전한 구간 찾기"
+          ]
+        },
+        {
+          "page_1based": 20,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            " 20 09 Kiro 실습 시간을 비교하고 집계 결과를 확인한다 원본을 보존하면서 시간 처리와 집계를 수행한다 수집 간격과 두 시간 컬럼을 비교한다 집계 전후의 이상치 탐지 결과를 비교한다 "
+          ]
+        },
+        {
+          "page_1based": 22,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "한다 1 설비별로 시간 단위를 바꾼다 설비별 · 1시간 단위로 묶어줘 — 개수, 평균, 최솟값, 전력량(Wh) 확인 집계 후 행 수와 남긴 항목을 확인한다 2 이상치 탐지 결과를 비교한다 묶기 전과 후에 이상치(전압<210 또는 역률<85)가 각각 몇 개 잡히는지 비교해줘 확인 평균과 최솟값에서 찾은 이상치 개수를 비교한다",
+            "· 1시간 단위로 묶어줘 — 개수, 평균, 최솟값, 전력량(Wh) 확인 집계 후 행 수와 남긴 항목을 확인한다 2 이상치 탐지 결과를 비교한다 묶기 전과 후에 이상치(전압<210 또는 역률<85)가 각각 몇 개 잡히는지 비교해줘 확인 평균과 최솟값에서 찾은 이상치 개수를 비교한다",
+            "목을 확인한다 2 이상치 탐지 결과를 비교한다 묶기 전과 후에 이상치(전압<210 또는 역률<85)가 각각 몇 개 잡히는지 비교해줘 확인 평균과 최솟값에서 찾은 이상치 개수를 비교한다"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "강의자료\\2일차\\session-04_전처리 코드 구현.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [
+        {
+          "page_1based": 19,
+          "terms": [
+            "is_outlier"
+          ]
+        },
+        {
+          "page_1based": 23,
+          "terms": [
+            "is_outlier"
+          ]
+        }
+      ],
+      "anomaly_mentions": [
+        {
+          "page_1based": 3,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "ldLabs동의대학교 제조 AI 과정 3 반복할 작업의 기준을 고정한다 같은 입력에 같은 결과가 나오는지 확인한다 반복할 작업 결측치 확인, 시간 정렬, 집계, 이상치 확인, 파일 저장 손으로 반복 매번 처음부터 확인하며 처리 방식이 조금씩 달라진다 코드로 반복 한 번 정한 과정을 다시 실행한다"
+          ]
+        },
+        {
+          "page_1based": 4,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "조와 범위 Step 2 문제 현황 확인 결측치 ·중복 Step 3 시간 데이터 확인 정렬 · 수집 간격 Step 4 시간 단위로 집계 전력량(Wh) Step 5 이상치 후보 확인 판단 근거 Step 6 정제 기준 적용 결과 저장 Step 7 전후 비교 변화 설명 Step 8 다시 실행하기 반복 확인"
+          ]
+        },
+        {
+          "page_1based": 12,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "> HelloworldLabs동의대학교 제조 AI 과정 12 03 집계와 정제 집계하고 정제 기준을 적용한다 시간별 전력량을 만들고 이상치 후보를 표시한다 단위와 남길 값을 지정한다 앞에서 정한 기준을 Kiro에게 전달한다 "
+          ]
+        },
+        {
+          "page_1based": 16,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "• activePower의 평균을 확인한다 • 상전압과 역률의 평균을 확인한다 최솟값 • 상전압과 역률의 최솟값을 함께 남긴다 • 평균에 가려질 수 있는 이상치 후보를 확인한다 행 개수 • 시간대별 행 개수를 확인한다 • 720개가 아닌 시간대는 불완전 구간인지 확인한다"
+          ]
+        },
+        {
+          "page_1based": 17,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "3 집계와 정제 > HelloworldLabs동의대학교 제조 AI 과정 17 정한 기준으로 이상치 후보를 확인한다 앞에서 정한 기준을 사용한다 이상치 후보를 찾는 일과 삭제하는 일을 구분한다 Kiro에게 요청한다 - 상전압(voltageR/S/T)이 210 미만인 행 - 역률(powerFactorR/S/T)이 85 미만인 행 설비별로 몇 건인지 세고, 그 행들의 activePower 평균을 정상 행과 비교해줘. 아직 삭제하지 마. 왜 이상치 후보라고 ",
+            "3 집계와 정제 > HelloworldLabs동의대학교 제조 AI 과정 17 정한 기준으로 이상치 후보를 확인한다 앞에서 정한 기준을 사용한다 이상치 후보를 찾는 일과 삭제하는 일을 구분한다 Kiro에게 요청한다 - 상전압(voltageR/S/T)이 210 미만인 행 - 역률(powerFactorR/S/T)이 85 미만인 행 설비별로 몇 건인지 세고, 그 행들의 activePower 평균을 정상 행과 비교해줘. 아직 삭제하지 마. 왜 이상치 후보라고 판단했는지 근거도 함께 적어줘. 확인 설비별 후보 수",
+            "powerFactorR/S/T)이 85 미만인 행 설비별로 몇 건인지 세고, 그 행들의 activePower 평균을 정상 행과 비교해줘. 아직 삭제하지 마. 왜 이상치 후보라고 판단했는지 근거도 함께 적어줘. 확인 설비별 후보 수, 정상 행과의 비교, 판단 근거를 확인한다"
+          ]
+        },
+        {
+          "page_1based": 18,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "다 기준을 아는 경우 상전압과 역률처럼 정한 기준을 적용한다 기준을 모르는 경우 통계 · 모델 방법은 뒤에서 다룬다 이번 실습의 판단 기준 앞에서 정한 규칙으로 이상치 후보와 근거를 확인한다"
+          ]
+        },
+        {
+          "page_1based": 19,
+          "terms": [
+            "is_outlier",
+            "이상치"
+          ],
+          "excerpts": [
+            "3 집계와 정제 > HelloworldLabs동의대학교 제조 AI 과정 19 원본을 보존하고 이상치를 표시한다 정제 기준을 명시해야 무엇이 달라졌는지 설명할 수 있다 Kiro에게 요청한다 다음 규칙을 지키면서 전처리해줘. - 원본 파일은 변경하지 않는다 - 시간은 localtime만 쓰고 timestamp는 쓰지 않는다(지우지도 않는다) - 결측치를 임의로 평균값으로 바꾸지 않는다 - 이상치는 삭제하지 않고 is_outlier 열로 표시한다 - 이상치 ",
+            "본 파일은 변경하지 않는다 - 시간은 localtime만 쓰고 timestamp는 쓰지 않는다(지우지도 않는다) - 결측치를 임의로 평균값으로 바꾸지 않는다 - 이상치는 삭제하지 않고 is_outlier 열로 표시한다 - 이상치 판별 기준은 상전압 < 210 또는 역률 < 85 - 중복은 삭제 전에 중복 기준을 먼저 확인한다 - 결과는 새 파일로 저장한다 확인 원본 보존, is_outlier 열, 새 결과 파일을 확인한다",
+            "다 - 시간은 localtime만 쓰고 timestamp는 쓰지 않는다(지우지도 않는다) - 결측치를 임의로 평균값으로 바꾸지 않는다 - 이상치는 삭제하지 않고 is_outlier 열로 표시한다 - 이상치 판별 기준은 상전압 < 210 또는 역률 < 85 - 중복은 삭제 전에 중복 기준을 먼저 확인한다 - 결과는 새 파일로 저장한다 확인 원본 보존, is_outlier 열, 새 결과 파일을 확인한다"
+          ]
+        },
+        {
+          "page_1based": 21,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "AI 과정 21 전처리 전후의 변화를 기록하고 설명한다 표를 채운 뒤 무엇이 달라졌는지 말로 설명한다 항목 전처리 전 전처리 후 전체 행 수 결측치 수 중복 수 이상치 표시된 행 시간 데이터 문제 집계 후 시간별 행 수"
+          ]
+        },
+        {
+          "page_1based": 23,
+          "terms": [
+            "is_outlier"
+          ],
+          "excerpts": [
+            "dLabs동의대학교 제조 AI 과정 23 코드와 결과, 적용 기준을 함께 정리한다 결과 파일과 함께 그 결과를 만든 기준을 남긴다 전처리 코드 전처리 코드 결과 is_outlier 열을 포함한 결과 파일 기준 적용한 데이터 정제 기준 집계와 비교 설비별 설비별 시간 집계 파일 공장 전체 공장 전체 시간 집계 파일 전후 비교 전처리 전후 비교표"
+          ]
+        },
+        {
+          "page_1based": 24,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "안에 무엇이 있는지 들여다본다 전처리를 코드로 만들어 기준을 고정한다 확인, 판단, 처리, 검증 순서를 지킨다 집계할 때 남길 값은 사람이 지정한다 기준을 아는 이상치 후보는 규칙으로 판단한다 이상치는 지우지 않고 표시한다",
+            "처리를 코드로 만들어 기준을 고정한다 확인, 판단, 처리, 검증 순서를 지킨다 집계할 때 남길 값은 사람이 지정한다 기준을 아는 이상치 후보는 규칙으로 판단한다 이상치는 지우지 않고 표시한다"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "강의자료\\2일차\\session-05_데이터 탐색적 분석.pdf",
+      "pages": 23,
+      "pages_with_extractable_text": 23,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\2일차\\session-06_데이터 탐색 마무리.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": [
+        {
+          "page_1based": 10,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "다. 데이터 처리 원칙 원본 보존 원본 파일을 직접 수정하지 않는다. 결과 저장 전처리 결과는 별도 파일로 저장한다. 결측치 임의로 삭제하거나 대체하지 않는다. 이상치 삭제 전에 후보와 판단 근거를 제시한다. 분석 원칙 질문 먼저 그래프를 만들기 전에 분석 질문을 정한다. 관찰 설명 그래프에 관찰 내용을 함께 설명한다. 사실과 추측 직접 확인한 사실과 추측을 구분한다. 원인 판단 상관관계를 원인관계로 단정하지 않는다."
+          ]
+        },
+        {
+          "page_1based": 14,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "어디서 오는지 비교한다 규칙으로 풀 수 있는 문제에는 규칙을 쓰는 것도 선택이다. 방법 기준의 출처 우리의 활용 규칙 기반 사람이 가진 분야 지식 앞에서 적용한 이상치 탐지 지도학습 정답이 붙어 있는 데이터 시간별 전력량 예측 비지도학습 데이터의 평소 패턴 뒤에서 비교할 이상 구간 탐지"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "강의자료\\3일차\\session-07_스펙 주도 개발 이해.pdf",
+      "pages": 23,
+      "pages_with_extractable_text": 23,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": [
+        {
+          "page_1based": 5,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "계에 반영한다 요금과 탄소배출량은 마지막에 환산한다 패턴 시간 · 요일 · 설비 차이는 잡음 수준이다 단위 · 시간 W/Wh 구분 · localtime만 사용 이상치 규칙으로 찾은 이상치를 활용한다",
+            "탄소배출량은 마지막에 환산한다 패턴 시간 · 요일 · 설비 차이는 잡음 수준이다 단위 · 시간 W/Wh 구분 · localtime만 사용 이상치 규칙으로 찾은 이상치를 활용한다"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "강의자료\\3일차\\session-08_요구사항 정의.pdf",
+      "pages": 23,
+      "pages_with_extractable_text": 23,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\3일차\\session-09_모델 설계.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\3일차\\session-10_AI 모델 구현.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\3일차\\session-11_모델 평가 및 테스트.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": [
+        {
+          "page_1based": 17,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "> HelloworldLabs동의대학교 제조 AI 과정 17 07 이상 탐지 세 방법으로 이상치를 비교한다 같은 데이터에 규칙 · 통계 · 모델을 적용한다 각 방법이 찾은 건수를 비교한다 방법 사이에 겹치는 결과를 확인한다 "
+          ]
+        },
+        {
+          "page_1based": 18,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "7 이상 탐지 > HelloworldLabs동의대학교 제조 AI 과정 18 이상치를 찾는 세 방법의 기준을 구분한다 모델 기반 이상 탐지는 비지도학습이다 복잡한 방법이 항상 더 나은 것은 아니다 규칙 기반 사람이 아는 기준으로 이상치를 찾는다 통계 기반 평균에서 많이 벗어난 값을 찾는다 모델 기반 평소 패턴을 학습해 다른 모습을 찾는다 방법 선택 문제의 상황에 맞춰 고른다",
+            "정 18 이상치를 찾는 세 방법의 기준을 구분한다 모델 기반 이상 탐지는 비지도학습이다 복잡한 방법이 항상 더 나은 것은 아니다 규칙 기반 사람이 아는 기준으로 이상치를 찾는다 통계 기반 평균에서 많이 벗어난 값을 찾는다 모델 기반 평소 패턴을 학습해 다른 모습을 찾는다 방법 선택 문제의 상황에 맞춰 고른다"
+          ]
+        },
+        {
+          "page_1based": 19,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "ro에게 세 방법의 비교를 요청한다 찾은 건수와 겹치는 결과를 근거로 방법의 차이를 설명한다 Kiro에게 요청한다 data/rtu_sample_raw.csv에서 이상치를 세 가지 방법으로 찾아 비교해줘. 1. 규칙: 전압 < 210 또는 역률 < 85 2. 통계: activePower에 3σ 기준, 그리고 역률에 3σ 기준 3. 모델: 간단한 비지도 이상탐지 각 방법이 몇 건을 찾았는지, 서로 얼마나 겹치는지 표로 보여줘. 확인 방법별 탐지 건수와 서로 겹치는 결과가 표에 있는지 확인한다"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "강의자료\\3일차\\session-12_서비스 구성 실습.pdf",
+      "pages": 24,
+      "pages_with_extractable_text": 24,
+      "exact_label_identifier_hits": [
+        {
+          "page_1based": 13,
+          "terms": [
+            "is_outlier"
+          ]
+        }
+      ],
+      "anomaly_mentions": [
+        {
+          "page_1based": 8,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            "학교 제조 AI 과정 8 04 필수 화면 필수 항목을 모두 표시한다 발주처가 요구한 화면을 구성한다 팀 정보와 프로젝트 설명 전기요금과 탄소배출량 예측 MAE와 이상치 탐지 결과 "
+          ]
+        },
+        {
+          "page_1based": 9,
+          "terms": [
+            "이상치"
+          ],
+          "excerpts": [
+            " 항목 필수 팀 이름 · 프로젝트 제목 · 간단한 설명 필수 시간대별 전기요금 예측 시각화 필수 시간대별 탄소배출량 예측 시각화 필수 예측 정확도 ·MAE 필수 이상치 탐지 결과 · 그래프 또는 알림"
+          ]
+        },
+        {
+          "page_1based": 13,
+          "terms": [
+            "is_outlier"
+          ],
+          "excerpts": [
+            "위를 사용자가 이해할 수 있어야 한다 데이터의 컬럼명 화면에 쓸 말 hourly_pow_Wh 시간별 전력량(kWh) activePower 순간 전력(kW 환산) is_outlier 이상 구간"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "강의자료\\4일차\\session-13.pdf",
+      "pages": 28,
+      "pages_with_extractable_text": 28,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    },
+    {
+      "path": "강의자료\\4일차\\session-14.pdf",
+      "pages": 27,
+      "pages_with_extractable_text": 27,
+      "exact_label_identifier_hits": [],
+      "anomaly_mentions": []
+    }
+  ],
+  "limitations": [
+    "Text extraction does not search image-only page content.",
+    "An absence of a matching generation script cannot establish who created the labels or their validity.",
+    "Observed value-label separability is descriptive evidence, not authoritative provenance."
+  ],
+  "test_set_policy": "Previous April inspection is already known, so any v2 April result must be described as a reused test result, not a fresh untouched test.",
+  "rule_documentation_found": true,
+  "documented_rule": {
+    "expression": "min(voltageR,voltageS,voltageT) < 210 OR min(powerFactorR,powerFactorS,powerFactorT) < 85",
+    "label_column": "is_outlier",
+    "scope": "Course-specific anomaly candidates, not a universal electrical safety or verified fault threshold.",
+    "ambiguity": "Course asks to mark rows with phase voltage/power factor below a threshold; the any-phase interpretation is consistent with wording, but exact generator and outlier_reason mapping are not provided."
+  },
+  "cache_rule_agreement": {
+    "rule": "any(voltageR/S/T < 210) OR any(powerFactorR/S/T < 85)",
+    "reason_mapping_checked": {
+      "0": "normal",
+      "1": "voltage",
+      "2": "power_factor"
+    },
+    "training_sample": {
+      "period": "2024-12-01 <= localtime < 2025-03-01",
+      "sampling": "17,000 rows/equipment/month; 13 equipments; 3 months",
+      "labels_available": false,
+      "limitation": "Cached train_x contains no train labels/reasons; these are rule-positive counts only, not label agreement.",
+      "totals": {
+        "rows": 663000,
+        "voltage_rule_positive": 258,
+        "power_factor_rule_positive": 1013,
+        "both_types": 0,
+        "any_rule_positive": 1271
+      },
+      "by_module": [
+        {
+          "module": "1(PM-3)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "11(우측분전반1)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "12(4호기)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "13(3호기)",
+          "rows": 51000,
+          "voltage_rule_positive": 258,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 258
+        },
+        {
+          "module": "14(2호기)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "15(예비건조기)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 485,
+          "both_types": 0,
+          "any_rule_positive": 485
+        },
+        {
+          "module": "16(호이스트)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "17(6호기)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 528,
+          "both_types": 0,
+          "any_rule_positive": 528
+        },
+        {
+          "module": "18(우측분전반2)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "2(L-1전등)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "3(분쇄기(2))",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "4(분쇄기(1))",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        },
+        {
+          "module": "5(좌측분전반)",
+          "rows": 51000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0
+        }
+      ]
+    },
+    "march_tuning_sample": {
+      "period": "2025-03-01 <= localtime < 2025-04-01",
+      "sampling": "100,000 rows/equipment; 13 equipments; fixed-seed sampled subset",
+      "totals": {
+        "rows": 1300000,
+        "voltage_rule_positive": 473,
+        "power_factor_rule_positive": 1990,
+        "both_types": 0,
+        "any_rule_positive": 2463,
+        "label_positive": 2463,
+        "agreement": 1300000,
+        "disagreement": 0,
+        "rule_only": 0,
+        "label_only": 0,
+        "reason_disagreement": 0
+      },
+      "by_module": [
+        {
+          "module": "1(PM-3)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "11(우측분전반1)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "12(4호기)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "13(3호기)",
+          "rows": 100000,
+          "voltage_rule_positive": 473,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 473,
+          "label_positive": 473,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "14(2호기)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "15(예비건조기)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 972,
+          "both_types": 0,
+          "any_rule_positive": 972,
+          "label_positive": 972,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "16(호이스트)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "17(6호기)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 1018,
+          "both_types": 0,
+          "any_rule_positive": 1018,
+          "label_positive": 1018,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "18(우측분전반2)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "2(L-1전등)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "3(분쇄기(2))",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "4(분쇄기(1))",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "5(좌측분전반)",
+          "rows": 100000,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 100000,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        }
+      ]
+    },
+    "april_complete_cache": {
+      "period": "2025-04-01 <= localtime < 2025-04-30",
+      "sampling": "All 6,514,560 eligible raw rows, verified aligned with flagged features by prior cache generation. No fitting or model scores used.",
+      "totals": {
+        "rows": 6514560,
+        "voltage_rule_positive": 2602,
+        "power_factor_rule_positive": 10046,
+        "both_types": 0,
+        "any_rule_positive": 12648,
+        "label_positive": 12648,
+        "agreement": 6514560,
+        "disagreement": 0,
+        "rule_only": 0,
+        "label_only": 0,
+        "reason_disagreement": 0
+      },
+      "by_module": [
+        {
+          "module": "1(PM-3)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "11(우측분전반1)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "12(4호기)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "13(3호기)",
+          "rows": 501120,
+          "voltage_rule_positive": 2602,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 2602,
+          "label_positive": 2602,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "14(2호기)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "15(예비건조기)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 5126,
+          "both_types": 0,
+          "any_rule_positive": 5126,
+          "label_positive": 5126,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "16(호이스트)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "17(6호기)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 4920,
+          "both_types": 0,
+          "any_rule_positive": 4920,
+          "label_positive": 4920,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "18(우측분전반2)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "2(L-1전등)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "3(분쇄기(2))",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "4(분쇄기(1))",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        },
+        {
+          "module": "5(좌측분전반)",
+          "rows": 501120,
+          "voltage_rule_positive": 0,
+          "power_factor_rule_positive": 0,
+          "both_types": 0,
+          "any_rule_positive": 0,
+          "label_positive": 0,
+          "agreement": 501120,
+          "disagreement": 0,
+          "rule_only": 0,
+          "label_only": 0,
+          "reason_disagreement": 0
+        }
+      ]
+    },
+    "limitation": "These checks confirm documented-rule agreement only in cached March samples and complete April. No independent full-source 33,696,013-row label recomputation performed in this audit."
+  },
+  "exact_source_file_generator_status": "No Python/notebook generator or exact rtu_data_full_flagged/outlier_reason mention found in supplied project/course files; course PDFs document is_outlier construction using the threshold rule.",
+  "complete_relevant_pages_reviewed": [
+    {
+      "path": "강의자료\\2일차\\session-02_데이터 전처리 기초.pdf",
+      "page_1based": 14
+    },
+    {
+      "path": "강의자료\\2일차\\session-02_데이터 전처리 기초.pdf",
+      "page_1based": 23
+    },
+    {
+      "path": "강의자료\\2일차\\session-04_전처리 코드 구현.pdf",
+      "page_1based": 17
+    },
+    {
+      "path": "강의자료\\2일차\\session-04_전처리 코드 구현.pdf",
+      "page_1based": 19
+    },
+    {
+      "path": "강의자료\\3일차\\session-11_모델 평가 및 테스트.pdf",
+      "page_1based": 18
+    },
+    {
+      "path": "강의자료\\3일차\\session-11_모델 평가 및 테스트.pdf",
+      "page_1based": 19
+    }
+  ],
+  "short_quotations": [
+    {
+      "path": "강의자료\\2일차\\session-02_데이터 전처리 기초.pdf",
+      "page_1based": 14,
+      "text": "상전압 < 210V 또는 역률 < 85%"
+    },
+    {
+      "path": "강의자료\\2일차\\session-02_데이터 전처리 기초.pdf",
+      "page_1based": 23,
+      "text": "삭제하지 않고 is_outlier 열로 표시한다"
+    }
+  ],
+  "conclusion": "The labels are consistent with a documented course rule on 1,300,000 March sampled rows and 6,514,560 April rows. They remain rule-based anomaly candidates, not independent physical-fault ground truth. Evaluating that same rule against these labels is a consistency check, not discovery of a learned detector."
+}

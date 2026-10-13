@@ -1,0 +1,205 @@
+{
+  "policy": {
+    "seed": 42,
+    "selection_metric": "March 10 00:00 through March 31 00:00 factory MAE",
+    "april_focus": "April 10 00:00 through April 29 23:00",
+    "physical_unit_assumption": "activePower is W; evidence: course data-rules and accumulator increments",
+    "reference_convention": "physical kWh multiplied by 1000 for supplied hourly_pow; multiply native number by180/.424 for supplied reference columns. This is NOT a physical bill.",
+    "unit_contract_confirmed_by_provider": false,
+    "minimum_normalized_mae": 0.01,
+    "model_adoption": "XGBoost must not exceed best simple baseline MAE on April focus; otherwise predeclared fallback to March-selected best baseline",
+    "stretch_improvement": 0.05,
+    "future_sensor_inputs": false,
+    "random_split": false,
+    "test_note": "April was included in prior EDA; internal test is not a fully unseen dataset. May values are read only after model freeze."
+  },
+  "selection": {
+    "selected_method": "mean",
+    "selected_kind": "mean",
+    "selected_params": null,
+    "ml_candidate": "xgb_1",
+    "ml_adoption_gate_passed": true,
+    "ml_improvement_over_best_april_baseline_pct": 0.0637028855018993,
+    "april_results": {
+      "mean": {
+        "all": {
+          "factory_mae_kWh": 0.07934992059691232,
+          "normalized_mae": 0.002027951199994939,
+          "factory_bias_kWh": 0.0015583843887235045,
+          "module_mae_mean_kWh": 0.021461743427852568,
+          "hours": 696,
+          "module_mae_kWh": {
+            "1(PM-3)": 0.0205585902200421,
+            "11(우측분전반1)": 0.022431814126769277,
+            "12(4호기)": 0.021157093378105785,
+            "13(3호기)": 0.02138265531428608,
+            "14(2호기)": 0.021725354606617817,
+            "15(예비건조기)": 0.020527394467247367,
+            "16(호이스트)": 0.02249997978199631,
+            "17(6호기)": 0.022735987839663376,
+            "18(우측분전반2)": 0.021218563218390808,
+            "2(L-1전등)": 0.020975660507281873,
+            "3(분쇄기(2))": 0.021139705691564942,
+            "4(분쇄기(1))": 0.021987668905288516,
+            "5(좌측분전반)": 0.020662196504829165
+          }
+        },
+        "focus": {
+          "factory_mae_kWh": 0.07918212291941645,
+          "normalized_mae": 0.0020234596263796045,
+          "factory_bias_kWh": -0.0023701149826846754,
+          "module_mae_mean_kWh": 0.021380842682925373,
+          "hours": 480,
+          "module_mae_kWh": {
+            "1(PM-3)": 0.020388674098067185,
+            "11(우측분전반1)": 0.022186629938670176,
+            "12(4호기)": 0.02106503668718435,
+            "13(3호기)": 0.020813709468561082,
+            "14(2호기)": 0.0213997073453522,
+            "15(예비건조기)": 0.020894623333636245,
+            "16(호이스트)": 0.022553311473717585,
+            "17(6호기)": 0.023423050567743395,
+            "18(우측분전반2)": 0.021267736972311515,
+            "2(L-1전등)": 0.020916459118289914,
+            "3(분쇄기(2))": 0.021255946505538335,
+            "4(분쇄기(1))": 0.02160960451556283,
+            "5(좌측분전반)": 0.020176464853395044
+          }
+        }
+      },
+      "median": {
+        "all": {
+          "factory_mae_kWh": 0.07936509187420156,
+          "normalized_mae": 0.002028338933337994,
+          "factory_bias_kWh": 0.002958173850573325,
+          "module_mae_mean_kWh": 0.021459676056402886,
+          "hours": 696,
+          "module_mae_kWh": {
+            "1(PM-3)": 0.02055629246487868,
+            "11(우측분전반1)": 0.022424267141602824,
+            "12(4호기)": 0.021153743035600265,
+            "13(3호기)": 0.021382393738026816,
+            "14(2호기)": 0.021725020334450833,
+            "15(예비건조기)": 0.02055516546934867,
+            "16(호이스트)": 0.02249985292943806,
+            "17(6호기)": 0.022745998144157092,
+            "18(우측분전반2)": 0.021220667145593865,
+            "2(L-1전등)": 0.020973198674968076,
+            "3(분쇄기(2))": 0.021140181054438056,
+            "4(분쇄기(1))": 0.021930273766762445,
+            "5(좌측분전반)": 0.020668734833971875
+          }
+        },
+        "focus": {
+          "factory_mae_kWh": 0.07914715636574059,
+          "normalized_mae": 0.002022566073554445,
+          "factory_bias_kWh": -0.0009703255208348545,
+          "module_mae_mean_kWh": 0.021376165789707982,
+          "hours": 480,
+          "module_mae_kWh": {
+            "1(PM-3)": 0.020394004890046318,
+            "11(우측분전반1)": 0.02217865671296298,
+            "12(4호기)": 0.02105818139467593,
+            "13(3호기)": 0.02081726099537037,
+            "14(2호기)": 0.021398616782407412,
+            "15(예비건조기)": 0.020910889612268533,
+            "16(호이스트)": 0.02255345862268516,
+            "17(6호기)": 0.02343756550925928,
+            "18(우측분전반2)": 0.021257720486111128,
+            "2(L-1전등)": 0.020913213975694456,
+            "3(분쇄기(2))": 0.021256713136574068,
+            "4(분쇄기(1))": 0.021530788599537033,
+            "5(좌측분전반)": 0.02018308454861108
+          }
+        }
+      },
+      "xgb_1": {
+        "all": {
+          "factory_mae_kWh": 0.07938344108774936,
+          "normalized_mae": 0.002028807885409443,
+          "factory_bias_kWh": 0.0028133151295981333,
+          "module_mae_mean_kWh": 0.021460283770252695,
+          "hours": 696,
+          "module_mae_kWh": {
+            "1(PM-3)": 0.02056028585498757,
+            "11(우측분전반1)": 0.02244452224545827,
+            "12(4호기)": 0.021169514825029243,
+            "13(3호기)": 0.02137294060985034,
+            "14(2호기)": 0.021723852349175347,
+            "15(예비건조기)": 0.02052041199197198,
+            "16(호이스트)": 0.022511057372087105,
+            "17(6호기)": 0.022714682312206573,
+            "18(우측분전반2)": 0.021214065465598276,
+            "2(L-1전등)": 0.02096869009192358,
+            "3(분쇄기(2))": 0.02113422333036985,
+            "4(분쇄기(1))": 0.021980515384966384,
+            "5(좌측분전반)": 0.02066892717966051
+          }
+        },
+        "focus": {
+          "factory_mae_kWh": 0.07909673734334291,
+          "normalized_mae": 0.002021277640604408,
+          "factory_bias_kWh": -0.0010160811061858954,
+          "module_mae_mean_kWh": 0.02137774992451138,
+          "hours": 480,
+          "module_mae_kWh": {
+            "1(PM-3)": 0.020399409921483657,
+            "11(우측분전반1)": 0.022194066652714773,
+            "12(4호기)": 0.0210833932134487,
+            "13(3호기)": 0.02082560141071037,
+            "14(2호기)": 0.021401679639399495,
+            "15(예비건조기)": 0.02089281757185902,
+            "16(호이스트)": 0.022551427316171133,
+            "17(6호기)": 0.02340027371872794,
+            "18(우측분전반2)": 0.021245217005673167,
+            "2(L-1전등)": 0.020909423397360904,
+            "3(분쇄기(2))": 0.021241268559879723,
+            "4(분쇄기(1))": 0.02160001457220714,
+            "5(좌측분전반)": 0.020166156039011895
+          }
+        }
+      }
+    },
+    "final_training_start": "2024-12-01 00:00:00",
+    "final_training_end": "2025-04-29 23:00:00",
+    "final_training_rows": 46800,
+    "module_count": 13,
+    "selection_rule": "March selection, followed only by predeclared April non-inferiority fallback; no May tuning.",
+    "frozen_before_reference_read": true,
+    "model_sha256": "48a34debab5e43138032ec949c7de301996d44b653619d15703b6a87ed1f703e"
+  },
+  "may": {
+    "selected": {
+      "rows": 505,
+      "mae_reference_units": {
+        "hourly_pow": 89.03148762768778,
+        "may_bill": 16025.66777298404,
+        "may_carbon": 37.74935075412605
+      },
+      "normalized_mae": 0.0022786878440837115,
+      "mae_kWh_if_reference_hourly_pow_is_Wh": 0.08903148762768778,
+      "basic_error_target_passed": true,
+      "unit_confirmation_pending": true
+    },
+    "xgboost": {
+      "rows": 505,
+      "mae_reference_units": {
+        "hourly_pow": 89.9078551934332,
+        "may_bill": 16183.413934818056,
+        "may_carbon": 38.12093060200323
+      },
+      "normalized_mae": 0.0023011177525601853,
+      "mae_kWh_if_reference_hourly_pow_is_Wh": 0.08990785519343321,
+      "basic_error_target_passed": true,
+      "unit_confirmation_pending": true
+    }
+  },
+  "success": {
+    "functional": true,
+    "ml_non_inferiority_on_april": true,
+    "ml_5pct_improvement": false,
+    "selected_basic_error_goal": true,
+    "official_physical_unit_acceptance": "pending provider confirmation"
+  },
+  "elapsed_seconds": 6.3246235847473145
+}

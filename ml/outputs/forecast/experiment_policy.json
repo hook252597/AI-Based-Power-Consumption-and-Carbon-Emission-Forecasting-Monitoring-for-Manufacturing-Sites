@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "selection_metric": "March 10 00:00 through March 31 00:00 factory MAE",
+  "april_focus": "April 10 00:00 through April 29 23:00",
+  "physical_unit_assumption": "activePower is W; evidence: course data-rules and accumulator increments",
+  "reference_convention": "physical kWh multiplied by 1000 for supplied hourly_pow; multiply native number by180/.424 for supplied reference columns. This is NOT a physical bill.",
+  "unit_contract_confirmed_by_provider": false,
+  "minimum_normalized_mae": 0.01,
+  "model_adoption": "XGBoost must not exceed best simple baseline MAE on April focus; otherwise predeclared fallback to March-selected best baseline",
+  "stretch_improvement": 0.05,
+  "future_sensor_inputs": false,
+  "random_split": false,
+  "test_note": "April was included in prior EDA; internal test is not a fully unseen dataset. May values are read only after model freeze."
+}

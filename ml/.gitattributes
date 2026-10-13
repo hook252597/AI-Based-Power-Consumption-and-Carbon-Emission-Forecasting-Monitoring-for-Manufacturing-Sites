@@ -1,0 +1,3 @@
+# Preserve exact experiment/export bytes so manifest SHA256 values stay valid.
+# Scoped to ml/; does not alter the team's other files.
+* -text

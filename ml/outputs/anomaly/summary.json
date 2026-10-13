@@ -1,0 +1,185 @@
+{
+  "proxy_notice": "is_outlier/outlier_reason have unknown provenance. Label-based tuning and test metrics measure agreement with provisional labels, not validated real-world anomaly accuracy.",
+  "rows_scored": 6514560,
+  "expected_rows": 6514560,
+  "all_test_rows_scored": true,
+  "hourly_rows": 9048,
+  "hours_per_equipment": {
+    "1(PM-3)": 696,
+    "11(우측분전반1)": 696,
+    "12(4호기)": 696,
+    "13(3호기)": 696,
+    "14(2호기)": 696,
+    "15(예비건조기)": 696,
+    "16(호이스트)": 696,
+    "17(6호기)": 696,
+    "18(우측분전반2)": 696,
+    "2(L-1전등)": 696,
+    "3(분쇄기(2))": 696,
+    "4(분쇄기(1))": 696,
+    "5(좌측분전반)": 696
+  },
+  "methods": {
+    "isolation_forest": {
+      "tp": 11627,
+      "fp": 5964,
+      "fn": 1021,
+      "tn": 6495948,
+      "rows": 6514560,
+      "precision": 0.6609629924393156,
+      "recall": 0.9192757748260595,
+      "f1": 0.7690069116042197,
+      "false_positive_rate": 0.0009172686434390377,
+      "proxy_target_met": false,
+      "sampled_average_precision": 0.9020906809950189
+    },
+    "rules": {
+      "tp": 11949,
+      "fp": 5193,
+      "fn": 699,
+      "tn": 6496719,
+      "rows": 6514560,
+      "precision": 0.6970598529926496,
+      "recall": 0.9447343453510436,
+      "f1": 0.8022155085599194,
+      "false_positive_rate": 0.0007986881397348965,
+      "proxy_target_met": false,
+      "sampled_average_precision": 0.9668348535972947
+    }
+  },
+  "ap_sample": {
+    "method": "fixed_seed_5_percent_Bernoulli",
+    "rows": 326860,
+    "positives": 609,
+    "notice": "Only AP is sampled; confusion/precision/recall/F1 are from every April row."
+  },
+  "test_period": {
+    "start_inclusive": "2025-04-01 00:00:00",
+    "end_exclusive": "2025-04-30 00:00:00"
+  },
+  "physical_anomaly_success": "undetermined_pending_label_provenance",
+  "score_seconds": 44.43699999999808,
+  "training": {
+    "period": "2024-12-01 <= localtime < 2025-03-01",
+    "features": [
+      "activePower",
+      "voltageR",
+      "voltageS",
+      "voltageT",
+      "currentR",
+      "currentS",
+      "currentT",
+      "powerFactorR",
+      "powerFactorS",
+      "powerFactorT"
+    ],
+    "equipment_models": 13,
+    "samples": {
+      "1(PM-3)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "11(우측분전반1)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "12(4호기)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "13(3호기)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 473
+      },
+      "14(2호기)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "15(예비건조기)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 972
+      },
+      "16(호이스트)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "17(6호기)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 1018
+      },
+      "18(우측분전반2)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "2(L-1전등)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "3(분쇄기(2))": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "4(분쇄기(1))": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      },
+      "5(좌측분전반)": {
+        "train": 51000,
+        "train_per_month": 17000,
+        "tune": 100000,
+        "tune_proxy_positive": 0
+      }
+    },
+    "isolation_forest": {
+      "n_estimators": 100,
+      "max_samples": 2048,
+      "contamination": "auto",
+      "n_jobs": 2
+    },
+    "threshold_tuning_period": "2025-03-01 <= localtime < 2025-04-01",
+    "frozen_before_test": true
+  },
+  "source_validation": {
+    "rows": 33696013,
+    "all_rows_identical_on": [
+      "module(equipment)",
+      "localtime",
+      "activePower",
+      "voltageR",
+      "voltageS",
+      "voltageT",
+      "currentR",
+      "currentS",
+      "currentT",
+      "powerFactorR",
+      "powerFactorS",
+      "powerFactorT"
+    ],
+    "sha256_parsed_selected_columns": "6f78a356465f939e89c56e15ad841ee90f1bee58ff50a6d90486236163cc1ecd",
+    "hash_note": "SHA256 of aligned parsed row hashes, not a byte-level file hash"
+  }
+}

@@ -1,0 +1,21 @@
+# This file applies only to the team's ml/ component.
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+tmp/
+logs/
+runs/
+local_data/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+# New runtime predictions are local. Curated experiment results stay tracked.
+outputs/forecast/custom_prediction.csv
+outputs/anomaly_v2/new_observations.csv
+outputs/demo_*.csv
+# Original multi-GB datasets must not enter this component.
+rtu_data_full.csv
+rtu_data_full_flagged.csv
