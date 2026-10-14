@@ -6,7 +6,7 @@
 
 - 기준 해상도: 1366 × 768 (노트북)
 - 설비: 13개 (RTU 채널 1~5, 11~18)
-- 데이터 기준일: **2025-05-31 고정**
+- 기준 시각: **2025-04-29 09:00 고정** (대시보드 `dashboard_app.py`와 `agent_tools.py`의 `NOW`)
 
 ---
 
@@ -19,8 +19,8 @@
 
 | 파일 | 내용 | 쓰는 법 |
 |---|---|---|
-| `dashBoardPrompt.md` | 대시보드 화면 3개(설비 현황 / 이상현황 / 에이전트)의 전체 명세 | 파일 전체를 복사해 AI 개발 도구에 그대로 붙여넣습니다 |
-| `agent.md` | 에이전트 구현 명세 — 도구 함수 11개, function calling 루프, 상태 관리, 오류 처리 | 대시보드가 돌아간 뒤에 넘깁니다 |
+| `../dashboard/dashBoardPrompt.md` | 대시보드 화면 3개(설비 현황 / 이상현황 / 에이전트)의 전체 명세 | 파일 전체를 복사해 AI 개발 도구에 그대로 붙여넣습니다 |
+| `agent.md` | 에이전트 구현 명세 — 도구 함수, function calling 루프, 상태 관리, 오류 처리 | 대시보드가 돌아간 뒤에 넘깁니다 |
 
 두 파일 모두 **파일 자체가 프롬프트**입니다. 머리말이나 설명이 섞여 있지 않으니 통째로 쓰면 됩니다.
 
@@ -61,9 +61,12 @@
 
 ## 알아둘 것
 
-**"오늘"은 2025-05-31입니다.**
-데이터가 2025년 5월 기준이라, 실제 오늘 날짜를 쓰면 화면이 빕니다.
-두 프롬프트 모두 이 날짜를 고정하도록 지시하고 있습니다. 코드에서 임의로 `datetime.now()`로 바꾸지 마세요.
+**"지금"은 2025-04-29 09:00입니다.**
+설비별 실측이 2024-12-01~2025-04-29까지만 있어 이 시각을 기준으로 고정했습니다.
+4/29 00~08시까지가 실측이고, 4/30~5/31은 AI 예측입니다.
+명세(`agent.md`, `agentSystem.md`)에는 5/31로 적혀 있지만, 실제 기준 시각은 `agent_core.py`가
+매 턴 상태 블록으로 넘기는 값이 우선합니다. 코드에서 임의로 `datetime.now()`로 바꾸지 마세요.
+사이드바에서 조회 날짜를 바꾸면 에이전트도 그 날짜를 기준으로 답합니다.
 
 **설비 채널 번호가 띄엄띄엄합니다.**
 1~5, 11~18로 중간이 비어 있습니다. RTU 데이터의 컬럼 번호이므로 1~13으로 다시 매기면 데이터와 매칭이 깨집니다.
@@ -88,23 +91,28 @@
 
 ---
 
-## 산출물 구조 (예정)
+## 폴더 구조
 
 ```
-margaret/
-├─ app.py                        대시보드 진입점 (Streamlit)
-├─ agent_tools.py                도구 함수 11개
-├─ agent_core.py                 모델 호출과 function calling 루프
-├─ agent_ui.py                   에이전트 탭 화면
+agent/
+├─ __init__.py
+├─ agent_tools.py                도구 함수 12개 (설비·이상·측정·전력·순위·예측·임계치 조회/변경·양식 조회/저장/초기화·보고서 작성)
+├─ agent_core.py                 모델 호출과 function calling 루프, 키가 없을 때 데모 응답
+├─ agent_ui.py                   에이전트 탭 화면 (dashboard_app.py가 호출)
+├─ agent.md                      구현 명세
 ├─ agentSystem.md                에이전트 시스템 프롬프트 (앱이 읽음)
 ├─ BasicSafetyReportForm.xlsx    기본 보고서 양식 (앱이 읽음)
 ├─ report_template.json          현재 양식 (자동 생성)
-├─ report_template_default.json  기본 양식 사본 (되돌리기용)
+├─ report_template_default.json  기본 양식 사본, 되돌리기용 (자동 생성)
 ├─ agent_state.json              양식 질문 여부 등 (자동 생성)
-├─ models/                       학습된 예측·이상탐지 모델
-├─ training-datasets/
-└─ may-datasets/
+└─ templates/                    사용자가 올린 양식 (자동 생성)
 ```
 
-아래 세 개(`report_template.json`, `report_template_default.json`, `agent_state.json`)는
-앱이 실행 중에 만듭니다. 저장소에 미리 넣지 않아도 됩니다.
+자동 생성 파일은 `agent/.gitignore`로 제외되어 있습니다.
+
+에이전트가 읽는 데이터 (`python tools/prepare_dashboard_cache.py`로 생성):
+
+- `ml/outputs/agent_data/dashboard_hourly.parquet`: 12/1~4/29 설비·시간별 실측과 AI 판정
+- `ml/outputs/agent_data/dashboard_hourly.json`: 설비별 AI 경고 기준
+- `ml/outputs/agent_data/dashboard_forecast.parquet`: 4/30~5/31 설비·시간별 예측
+- `ml/outputs/forecast_v2/summary.json`: 예측 모델 이름·MAE

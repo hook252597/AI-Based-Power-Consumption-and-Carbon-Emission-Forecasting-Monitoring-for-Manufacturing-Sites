@@ -222,3 +222,6 @@ __marimo__/
 # Large data files (exceed GitHub 100MB limit) - manage via LFS or external storage
 data/rtu_data_full.csv
 data/rtu_data_full_flagged.csv
+
+# Generated dashboard/agent caches (built by `python tools/prepare_dashboard_cache.py`)
+ml/outputs/agent_data/

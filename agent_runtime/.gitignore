@@ -1,9 +1,0 @@
-runtime/
-__pycache__/
-*.pyc
-.pytest_cache/
-.streamlit/secrets.toml
-.env
-.env.*
-!.env.example
-*.log

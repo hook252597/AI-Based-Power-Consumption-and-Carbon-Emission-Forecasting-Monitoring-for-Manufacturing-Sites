@@ -1,0 +1,7 @@
+# 에이전트 실행 중 자동 생성되는 파일 (agent/agent.md 5절)
+report_template.json
+report_template_default.json
+agent_state.json
+templates/
+*.tmp
+__pycache__/
