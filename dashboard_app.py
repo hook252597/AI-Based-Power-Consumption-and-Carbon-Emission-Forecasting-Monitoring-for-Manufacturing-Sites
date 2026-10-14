@@ -700,13 +700,34 @@ def theme_css(theme: str) -> None:
           }}
           [data-baseweb="select"] div, [data-baseweb="select"] span,
           [data-baseweb="select"] input {{ color: {t['text']} !important; }}
-          /* 셀렉트박스 펼침 목록(팝오버) */
-          [data-baseweb="popover"] [role="listbox"],
-          [data-baseweb="menu"] {{
+          /* 셀렉트박스 펼침 목록(드롭다운). Streamlit 1.39 실제 DOM:
+             data-testid="stSelectboxVirtualDropdown".
+             이 목록은 <body> 직속에 떠서 baseweb 자체 색을 쓰므로,
+             컨테이너와 "모든 하위 요소"에 테마 배경/글자를 강제해 라이트/다크를 분리한다. */
+          [data-testid="stSelectboxVirtualDropdown"],
+          [data-testid="stSelectboxVirtualDropdown"] > div,
+          [data-testid="stSelectboxVirtualDropdown"] ul,
+          [data-testid="stSelectboxVirtualDropdown"] li,
+          [data-testid="stSelectboxVirtualDropdown"] [role="listbox"],
+          [data-testid="stSelectboxVirtualDropdown"] [role="option"] {{
             background: {t['panel']} !important;
           }}
-          [data-baseweb="popover"] li, [data-baseweb="menu"] li {{
+          [data-testid="stSelectboxVirtualDropdown"] li,
+          [data-testid="stSelectboxVirtualDropdown"] li *,
+          [data-testid="stSelectboxVirtualDropdown"] [role="option"],
+          [data-testid="stSelectboxVirtualDropdown"] [role="option"] * {{
             color: {t['text']} !important;
+          }}
+          /* 마우스오버/선택된 옵션: 연녹색 배경 + 가독성 글자 */
+          [data-testid="stSelectboxVirtualDropdown"] li:hover,
+          [data-testid="stSelectboxVirtualDropdown"] [role="option"]:hover,
+          [data-testid="stSelectboxVirtualDropdown"] [aria-selected="true"] {{
+            background: {t['btn_sel_bg']} !important;
+          }}
+          [data-testid="stSelectboxVirtualDropdown"] li:hover *,
+          [data-testid="stSelectboxVirtualDropdown"] [role="option"]:hover *,
+          [data-testid="stSelectboxVirtualDropdown"] [aria-selected="true"] * {{
+            color: {t['btn_sel_text']} !important;
           }}
 
           /* expander(체크리스트/이력) */
