@@ -1,0 +1,230 @@
+{
+  "created_utc": "2026-10-13T10:21:51.955814+00:00",
+  "sha256": "555641e29c900d50f46d4aaec21076004982bab82b272ec7e5f2aa21b2d44069",
+  "protocol": {
+    "version": 1,
+    "seed": 20261012,
+    "input_features": [
+      "activePower",
+      "voltageR",
+      "voltageS",
+      "voltageT",
+      "currentR",
+      "currentS",
+      "currentT",
+      "powerFactorR",
+      "powerFactorS",
+      "powerFactorT"
+    ],
+    "focused_features": [
+      "voltageR",
+      "voltageS",
+      "voltageT",
+      "powerFactorR",
+      "powerFactorS",
+      "powerFactorT"
+    ],
+    "source_signature": {
+      "raw_size": 4909245995,
+      "raw_mtime": 1791797922258748500,
+      "flagged_size": 5381249777,
+      "flagged_mtime": 1791703714000000000,
+      "features": [
+        "activePower",
+        "voltageR",
+        "voltageS",
+        "voltageT",
+        "currentR",
+        "currentS",
+        "currentT",
+        "powerFactorR",
+        "powerFactorS",
+        "powerFactorT"
+      ],
+      "monthly_sample": 17000,
+      "tune_sample": 100000,
+      "version": 2,
+      "seed": 20261012,
+      "splits": {
+        "train": [
+          20241201000000,
+          20250301000000
+        ],
+        "tune": [
+          20250301000000,
+          20250401000000
+        ],
+        "test": [
+          20250401000000,
+          20250430000000
+        ],
+        "interval": "half_open"
+      },
+      "sampling_policy": "per_equipment_month_priority_reservoir_v1"
+    },
+    "source_fingerprint": "6f78a356465f939e89c56e15ad841ee90f1bee58ff50a6d90486236163cc1ecd",
+    "train": {
+      "start_inclusive": 20241201000000,
+      "end_exclusive": 20250301000000,
+      "rows_per_equipment": 51000,
+      "labels_used": false
+    },
+    "calibration": {
+      "start_inclusive": 20250301000000,
+      "end_exclusive": 20250316000000,
+      "source": "cached March random sample"
+    },
+    "selection": {
+      "start_inclusive": 20250316000000,
+      "end_exclusive": 20250401000000,
+      "source": "cached March random sample",
+      "policy": "Among candidates meeting precision>=0.70 and recall>=0.80, maximize pooled all-equipment F1; if none meet both, maximize F1 over all. Ties: recall, precision, simpler stage, listed candidate order."
+    },
+    "candidates": [
+      {
+        "name": "if_threshold_f1_q09999",
+        "method": "if_threshold",
+        "stage": 1,
+        "stage_name": "임계값 보정",
+        "description": "기존 10개 입력 IF의 판정 기준 보정",
+        "positive_f_beta": 1,
+        "zero_positive_quantile": 0.9999,
+        "reference_only": false
+      },
+      {
+        "name": "if_threshold_f1_q099999",
+        "method": "if_threshold",
+        "stage": 1,
+        "stage_name": "임계값 보정",
+        "description": "기존 10개 입력 IF의 판정 기준 보정",
+        "positive_f_beta": 1,
+        "zero_positive_quantile": 0.99999,
+        "reference_only": false
+      },
+      {
+        "name": "if_threshold_f2_q09999",
+        "method": "if_threshold",
+        "stage": 1,
+        "stage_name": "임계값 보정",
+        "description": "기존 10개 입력 IF의 판정 기준 보정",
+        "positive_f_beta": 2,
+        "zero_positive_quantile": 0.9999,
+        "reference_only": false
+      },
+      {
+        "name": "if_threshold_f2_q099999",
+        "method": "if_threshold",
+        "stage": 1,
+        "stage_name": "임계값 보정",
+        "description": "기존 10개 입력 IF의 판정 기준 보정",
+        "positive_f_beta": 2,
+        "zero_positive_quantile": 0.99999,
+        "reference_only": false
+      },
+      {
+        "name": "if_voltage_pf_f1_q09999",
+        "method": "if_voltage_pf",
+        "stage": 2,
+        "stage_name": "입력 변수 개선",
+        "description": "전압·역률 6개 입력으로 IF 재학습",
+        "positive_f_beta": 1,
+        "zero_positive_quantile": 0.9999,
+        "reference_only": false
+      },
+      {
+        "name": "if_voltage_pf_f1_q099999",
+        "method": "if_voltage_pf",
+        "stage": 2,
+        "stage_name": "입력 변수 개선",
+        "description": "전압·역률 6개 입력으로 IF 재학습",
+        "positive_f_beta": 1,
+        "zero_positive_quantile": 0.99999,
+        "reference_only": false
+      },
+      {
+        "name": "if_voltage_pf_f2_q09999",
+        "method": "if_voltage_pf",
+        "stage": 2,
+        "stage_name": "입력 변수 개선",
+        "description": "전압·역률 6개 입력으로 IF 재학습",
+        "positive_f_beta": 2,
+        "zero_positive_quantile": 0.9999,
+        "reference_only": false
+      },
+      {
+        "name": "if_voltage_pf_f2_q099999",
+        "method": "if_voltage_pf",
+        "stage": 2,
+        "stage_name": "입력 변수 개선",
+        "description": "전압·역률 6개 입력으로 IF 재학습",
+        "positive_f_beta": 2,
+        "zero_positive_quantile": 0.99999,
+        "reference_only": false
+      },
+      {
+        "name": "robust_distance_f1_q09999",
+        "method": "robust_distance",
+        "stage": 3,
+        "stage_name": "탐지 방법 비교",
+        "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+        "positive_f_beta": 1,
+        "zero_positive_quantile": 0.9999,
+        "reference_only": false
+      },
+      {
+        "name": "robust_distance_f1_q099999",
+        "method": "robust_distance",
+        "stage": 3,
+        "stage_name": "탐지 방법 비교",
+        "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+        "positive_f_beta": 1,
+        "zero_positive_quantile": 0.99999,
+        "reference_only": false
+      },
+      {
+        "name": "robust_distance_f2_q09999",
+        "method": "robust_distance",
+        "stage": 3,
+        "stage_name": "탐지 방법 비교",
+        "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+        "positive_f_beta": 2,
+        "zero_positive_quantile": 0.9999,
+        "reference_only": false
+      },
+      {
+        "name": "robust_distance_f2_q099999",
+        "method": "robust_distance",
+        "stage": 3,
+        "stage_name": "탐지 방법 비교",
+        "description": "10개 센서의 학습 중앙값·IQR 기반 최대 통계거리",
+        "positive_f_beta": 2,
+        "zero_positive_quantile": 0.99999,
+        "reference_only": false
+      }
+    ],
+    "positive_threshold_policy": "Maximize specified F-beta over finite calibration score thresholds; ties prefer higher recall, precision, then higher threshold.",
+    "no_positive_policy": "Use specified empirical calibration score quantile: finite, equipment remains active. This is an alarm-budget reference, not an assumption about the true fault rate.",
+    "forest_parameters": {
+      "n_estimators": 100,
+      "max_samples": 2048,
+      "random_state": 20261012,
+      "n_jobs": 2
+    },
+    "references": [
+      {
+        "name": "v1_frozen_if",
+        "reference_only": true,
+        "notice": "Thresholds previously tuned on all March, so not eligible for March16-31 selection."
+      },
+      {
+        "name": "documented_rule",
+        "reference_only": true,
+        "rule": "any voltageR/S/T < 210 OR any powerFactorR/S/T < 85",
+        "notice": "Educational rule reference, not a machine learning fault ground truth."
+      }
+    ],
+    "evaluation_notice": "April was inspected in V1 and in error analysis before V2 was designed. April V2 metrics are exploratory reevaluation, not a fresh held-out test. Supplied labels match the educational voltage<210/PF<85 rule throughout audited March samples and April rows, but are not confirmed physical fault labels.",
+    "april_policy": "Freeze selection and serialized bundle before reading any April cache. Evaluate all 13 equipment and retain all rows. No threshold/model changes based on April.",
+    "may_access": "forbidden"
+  }
+}
