@@ -224,4 +224,9 @@ data/rtu_data_full.csv
 data/rtu_data_full_flagged.csv
 
 # Generated dashboard/agent caches (built by `python tools/prepare_dashboard_cache.py`)
-ml/outputs/agent_data/
+# The 4 small dashboard caches (~1.5MB) are committed so Streamlit Cloud can run without the raw CSV.
+ml/outputs/agent_data/*
+!ml/outputs/agent_data/dashboard_hourly.parquet
+!ml/outputs/agent_data/dashboard_hourly.json
+!ml/outputs/agent_data/dashboard_forecast.parquet
+!ml/outputs/agent_data/dashboard_forecast.json

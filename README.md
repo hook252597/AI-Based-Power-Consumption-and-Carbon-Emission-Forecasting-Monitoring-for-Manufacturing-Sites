@@ -61,6 +61,7 @@ OPENAI_MODEL = "gpt-5-mini"   # 생략 시 기본값
 ## Git에 올리지 않는 파일
 
 - `data/rtu_data_full.csv`, `data/rtu_data_full_flagged.csv` (GitHub 100MB 제한 초과)
-- `ml/outputs/agent_data/` (캐시 생성 스크립트로 다시 만듦)
+- `ml/outputs/agent_data/`의 대시보드 캐시 4개(`dashboard_hourly.*`, `dashboard_forecast.*`)를 뺀 나머지 파일
+  (캐시 4개는 Streamlit Cloud가 원본 CSV 없이 돌아가도록 커밋해 둠. 다시 만들면 함께 커밋)
 - `.streamlit/secrets.toml`
 - `agent/report_template.json`, `agent/report_template_default.json`, `agent/agent_state.json`, `agent/templates/` (에이전트가 실행 중 생성)

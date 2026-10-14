@@ -1,0 +1,14 @@
+{
+  "complete": true,
+  "created_utc": "2026-10-14T11:25:59.146777+00:00",
+  "model_file": "models/forecast_v2/selected_model.joblib",
+  "model_sha256": "27357f01f7b48442d46339433dee89706dbe7d257c34551c6ff37579b596ca3e",
+  "model_kind": "extra_trees",
+  "last_training_time": "2025-04-29 23:00:00",
+  "period_start": "2025-04-30 00:00",
+  "period_end": "2025-05-31 23:00",
+  "rows": 9984,
+  "saved_may_rows_checked": 6565,
+  "saved_may_max_abs_diff": 4.440892098500626e-16,
+  "unit": "kWh per equipment-hour"
+}
