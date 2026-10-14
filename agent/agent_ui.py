@@ -46,23 +46,48 @@ def load_settings() -> tuple[str, str]:
     return (key or os.environ.get("OPENAI_API_KEY", "")).strip(), (model or os.environ.get("OPENAI_MODEL", "") or DEFAULT_MODEL).strip()
 
 
-CSS = """<style>
-.ag-bubble{padding:8px 11px;border-radius:10px;margin:3px 0;font-size:14px;line-height:1.5;white-space:pre-wrap;
-  overflow-wrap:anywhere;max-width:92%;display:inline-block;color:#111827}
-.ag-user{background:#dcfce7;float:right;clear:both}
-.ag-bot{background:#f1f5f9;float:left;clear:both}
-.ag-row{overflow:hidden}
-.ag-mode{font-size:11px;color:#6b7280;margin:0 2px}
-.ag-section{font-weight:700;font-size:13px;margin:10px 0 3px;padding-bottom:3px;border-bottom:1px solid #d1d5db}
-.ag-field{display:grid;grid-template-columns:40px minmax(120px,1fr) minmax(110px,1.2fr);gap:6px;padding:5px 8px;
-  margin:2px 0;border-radius:5px;font-size:13px;color:#172a2a}
-.ag-field.auto{background:#eaf3f2}.ag-field.user{background:#fff9e0}.ag-field.blank{background:#f2f5f5}
-.ag-field.formula{background:#f2f5f5}
-.ag-tag{font-size:11px;color:#536262}.ag-val{white-space:pre-wrap;overflow-wrap:anywhere}
-.ag-field.empty .ag-val{color:#9ca3af}.ag-req{color:#b91c1c}
-@keyframes ag-flash{from{box-shadow:inset 0 0 0 2px #16a34a;background:#d9f2cf}to{box-shadow:none}}
-.ag-field.fresh{animation:ag-flash 4s ease-out}
-.ag-card{border:1px solid #d1d5db;border-radius:8px;padding:8px 10px;margin:6px 0;font-size:13px;background:#fff;color:#111827}
+# 에이전트 탭 색상. 대시보드 테마 CSS의 `.stApp div {color: 테마 글자색}` 규칙보다 우선하도록
+# 모든 선택자 앞에 `.stApp`을 붙인다(그러지 않으면 다크 모드에서 밝은 배경 위에 밝은 글자가 된다).
+AGENT_PALETTES = {
+    "light": {
+        "user_bg": "#dcfce7", "user_text": "#111827", "bot_bg": "#f1f5f9", "bot_text": "#111827",
+        "muted": "#6b7280", "line": "#d1d5db", "field_text": "#172a2a", "tag": "#536262",
+        "auto_bg": "#eaf3f2", "input_bg": "#fff9e0", "blank_bg": "#f2f5f5",
+        "empty": "#5b6370", "req": "#b91c1c", "flash": "#d9f2cf",
+        "card_bg": "#ffffff", "card_text": "#111827",
+    },
+    "dark": {
+        "user_bg": "#14532d", "user_text": "#dcfce7", "bot_bg": "#21262d", "bot_text": "#e6edf3",
+        "muted": "#9da7b3", "line": "#30363d", "field_text": "#e6edf3", "tag": "#9da7b3",
+        "auto_bg": "#11302c", "input_bg": "#3a3312", "blank_bg": "#1f242b",
+        "empty": "#9da7b3", "req": "#f87171", "flash": "#1f4d2b",
+        "card_bg": "#161b22", "card_text": "#e6edf3",
+    },
+}
+
+
+def agent_css(theme: str = "light") -> str:
+    c = AGENT_PALETTES.get(theme, AGENT_PALETTES["light"])
+    return f"""<style>
+.stApp .ag-bubble{{padding:8px 11px;border-radius:10px;margin:3px 0;font-size:14px;line-height:1.5;white-space:pre-wrap;
+  overflow-wrap:anywhere;max-width:92%;display:inline-block}}
+.stApp .ag-user{{background:{c['user_bg']};color:{c['user_text']};float:right;clear:both}}
+.stApp .ag-bot{{background:{c['bot_bg']};color:{c['bot_text']};float:left;clear:both}}
+.stApp .ag-row{{overflow:hidden}}
+.stApp .ag-mode{{font-size:11px;color:{c['muted']};margin:0 2px}}
+.stApp .ag-section{{font-weight:700;font-size:13px;margin:10px 0 3px;padding-bottom:3px;border-bottom:1px solid {c['line']}}}
+.stApp .ag-field{{display:grid;grid-template-columns:40px minmax(120px,1fr) minmax(110px,1.2fr);gap:6px;padding:5px 8px;
+  margin:2px 0;border-radius:5px;font-size:13px;color:{c['field_text']}}}
+.stApp .ag-field *{{color:inherit}}
+.stApp .ag-field.auto{{background:{c['auto_bg']}}}.stApp .ag-field.user{{background:{c['input_bg']}}}
+.stApp .ag-field.blank,.stApp .ag-field.formula{{background:{c['blank_bg']}}}
+.stApp .ag-field .ag-tag{{font-size:11px;color:{c['tag']}}}.stApp .ag-val{{white-space:pre-wrap;overflow-wrap:anywhere}}
+.stApp .ag-field.empty .ag-val{{color:{c['empty']}}}.stApp .ag-field .ag-req{{color:{c['req']}}}
+@keyframes ag-flash{{from{{box-shadow:inset 0 0 0 2px #16a34a;background:{c['flash']}}}to{{box-shadow:none}}}}
+.stApp .ag-field.fresh{{animation:ag-flash 4s ease-out}}
+.stApp .ag-card{{border:1px solid {c['line']};border-radius:8px;padding:8px 10px;margin:6px 0;font-size:13px;
+  background:{c['card_bg']};color:{c['card_text']}}}
+.stApp .ag-card *{{color:inherit}}
 </style>"""
 
 
@@ -332,7 +357,7 @@ def render_agent_tab(state: dict | None = None) -> None:
     _ensure_summary(state, tools)
     template = tools.templates.get()
     rows = _template_rows(state, template)
-    st.markdown(CSS, unsafe_allow_html=True)
+    st.markdown(agent_css(state.get("theme", "light")), unsafe_allow_html=True)
 
     left, right = st.columns([45, 55], gap="large")
     with left:
