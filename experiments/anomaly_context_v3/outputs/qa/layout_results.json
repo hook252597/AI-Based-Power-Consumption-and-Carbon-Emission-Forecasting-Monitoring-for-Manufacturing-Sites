@@ -1,0 +1,196 @@
+[
+  {
+    "name": "desktop",
+    "title": "평소와 다른 패턴 탐지 · 비교 실험",
+    "viewport": 1366,
+    "pageWidth": 1366,
+    "charts": 3,
+    "tables": [
+      {
+        "client": 1092,
+        "scroll": 1092,
+        "width": 1094
+      },
+      {
+        "client": 1092,
+        "scroll": 1092,
+        "width": 1094
+      },
+      {
+        "client": 1060,
+        "scroll": 1060,
+        "width": 1062
+      },
+      {
+        "client": 1092,
+        "scroll": 1092,
+        "width": 1094
+      },
+      {
+        "client": 1060,
+        "scroll": 1060,
+        "width": 1062
+      },
+      {
+        "client": 1092,
+        "scroll": 1092,
+        "width": 1094
+      },
+      {
+        "client": 1060,
+        "scroll": 1060,
+        "width": 1062
+      },
+      {
+        "client": 1060,
+        "scroll": 1060,
+        "width": 1062
+      },
+      {
+        "client": 1092,
+        "scroll": 1092,
+        "width": 1094
+      },
+      {
+        "client": 1092,
+        "scroll": 1092,
+        "width": 1094
+      },
+      {
+        "client": 1092,
+        "scroll": 1092,
+        "width": 1094
+      },
+      {
+        "client": 1060,
+        "scroll": 1060,
+        "width": 1062
+      }
+    ],
+    "wideElements": [
+      {
+        "tag": "svg",
+        "cls": {},
+        "text": "",
+        "rect": {
+          "left": -10000,
+          "right": -1000
+        }
+      },
+      {
+        "tag": "path",
+        "cls": {},
+        "text": "",
+        "rect": {
+          "left": -10000,
+          "right": -9999
+        }
+      }
+    ],
+    "hasRelation": true,
+    "hasSmallResidualWarning": true,
+    "hasDenominatorText": true,
+    "hasCaveat": true,
+    "hasDecision": true,
+    "errors": [],
+    "remoteRequests": [],
+    "sensitivityOpen": true
+  },
+  {
+    "name": "mobile",
+    "title": "평소와 다른 패턴 탐지 · 비교 실험",
+    "viewport": 390,
+    "pageWidth": 390,
+    "charts": 3,
+    "tables": [
+      {
+        "client": 328,
+        "scroll": 674,
+        "width": 330
+      },
+      {
+        "client": 328,
+        "scroll": 674,
+        "width": 330
+      },
+      {
+        "client": 296,
+        "scroll": 734,
+        "width": 298
+      },
+      {
+        "client": 328,
+        "scroll": 721,
+        "width": 330
+      },
+      {
+        "client": 296,
+        "scroll": 655,
+        "width": 298
+      },
+      {
+        "client": 328,
+        "scroll": 667,
+        "width": 330
+      },
+      {
+        "client": 296,
+        "scroll": 418,
+        "width": 298
+      },
+      {
+        "client": 296,
+        "scroll": 693,
+        "width": 298
+      },
+      {
+        "client": 328,
+        "scroll": 668,
+        "width": 330
+      },
+      {
+        "client": 328,
+        "scroll": 685,
+        "width": 330
+      },
+      {
+        "client": 328,
+        "scroll": 555,
+        "width": 330
+      },
+      {
+        "client": 296,
+        "scroll": 583,
+        "width": 298
+      }
+    ],
+    "wideElements": [
+      {
+        "tag": "svg",
+        "cls": {},
+        "text": "",
+        "rect": {
+          "left": -10000,
+          "right": -1000
+        }
+      },
+      {
+        "tag": "path",
+        "cls": {},
+        "text": "",
+        "rect": {
+          "left": -10000,
+          "right": -9999
+        }
+      }
+    ],
+    "hasRelation": true,
+    "hasSmallResidualWarning": true,
+    "hasDenominatorText": true,
+    "hasCaveat": true,
+    "hasDecision": true,
+    "errors": [],
+    "remoteRequests": [],
+    "sensitivityOpen": true
+  }
+]

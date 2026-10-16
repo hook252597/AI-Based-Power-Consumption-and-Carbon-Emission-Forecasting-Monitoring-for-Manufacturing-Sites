@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "created_utc": "2026-10-16T03:35:51.876529+00:00",
+  "protocol_sha256": "ea34d13e61ecfefe147bbd311c42d973e5482c566dd64e94f57ddf5360425a2d",
+  "method": "relation_residual",
+  "equipment_count": 13,
+  "modules": [
+    "1(PM-3)",
+    "11(우측분전반1)",
+    "12(4호기)",
+    "13(3호기)",
+    "14(2호기)",
+    "15(예비건조기)",
+    "16(호이스트)",
+    "17(6호기)",
+    "18(우측분전반2)",
+    "2(L-1전등)",
+    "3(분쇄기(2))",
+    "4(분쇄기(1))",
+    "5(좌측분전반)"
+  ],
+  "source_code_hashes": {
+    "run_relation_probe.py": "375cbbe8f5231edc01c3ae7b50120ce1d02ca9280dc6b4fb31fb624e15e430fe",
+    "context_features.py": "ef7ebb789a75be81c743a8fc3669661d96d36f1c65ef2e0d8c6a3870f5550e39",
+    "evaluation.py": "881fb9cc3b15cdf14846deade3d414f7ec813da6d5cda300917cdbbbd15a03d0",
+    "run_experiment.py": "7a3d0683c9a341ee82bd0c1f4a111bd58e17c445d557d9eefb9651c953573d87"
+  },
+  "self_test": {
+    "passed": true,
+    "checks": [
+      "April values cannot change train coefficients or March thresholds.",
+      "April changes cannot alter scores of earlier rows.",
+      "Scoring does not mutate the frozen model."
+    ]
+  },
+  "elapsed_seconds": 37.571125999995274,
+  "memory_strategy": "One equipment per load; only valid bit retained from shared feature matrix. Single BLAS thread.",
+  "original_experiment_modified": false,
+  "dashboard_modified": false,
+  "api_calls": 0,
+  "notice": "Exploratory follow-up on observed sensor relationships; not final holdout or real fault accuracy."
+}

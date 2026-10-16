@@ -1,0 +1,1094 @@
+[
+  {
+    "module": "1(PM-3)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5754,
+        "currentS_mean": 0.5763,
+        "currentT_mean": 0.5751,
+        "powerFactorR_mean": -0.004,
+        "voltageR_mean": 0.0177
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5754,
+        "currentR_mean": 1.0,
+        "currentS_mean": 0.0014,
+        "currentT_mean": -0.0038,
+        "powerFactorR_mean": -0.0021,
+        "voltageR_mean": -0.0005
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5763,
+        "currentR_mean": 0.0014,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0047,
+        "powerFactorR_mean": 0.0004,
+        "voltageR_mean": 0.0012
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5751,
+        "currentR_mean": -0.0038,
+        "currentS_mean": -0.0047,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": -0.0051,
+        "voltageR_mean": -0.0028
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": -0.004,
+        "currentR_mean": -0.0021,
+        "currentS_mean": 0.0004,
+        "currentT_mean": -0.0051,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": 0.0001
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0177,
+        "currentR_mean": -0.0005,
+        "currentS_mean": 0.0012,
+        "currentT_mean": -0.0028,
+        "powerFactorR_mean": 0.0001,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.0685940533876419,
+    "sensor_centers": {
+      "activePower": 3010.6041259765625,
+      "voltageR": 215.0,
+      "voltageS": 215.00582885742188,
+      "voltageT": 214.99749755859375,
+      "currentR": 17.512500762939453,
+      "currentS": 17.487499237060547,
+      "currentT": 17.501667022705078,
+      "powerFactorR": 92.5008316040039,
+      "powerFactorS": 92.50833129882812,
+      "powerFactorT": 92.49666595458984
+    },
+    "sensor_scales": {
+      "activePower": 207.42288848220906,
+      "voltageR": 0.84569208528308,
+      "voltageS": 0.8401269820816346,
+      "voltageT": 0.8413599012868328,
+      "currentR": 2.0947608353916674,
+      "currentS": 2.1071154776107304,
+      "currentT": 2.117000039724883,
+      "powerFactorR": 1.2626619671255328,
+      "powerFactorS": 1.2651391167212982,
+      "powerFactorT": 1.2595796691125372
+    }
+  },
+  {
+    "module": "11(우측분전반1)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5769,
+        "currentS_mean": 0.5742,
+        "currentT_mean": 0.5781,
+        "powerFactorR_mean": -0.0028,
+        "voltageR_mean": 0.0174
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5769,
+        "currentR_mean": 1.0,
+        "currentS_mean": -0.0032,
+        "currentT_mean": 0.0011,
+        "powerFactorR_mean": -0.0024,
+        "voltageR_mean": 0.0035
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5742,
+        "currentR_mean": -0.0032,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.001,
+        "powerFactorR_mean": -0.0017,
+        "voltageR_mean": -0.0019
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5781,
+        "currentR_mean": 0.0011,
+        "currentS_mean": -0.001,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": -0.0009,
+        "voltageR_mean": -0.0037
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": -0.0028,
+        "currentR_mean": -0.0024,
+        "currentS_mean": -0.0017,
+        "currentT_mean": -0.0009,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": 0.0034
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0174,
+        "currentR_mean": 0.0035,
+        "currentS_mean": -0.0019,
+        "currentT_mean": -0.0037,
+        "powerFactorR_mean": 0.0034,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.0687871128320694,
+    "sensor_centers": {
+      "activePower": 3009.526611328125,
+      "voltageR": 215.00250244140625,
+      "voltageS": 215.0050048828125,
+      "voltageT": 214.99916076660156,
+      "currentR": 17.501667022705078,
+      "currentS": 17.481666564941406,
+      "currentT": 17.49250030517578,
+      "powerFactorR": 92.50333404541016,
+      "powerFactorS": 92.50666809082031,
+      "powerFactorT": 92.50666809082031
+    },
+    "sensor_scales": {
+      "activePower": 207.0660432061944,
+      "voltageR": 0.8444591660778817,
+      "voltageS": 0.8449144412889756,
+      "voltageT": 0.8450812812731653,
+      "currentR": 2.1077333511115004,
+      "currentS": 2.106499018008131,
+      "currentT": 2.1176179132256534,
+      "powerFactorR": 1.2577189791193708,
+      "powerFactorS": 1.2676049551316948,
+      "powerFactorT": 1.2651391167212982
+    }
+  },
+  {
+    "module": "12(4호기)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5785,
+        "currentS_mean": 0.5755,
+        "currentT_mean": 0.5746,
+        "powerFactorR_mean": 0.0027,
+        "voltageR_mean": 0.0214
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5785,
+        "currentR_mean": 1.0,
+        "currentS_mean": 0.0016,
+        "currentT_mean": -0.0015,
+        "powerFactorR_mean": 0.0015,
+        "voltageR_mean": -0.0024
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5755,
+        "currentR_mean": 0.0016,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0042,
+        "powerFactorR_mean": 0.0035,
+        "voltageR_mean": 0.0006
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5746,
+        "currentR_mean": -0.0015,
+        "currentS_mean": -0.0042,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": -0.0005,
+        "voltageR_mean": 0.0062
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": 0.0027,
+        "currentR_mean": 0.0015,
+        "currentS_mean": 0.0035,
+        "currentT_mean": -0.0005,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": 0.0028
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0214,
+        "currentR_mean": -0.0024,
+        "currentS_mean": 0.0006,
+        "currentT_mean": 0.0062,
+        "powerFactorR_mean": 0.0028,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06868688017129898,
+    "sensor_centers": {
+      "activePower": 3010.8570556640625,
+      "voltageR": 214.99667358398438,
+      "voltageS": 214.99916076660156,
+      "voltageT": 214.99583435058594,
+      "currentR": 17.50083351135254,
+      "currentS": 17.508333206176758,
+      "currentT": 17.497499465942383,
+      "powerFactorR": 92.5008316040039,
+      "powerFactorS": 92.50250244140625,
+      "powerFactorT": 92.49749755859375
+    },
+    "sensor_scales": {
+      "activePower": 207.59472801033172,
+      "voltageR": 0.8426041316773999,
+      "voltageS": 0.8395048668863511,
+      "voltageT": 0.8401269820816346,
+      "currentR": 2.110822718615352,
+      "currentS": 2.10093957039937,
+      "currentT": 2.109278034863426,
+      "powerFactorR": 1.265749920731213,
+      "powerFactorS": 1.2620455075229338,
+      "powerFactorT": 1.2552531407089742
+    }
+  },
+  {
+    "module": "13(3호기)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5778,
+        "currentS_mean": 0.5781,
+        "currentT_mean": 0.577,
+        "powerFactorR_mean": -0.0001,
+        "voltageR_mean": 0.025
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5778,
+        "currentR_mean": 1.0,
+        "currentS_mean": 0.0008,
+        "currentT_mean": 0.002,
+        "powerFactorR_mean": -0.0032,
+        "voltageR_mean": -0.0025
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5781,
+        "currentR_mean": 0.0008,
+        "currentS_mean": 1.0,
+        "currentT_mean": 0.0013,
+        "powerFactorR_mean": 0.0002,
+        "voltageR_mean": 0.0015
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.577,
+        "currentR_mean": 0.002,
+        "currentS_mean": 0.0013,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": 0.0029,
+        "voltageR_mean": 0.0012
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": -0.0001,
+        "currentR_mean": -0.0032,
+        "currentS_mean": 0.0002,
+        "currentT_mean": 0.0029,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": 0.001
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.025,
+        "currentR_mean": -0.0025,
+        "currentS_mean": 0.0015,
+        "currentT_mean": 0.0012,
+        "powerFactorR_mean": 0.001,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06882939487695694,
+    "sensor_centers": {
+      "activePower": 3008.9595947265625,
+      "voltageR": 214.9391632080078,
+      "voltageS": 214.94749450683594,
+      "voltageT": 214.9499969482422,
+      "currentR": 17.502500534057617,
+      "currentS": 17.50041675567627,
+      "currentT": 17.50083351135254,
+      "powerFactorR": 92.50166320800781,
+      "powerFactorS": 92.50416564941406,
+      "powerFactorT": 92.50166320800781
+    },
+    "sensor_scales": {
+      "activePower": 207.61879821279652,
+      "voltageR": 0.8728728637242865,
+      "voltageS": 0.8759608173299667,
+      "voltageT": 0.8747278981247684,
+      "currentR": 2.10587973060919,
+      "currentS": 2.108970512011212,
+      "currentT": 2.1088146297378483,
+      "powerFactorR": 1.2694599895321765,
+      "powerFactorS": 1.265749920731213,
+      "powerFactorT": 1.2595740135198528
+    }
+  },
+  {
+    "module": "14(2호기)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5776,
+        "currentS_mean": 0.5758,
+        "currentT_mean": 0.5751,
+        "powerFactorR_mean": 0.0003,
+        "voltageR_mean": 0.0189
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5776,
+        "currentR_mean": 1.0,
+        "currentS_mean": -0.0005,
+        "currentT_mean": -0.0013,
+        "powerFactorR_mean": -0.0001,
+        "voltageR_mean": 0.0026
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5758,
+        "currentR_mean": -0.0005,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0026,
+        "powerFactorR_mean": 0.0044,
+        "voltageR_mean": -0.0022
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5751,
+        "currentR_mean": -0.0013,
+        "currentS_mean": -0.0026,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": -0.0039,
+        "voltageR_mean": -0.0002
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": 0.0003,
+        "currentR_mean": -0.0001,
+        "currentS_mean": 0.0044,
+        "currentT_mean": -0.0039,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": -0.0016
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0189,
+        "currentR_mean": 0.0026,
+        "currentS_mean": -0.0022,
+        "currentT_mean": -0.0002,
+        "powerFactorR_mean": -0.0016,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06870171427726746,
+    "sensor_centers": {
+      "activePower": 3010.4100341796875,
+      "voltageR": 215.0,
+      "voltageS": 214.99583435058594,
+      "voltageT": 215.0016632080078,
+      "currentR": 17.486665725708008,
+      "currentS": 17.486249923706055,
+      "currentT": 17.503334045410156,
+      "powerFactorR": 92.49749755859375,
+      "powerFactorS": 92.5008316040039,
+      "powerFactorT": 92.49583435058594
+    },
+    "sensor_scales": {
+      "activePower": 207.0059129447739,
+      "voltageR": 0.8426041316773999,
+      "voltageS": 0.8463028892929948,
+      "voltageT": 0.844447854892513,
+      "currentR": 2.108970512011212,
+      "currentS": 2.1077347650096714,
+      "currentT": 2.108970512011212,
+      "powerFactorR": 1.2583410943146545,
+      "powerFactorS": 1.2608125883177355,
+      "powerFactorT": 1.2601904731224518
+    }
+  },
+  {
+    "module": "15(예비건조기)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5763,
+        "currentS_mean": 0.5729,
+        "currentT_mean": 0.5776,
+        "powerFactorR_mean": 0.0021,
+        "voltageR_mean": 0.0133
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5763,
+        "currentR_mean": 1.0,
+        "currentS_mean": -0.0034,
+        "currentT_mean": -0.0011,
+        "powerFactorR_mean": -0.0024,
+        "voltageR_mean": -0.0042
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5729,
+        "currentR_mean": -0.0034,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0026,
+        "powerFactorR_mean": 0.001,
+        "voltageR_mean": -0.0045
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5776,
+        "currentR_mean": -0.0011,
+        "currentS_mean": -0.0026,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": 0.0049,
+        "voltageR_mean": -0.0008
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": 0.0021,
+        "currentR_mean": -0.0024,
+        "currentS_mean": 0.001,
+        "currentT_mean": 0.0049,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": -0.0019
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0133,
+        "currentR_mean": -0.0042,
+        "currentS_mean": -0.0045,
+        "currentT_mean": -0.0008,
+        "powerFactorR_mean": -0.0019,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06862585246562958,
+    "sensor_centers": {
+      "activePower": 3011.2420654296875,
+      "voltageR": 214.99749755859375,
+      "voltageS": 214.99667358398438,
+      "voltageT": 215.0016632080078,
+      "currentR": 17.5,
+      "currentS": 17.495832443237305,
+      "currentT": 17.510833740234375,
+      "powerFactorR": 92.31416320800781,
+      "powerFactorS": 92.31416320800781,
+      "powerFactorT": 92.33000183105469
+    },
+    "sensor_scales": {
+      "activePower": 208.02446256486286,
+      "voltageR": 0.8413712124722016,
+      "voltageS": 0.8432149356873146,
+      "voltageT": 0.8438370508825982,
+      "currentR": 2.105881144507361,
+      "currentS": 2.1126763391176624,
+      "currentT": 2.117000039724883,
+      "powerFactorR": 1.3923899521202048,
+      "powerFactorS": 1.3916137220242715,
+      "powerFactorT": 1.3985715149242495
+    }
+  },
+  {
+    "module": "16(호이스트)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5772,
+        "currentS_mean": 0.5765,
+        "currentT_mean": 0.5786,
+        "powerFactorR_mean": 0.0041,
+        "voltageR_mean": 0.024
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5772,
+        "currentR_mean": 1.0,
+        "currentS_mean": -0.0018,
+        "currentT_mean": 0.0011,
+        "powerFactorR_mean": 0.0016,
+        "voltageR_mean": 0.0003
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5765,
+        "currentR_mean": -0.0018,
+        "currentS_mean": 1.0,
+        "currentT_mean": 0.0031,
+        "powerFactorR_mean": 0.0044,
+        "voltageR_mean": 0.0065
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5786,
+        "currentR_mean": 0.0011,
+        "currentS_mean": 0.0031,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": 0.0012,
+        "voltageR_mean": 0.0024
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": 0.0041,
+        "currentR_mean": 0.0016,
+        "currentS_mean": 0.0044,
+        "currentT_mean": 0.0012,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": 0.0012
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.024,
+        "currentR_mean": 0.0003,
+        "currentS_mean": 0.0065,
+        "currentT_mean": 0.0024,
+        "powerFactorR_mean": 0.0012,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06877796351909637,
+    "sensor_centers": {
+      "activePower": 3010.0521240234375,
+      "voltageR": 214.99916076660156,
+      "voltageS": 214.99667358398438,
+      "voltageT": 214.99916076660156,
+      "currentR": 17.5,
+      "currentS": 17.495832443237305,
+      "currentT": 17.489166259765625,
+      "powerFactorR": 92.49083709716797,
+      "powerFactorS": 92.50250244140625,
+      "powerFactorT": 92.49749755859375
+    },
+    "sensor_scales": {
+      "activePower": 207.78792305643069,
+      "voltageR": 0.8376498324858692,
+      "voltageS": 0.8425928204920311,
+      "voltageT": 0.8419820164821163,
+      "currentR": 2.111439178217951,
+      "currentS": 2.105881144507361,
+      "currentT": 2.097850202895519,
+      "powerFactorR": 1.266366380333812,
+      "powerFactorS": 1.2620511631156182,
+      "powerFactorT": 1.2676049551316948
+    }
+  },
+  {
+    "module": "17(6호기)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5748,
+        "currentS_mean": 0.5766,
+        "currentT_mean": 0.5759,
+        "powerFactorR_mean": -0.0013,
+        "voltageR_mean": 0.0173
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5748,
+        "currentR_mean": 1.0,
+        "currentS_mean": -0.001,
+        "currentT_mean": -0.0042,
+        "powerFactorR_mean": -0.0005,
+        "voltageR_mean": -0.0029
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5766,
+        "currentR_mean": -0.001,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0011,
+        "powerFactorR_mean": -0.0009,
+        "voltageR_mean": 0.0027
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5759,
+        "currentR_mean": -0.0042,
+        "currentS_mean": -0.0011,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": -0.0008,
+        "voltageR_mean": -0.0025
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": -0.0013,
+        "currentR_mean": -0.0005,
+        "currentS_mean": -0.0009,
+        "currentT_mean": -0.0008,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": -0.0004
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0173,
+        "currentR_mean": -0.0029,
+        "currentS_mean": 0.0027,
+        "currentT_mean": -0.0025,
+        "powerFactorR_mean": -0.0004,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06850989907979965,
+    "sensor_centers": {
+      "activePower": 3010.3900146484375,
+      "voltageR": 215.0,
+      "voltageS": 215.00332641601562,
+      "voltageT": 215.00250244140625,
+      "currentR": 17.49416732788086,
+      "currentS": 17.498332977294922,
+      "currentT": 17.498332977294922,
+      "powerFactorR": 92.37333679199219,
+      "powerFactorS": 92.3741683959961,
+      "powerFactorT": 92.36166381835938
+    },
+    "sensor_scales": {
+      "activePower": 207.0859508924435,
+      "voltageR": 0.8450699700877965,
+      "voltageS": 0.8450699700877965,
+      "voltageT": 0.8401269820816346,
+      "currentR": 2.1038734091044002,
+      "currentS": 2.0997038233978293,
+      "currentT": 2.1126763391176624,
+      "powerFactorR": 1.3219665120141078,
+      "powerFactorS": 1.326287384824986,
+      "powerFactorT": 1.3151741452001482
+    }
+  },
+  {
+    "module": "18(우측분전반2)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5795,
+        "currentS_mean": 0.578,
+        "currentT_mean": 0.5723,
+        "powerFactorR_mean": -0.0026,
+        "voltageR_mean": 0.0181
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5795,
+        "currentR_mean": 1.0,
+        "currentS_mean": 0.0037,
+        "currentT_mean": -0.0012,
+        "powerFactorR_mean": -0.0014,
+        "voltageR_mean": -0.0033
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.578,
+        "currentR_mean": 0.0037,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0045,
+        "powerFactorR_mean": 0.0002,
+        "voltageR_mean": -0.0001
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5723,
+        "currentR_mean": -0.0012,
+        "currentS_mean": -0.0045,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": -0.0032,
+        "voltageR_mean": 0.0023
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": -0.0026,
+        "currentR_mean": -0.0014,
+        "currentS_mean": 0.0002,
+        "currentT_mean": -0.0032,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": 0.0002
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0181,
+        "currentR_mean": -0.0033,
+        "currentS_mean": -0.0001,
+        "currentT_mean": 0.0023,
+        "powerFactorR_mean": 0.0002,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06889085471630096,
+    "sensor_centers": {
+      "activePower": 3010.72705078125,
+      "voltageR": 215.00416564941406,
+      "voltageS": 214.9983367919922,
+      "voltageT": 214.99749755859375,
+      "currentR": 17.49916648864746,
+      "currentS": 17.501667022705078,
+      "currentT": 17.510000228881836,
+      "powerFactorR": 92.50416564941406,
+      "powerFactorS": 92.50416564941406,
+      "powerFactorT": 92.5058364868164
+    },
+    "sensor_scales": {
+      "activePower": 208.7579250689168,
+      "voltageR": 0.8426041316773999,
+      "voltageS": 0.8419820164821163,
+      "voltageT": 0.8412072002843541,
+      "currentR": 2.1126763391176624,
+      "currentS": 2.119470119829793,
+      "currentT": 2.1120584656168924,
+      "powerFactorR": 1.2601904731224518,
+      "powerFactorS": 1.2657555763238975,
+      "powerFactorT": 1.2608125883177355
+    }
+  },
+  {
+    "module": "2(L-1전등)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5762,
+        "currentS_mean": 0.5787,
+        "currentT_mean": 0.5756,
+        "powerFactorR_mean": -0.0,
+        "voltageR_mean": 0.0217
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5762,
+        "currentR_mean": 1.0,
+        "currentS_mean": -0.0018,
+        "currentT_mean": 0.0005,
+        "powerFactorR_mean": 0.0041,
+        "voltageR_mean": -0.0026
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5787,
+        "currentR_mean": -0.0018,
+        "currentS_mean": 1.0,
+        "currentT_mean": 0.0005,
+        "powerFactorR_mean": -0.002,
+        "voltageR_mean": 0.0049
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5756,
+        "currentR_mean": 0.0005,
+        "currentS_mean": 0.0005,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": -0.0018,
+        "voltageR_mean": 0.0027
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": -0.0,
+        "currentR_mean": 0.0041,
+        "currentS_mean": -0.002,
+        "currentT_mean": -0.0018,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": -0.0013
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0217,
+        "currentR_mean": -0.0026,
+        "currentS_mean": 0.0049,
+        "currentT_mean": 0.0027,
+        "powerFactorR_mean": -0.0013,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06867416948080063,
+    "sensor_centers": {
+      "activePower": 3009.93701171875,
+      "voltageR": 214.99916076660156,
+      "voltageS": 215.0016632080078,
+      "voltageT": 215.00250244140625,
+      "currentR": 17.497499465942383,
+      "currentS": 17.496665954589844,
+      "currentT": 17.49250030517578,
+      "powerFactorR": 92.49833679199219,
+      "powerFactorS": 92.50250244140625,
+      "powerFactorT": 92.5
+    },
+    "sensor_scales": {
+      "activePower": 206.62486173207006,
+      "voltageR": 0.8432262468726834,
+      "voltageS": 0.8456807740977113,
+      "voltageT": 0.8401269820816346,
+      "currentR": 2.1003216968986,
+      "currentS": 2.1186991918520013,
+      "currentT": 2.0910550082852173,
+      "powerFactorR": 1.266366380333812,
+      "powerFactorS": 1.2682214147342938,
+      "powerFactorT": 1.265749920731213
+    }
+  },
+  {
+    "module": "3(분쇄기(2))",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5762,
+        "currentS_mean": 0.5756,
+        "currentT_mean": 0.5771,
+        "powerFactorR_mean": 0.0038,
+        "voltageR_mean": 0.0159
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5762,
+        "currentR_mean": 1.0,
+        "currentS_mean": -0.0008,
+        "currentT_mean": -0.0015,
+        "powerFactorR_mean": 0.0029,
+        "voltageR_mean": -0.001
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5756,
+        "currentR_mean": -0.0008,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0012,
+        "powerFactorR_mean": 0.0014,
+        "voltageR_mean": -0.0037
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5771,
+        "currentR_mean": -0.0015,
+        "currentS_mean": -0.0012,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": 0.0026,
+        "voltageR_mean": -0.0004
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": 0.0038,
+        "currentR_mean": 0.0029,
+        "currentS_mean": 0.0014,
+        "currentT_mean": 0.0026,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": -0.005
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0159,
+        "currentR_mean": -0.001,
+        "currentS_mean": -0.0037,
+        "currentT_mean": -0.0004,
+        "powerFactorR_mean": -0.005,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06868892163038254,
+    "sensor_centers": {
+      "activePower": 3009.0462646484375,
+      "voltageR": 214.99583435058594,
+      "voltageS": 215.00332641601562,
+      "voltageT": 214.9949951171875,
+      "currentR": 17.49333381652832,
+      "currentS": 17.49416732788086,
+      "currentT": 17.4950008392334,
+      "powerFactorR": 92.50666809082031,
+      "powerFactorS": 92.49500274658203,
+      "powerFactorT": 92.4991683959961
+    },
+    "sensor_scales": {
+      "activePower": 207.6366698856792,
+      "voltageR": 0.84569208528308,
+      "voltageS": 0.8494021540840437,
+      "voltageT": 0.8413599012868328,
+      "currentR": 2.10402752400505,
+      "currentS": 2.097850202895519,
+      "currentT": 2.1151464192225724,
+      "powerFactorR": 1.2614290479203345,
+      "powerFactorS": 1.2645170015260148,
+      "powerFactorT": 1.2694599895321765
+    }
+  },
+  {
+    "module": "4(분쇄기(1))",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5775,
+        "currentS_mean": 0.5783,
+        "currentT_mean": 0.5764,
+        "powerFactorR_mean": 0.003,
+        "voltageR_mean": 0.0174
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5775,
+        "currentR_mean": 1.0,
+        "currentS_mean": 0.0034,
+        "currentT_mean": -0.0009,
+        "powerFactorR_mean": -0.0001,
+        "voltageR_mean": -0.0022
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5783,
+        "currentR_mean": 0.0034,
+        "currentS_mean": 1.0,
+        "currentT_mean": -0.0004,
+        "powerFactorR_mean": 0.0025,
+        "voltageR_mean": 0.0004
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5764,
+        "currentR_mean": -0.0009,
+        "currentS_mean": -0.0004,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": 0.0028,
+        "voltageR_mean": -0.0006
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": 0.003,
+        "currentR_mean": -0.0001,
+        "currentS_mean": 0.0025,
+        "currentT_mean": 0.0028,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": -0.0026
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0174,
+        "currentR_mean": -0.0022,
+        "currentS_mean": 0.0004,
+        "currentT_mean": -0.0006,
+        "powerFactorR_mean": -0.0026,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06867118179798126,
+    "sensor_centers": {
+      "activePower": 3010.4217529296875,
+      "voltageR": 215.0,
+      "voltageS": 214.9983367919922,
+      "voltageT": 215.0,
+      "currentR": 17.491666793823242,
+      "currentS": 17.502500534057617,
+      "currentT": 17.50666618347168,
+      "powerFactorR": 92.5,
+      "powerFactorS": 92.4991683959961,
+      "powerFactorT": 92.50333404541016
+    },
+    "sensor_scales": {
+      "activePower": 207.50374083522516,
+      "voltageR": 0.8432262468726834,
+      "voltageS": 0.8419820164821163,
+      "voltageT": 0.8413599012868328,
+      "currentR": 2.0915184134107947,
+      "currentS": 2.098468076396289,
+      "currentT": 2.1027917770035094,
+      "powerFactorR": 1.2694599895321765,
+      "powerFactorS": 1.2651334611286138,
+      "powerFactorT": 1.2583410943146545
+    }
+  },
+  {
+    "module": "5(좌측분전반)",
+    "minutes": 216001,
+    "valid_minutes": 215250,
+    "fitted_minutes": 40000,
+    "train_correlations": {
+      "activePower_mean": {
+        "activePower_mean": 1.0,
+        "currentR_mean": 0.5772,
+        "currentS_mean": 0.5793,
+        "currentT_mean": 0.5765,
+        "powerFactorR_mean": 0.0023,
+        "voltageR_mean": 0.0209
+      },
+      "currentR_mean": {
+        "activePower_mean": 0.5772,
+        "currentR_mean": 1.0,
+        "currentS_mean": 0.0046,
+        "currentT_mean": -0.0016,
+        "powerFactorR_mean": 0.0015,
+        "voltageR_mean": 0.0062
+      },
+      "currentS_mean": {
+        "activePower_mean": 0.5793,
+        "currentR_mean": 0.0046,
+        "currentS_mean": 1.0,
+        "currentT_mean": 0.0004,
+        "powerFactorR_mean": 0.0019,
+        "voltageR_mean": 0.0007
+      },
+      "currentT_mean": {
+        "activePower_mean": 0.5765,
+        "currentR_mean": -0.0016,
+        "currentS_mean": 0.0004,
+        "currentT_mean": 1.0,
+        "powerFactorR_mean": 0.0007,
+        "voltageR_mean": -0.0032
+      },
+      "powerFactorR_mean": {
+        "activePower_mean": 0.0023,
+        "currentR_mean": 0.0015,
+        "currentS_mean": 0.0019,
+        "currentT_mean": 0.0007,
+        "powerFactorR_mean": 1.0,
+        "voltageR_mean": -0.0057
+      },
+      "voltageR_mean": {
+        "activePower_mean": 0.0209,
+        "currentR_mean": 0.0062,
+        "currentS_mean": 0.0007,
+        "currentT_mean": -0.0032,
+        "powerFactorR_mean": -0.0057,
+        "voltageR_mean": 1.0
+      }
+    },
+    "operation_unique": [
+      1.0
+    ],
+    "power_mean_cv": 0.06886100769042969,
+    "sensor_centers": {
+      "activePower": 3010.4644775390625,
+      "voltageR": 215.00250244140625,
+      "voltageS": 214.99667358398438,
+      "voltageT": 215.0016632080078,
+      "currentR": 17.501667022705078,
+      "currentS": 17.496665954589844,
+      "currentT": 17.50749969482422,
+      "powerFactorR": 92.50499725341797,
+      "powerFactorS": 92.50250244140625,
+      "powerFactorT": 92.4941635131836
+    },
+    "sensor_scales": {
+      "activePower": 207.1558540180226,
+      "voltageR": 0.8426041316773999,
+      "voltageS": 0.8432149356873146,
+      "voltageT": 0.8395048668863511,
+      "currentR": 2.095996582393208,
+      "currentS": 2.105108802631398,
+      "currentT": 2.1015574439001403,
+      "powerFactorR": 1.2558696003115735,
+      "powerFactorS": 1.2571025195167718,
+      "powerFactorT": 1.2645170015260148
+    }
+  }
+]

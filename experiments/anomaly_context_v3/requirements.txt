@@ -1,0 +1,9 @@
+numpy==1.26.4
+pandas==2.2.1
+pyarrow==19.0.1
+scikit-learn==1.4.2
+joblib==1.4.2
+plotly==5.24.1
+psutil==5.9.8
+threadpoolctl==3.5.0
+pytest==8.4.2

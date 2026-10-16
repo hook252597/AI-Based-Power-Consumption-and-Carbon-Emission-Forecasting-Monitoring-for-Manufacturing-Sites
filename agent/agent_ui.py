@@ -18,6 +18,7 @@ import html
 import os
 import re
 import time
+from pathlib import Path
 
 import pandas as pd
 import streamlit as st
@@ -27,22 +28,44 @@ from .agent_tools import (DEFAULT_THRESHOLDS, TODAY, AgentTools, TemplateStore, 
                           parse_xlsx)
 
 
-@st.cache_resource
-def get_templates() -> TemplateStore:
-    """앱 시작 시 기본 양식(BasicSafetyReportForm.xlsx)을 파싱해 report_template.json 으로 등록."""
-    store = TemplateStore()
+def get_templates(state: dict | None = None) -> TemplateStore:
+    """현재 브라우저 세션에서만 양식과 업로드를 유지한다."""
+    store = TemplateStore(state=st.session_state if state is None else state)
     store.ensure_default()
     return store
 
 
-def load_settings() -> tuple[str, str]:
-    """API 키·모델: st.secrets → 환경변수. 키는 코드에 적지 않는다."""
-    key, model = "", ""
+def _configured_secret_files() -> list:
     try:
-        key = str(st.secrets.get("OPENAI_API_KEY", "") or "")
-        model = str(st.secrets.get("OPENAI_MODEL", "") or "")
-    except Exception:  # noqa: BLE001 — secrets.toml이 없을 때
-        pass
+        return list(st.get_option("secrets.files") or [])
+    except Exception:
+        return []
+
+
+def load_settings() -> tuple[str, str]:
+    """있는 설정 파일만 조용히 읽는다. 파일 부재·파싱 오류를 화면에 노출하지 않는다."""
+    key, model = "", ""
+    configured = _configured_secret_files()
+    # st.secrets는 파일이 없으면 예외 전에 st.error로 내부 경로를 표시한다.
+    # 공개 설정의 파일 목록을 직접 읽어 같은 순서로 덮어쓰되 원문은 출력하지 않는다.
+    for filename in configured:
+        try:
+            path = Path(filename).expanduser()
+            if not path.is_file():
+                continue
+            try:
+                import tomllib
+                with path.open("rb") as handle:
+                    values = tomllib.load(handle)
+            except ImportError:  # Python 3.10 배포 환경
+                import toml
+                values = toml.loads(path.read_text(encoding="utf-8"))
+            if "OPENAI_API_KEY" in values:
+                key = str(values.get("OPENAI_API_KEY") or "")
+            if "OPENAI_MODEL" in values:
+                model = str(values.get("OPENAI_MODEL") or "")
+        except (OSError, ValueError, TypeError):
+            continue
     return (key or os.environ.get("OPENAI_API_KEY", "")).strip(), (model or os.environ.get("OPENAI_MODEL", "") or DEFAULT_MODEL).strip()
 
 
@@ -69,15 +92,15 @@ AGENT_PALETTES = {
 def agent_css(theme: str = "light") -> str:
     c = AGENT_PALETTES.get(theme, AGENT_PALETTES["light"])
     return f"""<style>
-.stApp .ag-bubble{{padding:8px 11px;border-radius:10px;margin:3px 0;font-size:14px;line-height:1.5;white-space:pre-wrap;
+.stApp .ag-bubble{{padding:8px 11px;border-radius:10px;margin:3px 0;font-size:15px;line-height:1.65;white-space:pre-wrap;
   overflow-wrap:anywhere;max-width:92%;display:inline-block}}
 .stApp .ag-user{{background:{c['user_bg']};color:{c['user_text']};float:right;clear:both}}
 .stApp .ag-bot{{background:{c['bot_bg']};color:{c['bot_text']};float:left;clear:both}}
 .stApp .ag-row{{overflow:hidden}}
 .stApp .ag-mode{{font-size:11px;color:{c['muted']};margin:0 2px}}
-.stApp .ag-section{{font-weight:700;font-size:13px;margin:10px 0 3px;padding-bottom:3px;border-bottom:1px solid {c['line']}}}
+.stApp .ag-section{{font-weight:700;font-size:14px;margin:10px 0 3px;padding-bottom:3px;border-bottom:1px solid {c['line']}}}
 .stApp .ag-field{{display:grid;grid-template-columns:40px minmax(120px,1fr) minmax(110px,1.2fr);gap:6px;padding:5px 8px;
-  margin:2px 0;border-radius:5px;font-size:13px;color:{c['field_text']}}}
+  margin:2px 0;border-radius:5px;font-size:14px;color:{c['field_text']}}}
 .stApp .ag-field *{{color:inherit}}
 .stApp .ag-field.auto{{background:{c['auto_bg']}}}.stApp .ag-field.user{{background:{c['input_bg']}}}
 .stApp .ag-field.blank,.stApp .ag-field.formula{{background:{c['blank_bg']}}}
@@ -85,7 +108,7 @@ def agent_css(theme: str = "light") -> str:
 .stApp .ag-field.empty .ag-val{{color:{c['empty']}}}.stApp .ag-field .ag-req{{color:{c['req']}}}
 @keyframes ag-flash{{from{{box-shadow:inset 0 0 0 2px #16a34a;background:{c['flash']}}}to{{box-shadow:none}}}}
 .stApp .ag-field.fresh{{animation:ag-flash 4s ease-out}}
-.stApp .ag-card{{border:1px solid {c['line']};border-radius:8px;padding:8px 10px;margin:6px 0;font-size:13px;
+.stApp .ag-card{{border:1px solid {c['line']};border-radius:8px;padding:8px 10px;margin:6px 0;font-size:14px;
   background:{c['card_bg']};color:{c['card_text']}}}
 .stApp .ag-card *{{color:inherit}}
 </style>"""
@@ -168,7 +191,7 @@ def _threshold_card(state: dict) -> None:
     if not last:
         return
     r = last["result"]
-    counts = (f"이상 구간 {r['anomaly_count_before']}건 → {r['anomaly_count_after']}건" if r.get("data_available")
+    counts = (f"설정 기준 발생 구간 {r['anomaly_count_before']}개 → {r['anomaly_count_after']}개" if r.get("data_available") and r.get("anomaly_count_before") is not None
               else "선택일 실측이 없어 건수 변화는 확인할 수 없음")
     added = ", ".join(r.get("newly_abnormal") or []) or "없음"
     st.markdown(f'<div class="ag-card"><b>임계치 변경</b> · {html.escape(r["log_entry"]["change"])}<br>'
@@ -272,112 +295,147 @@ def _value_text(row: dict) -> str:
 
 def _report_panel(state: dict, tools: AgentTools) -> None:
     template = tools.templates.get()
-    rows = _template_rows(state, template)
-    draft = state.get("report_draft") if state.get("report_draft", {}) and \
-        state["report_draft"].get("template_name") == template.get("name") else None
-    ready = bool(draft and draft.get("ready_to_export"))
-    head, btn = st.columns([3, 1.3], vertical_alignment="center")
-    head.markdown(f"**{html.escape(template.get('name', '보고서'))}**"
-                  + ("" if template.get("is_default") else " <span style='font-size:11px;color:#6b7280'>사용자 양식</span>"),
-                  unsafe_allow_html=True)
-    data = export_xlsx(draft, template) if ready else b""
-    btn.download_button("내보내기", data=data or b" ", disabled=not ready, use_container_width=True, key="ag_export",
-                        file_name=f"점검보고서_{draft['date']}_{re.sub(r'[^0-9A-Za-z가-힣]+', '_', draft['equipment'] or '전체')}.xlsx" if draft else "report.xlsx",
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    if draft and not tools.templates.template_asked():
-        st.info("사내에서 따로 쓰시는 보고서 양식이 있나요? 없으면 기본 양식으로 작성합니다.")
-        a, b = st.columns(2)
-        if a.button("기본 양식으로 계속", use_container_width=True, key="ag_tpl_default"):
-            tools.templates.mark_asked()
-            state["_template_question_open"] = False
-            st.rerun()
-        if b.button("다른 양식 등록", use_container_width=True, key="ag_tpl_upload"):
-            state["template_upload_open"] = True
-            st.rerun()
+    draft = state.get("report_draft") or None
+    current_date = str(state["view_date"])
+    current_eq = state.get("selected_equipment") or "전체"
+    st.markdown("### 점검 보고서")
+    st.caption("1 대상 확인 → 2 조치 기록 → 3 필수 입력·담당자 판정 → 4 Excel 다운로드")
+    st.markdown(f"**현재 선택: {html.escape(current_date)} · {html.escape(current_eq)}**")
     if draft:
-        missing = draft.get("missing_user_fields") or []
-        st.caption(f"{draft['date']} · {draft['equipment']}"
-                   + (f" · 필수 미입력: {', '.join(missing)}" if missing else " · 필수 항목 완료"))
+        st.info(f"작성 중인 보고서: {draft['date']} · {draft['equipment']} — 화면의 날짜·설비를 바꿔도 이 초안은 유지됩니다.")
+        with st.expander("현재 선택으로 새 보고서 시작", expanded=bool(state.get("report_start_requested"))):
+            st.caption("작성 중인 내용을 유지하려면 그대로 닫으세요. 새로 시작하면 이전 초안은 이번 세션에서 한 번 복원할 수 있습니다.")
+            if st.button("현재 선택으로 새 보고서", key="ag_new_report", use_container_width=True):
+                tools.start_new_report(current_date, current_eq)
+                tools.templates.mark_asked()
+                state.pop("report_start_requested", None)
+                state["_ag_form_generation"] = state.get("_ag_form_generation", 0) + 1
+                st.rerun()
     else:
-        st.caption("조치 내용을 말씀하시거나 '보고서 작성해줘'라고 하면 선택한 날짜·설비 자료로 채웁니다.")
-    st.caption("청록 = 자동 채움 · 노랑 = 직접 입력 · 회색 = 비워 둠/엑셀 자동 계산 · * 필수")
-    fresh = _fresh_fields(state, rows)
-    parts, section = [], None
-    for i, r in enumerate(rows):
-        if r.get("section") and r["section"] != section:
-            section = r["section"]
-            parts.append(f'<div class="ag-section">{html.escape(section)}</div>')
-        value = _value_text(r)
-        cls = r.get("source", "user") + (" empty" if value in ("(미입력)", "(비워 둠)", "(엑셀에서 자동 계산)") else "") \
-            + (" fresh" if f"{r['name']}|{i}" in fresh else "")
-        tag = {"auto": "자동", "user": "입력", "blank": "공란", "formula": "계산"}.get(r.get("source"), "입력")
-        req = " <span class='ag-req'>*</span>" if r.get("required") else ""
-        parts.append(f'<div class="ag-field {cls}"><span class="ag-tag">{tag}</span>'
-                     f'<span>{html.escape(r["name"])}{req}</span><span class="ag-val">{html.escape(value)}</span></div>')
-    with st.container(height=430, border=True):
-        st.markdown("".join(parts), unsafe_allow_html=True)
+        st.caption("선택한 날짜·설비의 자료를 채운 뒤 점검 내용과 담당자 정보를 입력합니다.")
+        if st.button("선택한 대상으로 보고서 시작", type="primary", key="ag_start_report", use_container_width=True):
+            tools.start_new_report(current_date, current_eq)
+            tools.templates.mark_asked()
+            state.pop("report_start_requested", None)
+            st.rerun()
+    if state.get("previous_report_draft"):
+        if st.button("이전 초안 복원", key="ag_restore_report"):
+            previous = state.pop("previous_report_draft")
+            state["previous_report_draft"] = draft
+            state["report_draft"] = previous
+            state["_ag_form_generation"] = state.get("_ag_form_generation", 0) + 1
+            st.rerun()
     if draft:
+        required = [r for r in draft["rows"] if r.get("required")]
+        done = sum(_filled(r.get("value")) for r in required)
+        st.progress(done / len(required) if required else 1.0, text=f"필수 입력 {done} / {len(required)} 완료")
+        if not draft.get("data_available"):
+            st.warning("선택한 보고서 대상의 실측 자료가 없습니다. 날짜·설비를 확인한 뒤 새 보고서를 시작하세요.")
         _manual_form(state, tools, draft)
-    with st.expander("보고서 양식 변경 · 복원", expanded=False):
-        if st.button("다른 양식 등록하기", use_container_width=True, key="ag_tpl_open"):
+        st.markdown("**3. 담당자 종합판정**")
+        st.caption("센서 기준 판정과 별개입니다. 실제 점검 결과를 확인한 담당자가 선택하세요. 내용을 수정하면 다시 확인해야 합니다.")
+        revision = draft.get("revision", 0)
+        options = ["판정을 선택하세요", "적합", "추가 점검 필요", "조치 후 재확인 필요"]
+        judgment = st.selectbox("점검 결과", options, index=options.index(draft["judgment"]) if draft.get("judgment") in options else 0,
+            key=f"ag_judgment_{revision}_{state.get('_ag_form_generation', 0)}")
+        if st.button("담당자로서 이 판정 확인", disabled=judgment == options[0], key="ag_confirm_judgment", use_container_width=True):
+            tools.confirm_judgment(judgment)
+            st.rerun()
+        if draft.get("judgment_confirmed"):
+            st.success(f"담당자 확인 완료: {draft['judgment']}")
+        with st.expander("자동으로 채운 자료·전체 양식 미리보기", expanded=False):
+            st.caption("설정 기준 이탈과 AI 탐지는 고장을 확정하지 않습니다. 전체 탐지 내역은 Excel 별첨에 포함됩니다.")
+            for row in draft["rows"]:
+                if row.get("kind") == "table":
+                    records = row.get("value") or []
+                    st.markdown(f"**{row['name']} · 대표 {min(3, len(records))} / 전체 {len(records)}개**")
+                    if records:
+                        st.dataframe(pd.DataFrame(records[:3]), hide_index=True, use_container_width=True)
+                elif row.get("source") != "user":
+                    st.markdown(f"**{row['name']}**: {_value_text(row)}")
+        st.markdown("**4. Excel 다운로드**")
+        blockers = draft.get("export_blockers", [])
+        if blockers:
+            st.info("다운로드 전 남은 항목: " + ", ".join(blockers))
+        else:
+            st.caption("본문 대표 내역과 설정 기준·AI 전체 내역 별첨을 함께 저장합니다.")
+        ready = bool(draft.get("ready_to_export") and draft.get("judgment_confirmed"))
+        data = export_xlsx(draft, template) if ready else b" "
+        st.download_button("점검 보고서 Excel 다운로드", data=data, disabled=not ready, use_container_width=True,
+            key="ag_export", file_name=f"점검보고서_{draft['date']}_{re.sub(r'[^0-9A-Za-z가-힣]+', '_', draft['equipment'] or '전체')}.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    with st.expander("보고서 양식 설정", expanded=False):
+        st.caption(f"현재 양식: {template.get('name')} · 변경 사항은 현재 브라우저 세션에만 적용됩니다.")
+        if st.button("다른 양식 등록하기", key="ag_tpl_open", use_container_width=True):
             state["template_upload_open"] = True
             st.rerun()
-        if st.button("기본 양식으로 복원", disabled=bool(template.get("is_default")), use_container_width=True, key="ag_tpl_reset"):
-            r = tools.execute("reset_report_template", {})
-            state["messages"].append({"role": "assistant", "mode": "summary",
-                                      "content": r.get("error") or "기본 양식(제조현장 안전 점검 보고서)으로 되돌렸습니다."})
+        if st.button("기본 양식으로 복원", disabled=bool(template.get("is_default")), key="ag_tpl_reset", use_container_width=True):
+            tools.execute("reset_report_template", {})
             st.rerun()
 
 
 def _manual_form(state: dict, tools: AgentTools, draft: dict) -> None:
-    manual = [r for r in draft["rows"] if r.get("source") == "user"]
-    with st.expander("직접 입력 · 대화로 말씀하셔도 반영됩니다", expanded=False):
-        with st.form("ag_manual_form"):
-            values = {}
-            for r in manual:
-                values[r["name"]] = st.text_input(r["name"] + (" *" if r.get("required") else ""),
-                                                  value=str(r.get("value") or ""), placeholder=r.get("hint") or "",
-                                                  key=f"ag_in_{draft['date']}_{draft['equipment']}_{r['name']}")
-            if st.form_submit_button("보고서에 반영", use_container_width=True):
-                changed = {k: v for k, v in values.items() if v != str(next((r.get("value") or "") for r in manual if r["name"] == k))}
-                if changed:
-                    tools.execute("create_report", {"date": draft["date"], "equipment": draft["equipment"], "extra_fields": changed})
-                st.rerun()
+    manual = [r for r in draft["rows"] if r.get("source") == "user" and re.sub(r"\s", "", r["name"]) != "종합판정"]
+    generation = state.get("_ag_form_generation", 0)
+    revision = draft.get("revision", 0)
+    st.markdown("**2. 조치 기록과 필수 정보**")
+    st.caption("별표(*) 항목부터 입력하세요. 입력값을 지우고 반영하면 보고서에서도 지워집니다. 실제로 수행하지 않은 조치는 적지 않아도 됩니다.")
+    with st.form("ag_manual_form"):
+        values = {}
+        visible = [r for r in manual if r.get("required") or "조치내용" in re.sub(r"\s", "", r["name"])]
+        rest = [r for r in manual if r not in visible]
+        def render_field(r):
+            key = f"ag_in_{generation}_{revision}_{draft['date']}_{draft['equipment']}_{r['name']}"
+            label = r["name"] + (" *" if r.get("required") else "")
+            return st.text_area(label, value=str(r.get("value") or ""), height=80, key=key) if "내용" in r["name"] else st.text_input(label, value=str(r.get("value") or ""), placeholder=r.get("hint") or "", key=key)
+        for r in visible:
+            values[r["name"]] = render_field(r)
+        with st.expander(f"추가 입력 항목 {len(rest)}개", expanded=False):
+            for r in rest:
+                values[r["name"]] = render_field(r)
+        if st.form_submit_button("입력 내용을 보고서에 반영", use_container_width=True):
+            changed = {k: v for k, v in values.items() if v != str(next((r.get("value") or "") for r in manual if r["name"] == k))}
+            if changed:
+                tools.execute("create_report", {"date": draft["date"], "equipment": draft["equipment"], "extra_fields": changed})
+            st.rerun()
 
 
-# -----------------------------------------------------------------------------
-# 진입점
-# -----------------------------------------------------------------------------
 def render_agent_tab(state: dict | None = None) -> None:
-    """대시보드 본문 최상위에서 호출한다(내부에서 좌우 열을 만든다)."""
     state = st.session_state if state is None else state
     state.setdefault("view_date", TODAY.isoformat())
-    tools = AgentTools(state, get_templates())
+    tools = AgentTools(state, get_templates(state))
+    if state.get("report_start_requested") and not state.get("report_draft"):
+        # 점검 화면에서 사용자가 누른 '이 설비로 보고서 시작'을 한 번만 실행한다.
+        tools.start_new_report(str(state["view_date"]), state.get("selected_equipment"))
+        tools.templates.mark_asked()
+        state.pop("report_start_requested", None)
     api_key, model = load_settings()
     _ensure_summary(state, tools)
-    template = tools.templates.get()
-    rows = _template_rows(state, template)
     st.markdown(agent_css(state.get("theme", "light")), unsafe_allow_html=True)
-
-    left, right = st.columns([45, 55], gap="large")
+    st.caption("자료를 질문으로 확인하고 점검 보고서를 작성하세요. 보고서 시작·직접 입력·다운로드는 대화 없이도 사용할 수 있습니다.")
+    left, right = st.columns([4, 6], gap="large")
     with left:
-        _checklist(state, rows)
-        st.caption(f"{state['view_date']} · {state.get('selected_equipment') or '공장 전체'} · "
-                   + (f"{model}" if api_key else "데모 모드 · API 키가 없어 같은 데이터를 규칙으로 조회합니다"))
-        _conversation(state, model, api_key)
-        _template_upload(state, tools)
-        prompt = st.chat_input("예: 오늘 문제 있는 곳 있어? · 4호기 전압 어때? · 콘덴서 교체했어", key="ag_chat_input")
-        if prompt:
-            with st.spinner("자료를 확인하고 있어요…"):
-                result = run_turn(prompt, state, tools, api_key=api_key or None, model=model)
-            if result.get("notice") and result["mode"] == "demo" and api_key:
-                state["_agent_notice"] = result["notice"]
-            st.rerun()
-        if state.get("_agent_notice"):
-            st.caption(state["_agent_notice"])
-        if state.get("agent_trace"):
-            with st.expander("이번 답변의 조회 근거 (디버깅용)", expanded=False):
-                st.json(state["agent_trace"], expanded=False)
+        with st.expander("AI에게 자료 질문하기", expanded=False):
+            st.markdown("### 자료에 질문하기")
+            st.caption(f"{state['view_date']} · {state.get('selected_equipment') or '공장 전체'} · " + ("AI 대화" if api_key else "간단 조회 모드"))
+            _conversation(state, model, api_key)
+            st.caption("아래 질문을 누르면 바로 전송합니다.")
+            quick = None
+            for title, text in (("선택일 점검할 설비", "선택한 날짜에 점검할 설비를 요약해줘"),
+                                ("선택 설비 전압 확인", f"{state.get('selected_equipment') or '전체 설비'} 전압은 어때?"),
+                                ("이번 달 예상 요금", "선택한 날짜의 달 예상 요금을 알려줘")):
+                if st.button(title, key="ag_quick_" + title, use_container_width=True):
+                    quick = text
+            _template_upload(state, tools)
+            prompt = st.chat_input("예: 3호기 전압은 어때?", key="ag_chat_input")
+            if prompt or quick:
+                with st.spinner("자료를 확인하고 있어요…"):
+                    result = run_turn(prompt or quick, state, tools, api_key=api_key or None, model=model)
+                if result.get("notice") and result["mode"] == "demo" and api_key:
+                    state["_agent_notice"] = "AI 연결이 원활하지 않아 간단 조회로 안내했습니다. 잠시 후 다시 시도하세요."
+                st.rerun()
+            if state.get("_agent_notice"):
+                st.caption(state["_agent_notice"])
         _threshold_controls(state, tools)
     with right:
         _report_panel(state, tools)

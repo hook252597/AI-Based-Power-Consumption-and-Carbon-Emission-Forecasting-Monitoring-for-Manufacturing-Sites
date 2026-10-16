@@ -1,0 +1,116 @@
+{
+  "method": "relation_residual",
+  "primary_budget": 1.0,
+  "real": {
+    "april_development": {
+      "equipment_count": 13,
+      "alerts": 362,
+      "observed_equipment_hours": 9016.583333333334,
+      "alerts_per_24_equipment_hours": 0.9635578887050711,
+      "flagged_minutes": 49318,
+      "flagged_fraction": 0.09116165583785432,
+      "longest_flagged_run_minutes": 6,
+      "relation_r2_min": 0.9998137209802325,
+      "relation_r2_median": 0.9998346965704976,
+      "residual_mae_W_min": 2.108444065826408,
+      "residual_mae_W_max": 2.2216157940115293
+    },
+    "march_check": {
+      "equipment_count": 13,
+      "alerts": 209,
+      "observed_equipment_hours": 4974.666666666667,
+      "alerts_per_24_equipment_hours": 1.0083087644063253,
+      "flagged_minutes": 27133,
+      "flagged_fraction": 0.09090391316001072,
+      "longest_flagged_run_minutes": 5,
+      "relation_r2_min": 0.9998125830251225,
+      "relation_r2_median": 0.9998338415909507,
+      "residual_mae_W_min": 2.09686277493611,
+      "residual_mae_W_max": 2.214303848067085
+    }
+  },
+  "synthetic": {
+    "probe_count": 51,
+    "detected_probe_count": 41,
+    "synthetic_event_recall": 0.803921568627451,
+    "baseline_already_alerting_count": 1,
+    "clean_control_count": 50,
+    "incremental_detected_count": 40,
+    "clean_control_synthetic_recall": 0.8,
+    "median_first_decision_delay_minutes": 3.0,
+    "by_kind": {
+      "level_shift": {
+        "probe_count": 11,
+        "detected_probe_count": 11,
+        "synthetic_event_recall": 1.0,
+        "baseline_already_alerting_count": 1,
+        "clean_control_count": 10,
+        "incremental_detected_count": 10,
+        "clean_control_synthetic_recall": 1.0,
+        "median_first_decision_delay_minutes": 3.0,
+        "by_kind": {},
+        "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement."
+      },
+      "persistent_drift": {
+        "probe_count": 10,
+        "detected_probe_count": 10,
+        "synthetic_event_recall": 1.0,
+        "baseline_already_alerting_count": 0,
+        "clean_control_count": 10,
+        "incremental_detected_count": 10,
+        "clean_control_synthetic_recall": 1.0,
+        "median_first_decision_delay_minutes": 6.0,
+        "by_kind": {},
+        "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement."
+      },
+      "phase_imbalance": {
+        "probe_count": 10,
+        "detected_probe_count": 10,
+        "synthetic_event_recall": 1.0,
+        "baseline_already_alerting_count": 0,
+        "clean_control_count": 10,
+        "incremental_detected_count": 10,
+        "clean_control_synthetic_recall": 1.0,
+        "median_first_decision_delay_minutes": 3.0,
+        "by_kind": {},
+        "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement."
+      },
+      "relation_break": {
+        "probe_count": 10,
+        "detected_probe_count": 10,
+        "synthetic_event_recall": 1.0,
+        "baseline_already_alerting_count": 0,
+        "clean_control_count": 10,
+        "incremental_detected_count": 10,
+        "clean_control_synthetic_recall": 1.0,
+        "median_first_decision_delay_minutes": 3.0,
+        "by_kind": {},
+        "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement."
+      },
+      "volatility_increase": {
+        "probe_count": 10,
+        "detected_probe_count": 0,
+        "synthetic_event_recall": 0.0,
+        "baseline_already_alerting_count": 0,
+        "clean_control_count": 10,
+        "incremental_detected_count": 0,
+        "clean_control_synthetic_recall": 0.0,
+        "median_first_decision_delay_minutes": null,
+        "by_kind": {},
+        "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement."
+      }
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement."
+  },
+  "limitations": [
+    "Contemporaneous cross-sensor consistency is not future forecasting.",
+    "Product of minute means differs from mean of products; aggregation covariance contributes to residual.",
+    "A learned coefficient absorbs source conventions; it is not a verified electrical conversion factor.",
+    "Coherent current and power changes can stay on the relation and be missed.",
+    "Changes in within-minute variability without changed means are intentionally invisible to this relation score.",
+    "Sensor inconsistencies can produce a residual without equipment damage.",
+    "April and source audit are development data; new real data and human-confirmed events remain necessary."
+  ],
+  "separate_followup_experiment": true,
+  "original_four_methods_not_changed": true
+}

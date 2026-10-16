@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "checks": [
+    "April values cannot change train coefficients or March thresholds.",
+    "April changes cannot alter scores of earlier rows.",
+    "Scoring does not mutate the frozen model."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "created_utc": "2026-10-16T03:31:28.725410+00:00",
+  "protocol_sha256": "c215681dc4b9f03b862a8284ff5eee6405ff720ca4b6d477564be0dd00b4e9fc",
+  "rows": 2808013,
+  "modules": [
+    "1(PM-3)",
+    "11(우측분전반1)",
+    "12(4호기)",
+    "13(3호기)",
+    "14(2호기)",
+    "15(예비건조기)",
+    "16(호이스트)",
+    "17(6호기)",
+    "18(우측분전반2)",
+    "2(L-1전등)",
+    "3(분쇄기(2))",
+    "4(분쇄기(1))",
+    "5(좌측분전반)"
+  ],
+  "feature_count": 64,
+  "static_feature_count": 34,
+  "score_files": [
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_1_PM_3_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_11_우측분전반1_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_12_4호기_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_13_3호기_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_14_2호기_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_15_예비건조기_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_16_호이스트_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_17_6호기_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_18_우측분전반2_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_2_L_1전등_.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_3_분쇄기_2__.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_4_분쇄기_1__.parquet",
+    "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\outputs\\scores_5_좌측분전반_.parquet"
+  ],
+  "elapsed_seconds": 112.25161004066467,
+  "api_calls": 0,
+  "dashboard_changed": false,
+  "evaluation_notice": "April development re-evaluation and minute-aggregate synthetic function tests only. No real fault accuracy claim."
+}

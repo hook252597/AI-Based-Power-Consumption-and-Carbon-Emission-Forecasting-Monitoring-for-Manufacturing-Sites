@@ -1,0 +1,548 @@
+[
+  {
+    "module": "1(PM-3)",
+    "coefficient": 0.26668823937242075,
+    "intercept_W": -0.24770219499487212,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.1205320660438893,
+        "relation_r2": 0.9998343118210228,
+        "residual_p95_W": 5.205354785183634,
+        "residual_max_W": 12.018783440767038
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1316583201508528,
+        "relation_r2": 0.9998337548244295,
+        "residual_p95_W": 5.265193620871105,
+        "residual_max_W": 10.570682811870029
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1314557533262204,
+        "relation_r2": 0.9998332348507634,
+        "residual_p95_W": 5.223596406450065,
+        "residual_max_W": 10.486299030387272
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.108813677571898,
+        "relation_r2": 0.9998373008628311,
+        "residual_p95_W": 5.176035301210049,
+        "residual_max_W": 10.457413455728783
+      }
+    }
+  },
+  {
+    "module": "11(우측분전반1)",
+    "coefficient": 0.2666604284532039,
+    "intercept_W": 0.07543172559098821,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.119998003579717,
+        "relation_r2": 0.9998351980001932,
+        "residual_p95_W": 5.179687277655826,
+        "residual_max_W": 11.891540058805276
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1064909185007505,
+        "relation_r2": 0.9998368731615399,
+        "residual_p95_W": 5.227322967979671,
+        "residual_max_W": 11.13122407781475
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1299427700365072,
+        "relation_r2": 0.9998305803009514,
+        "residual_p95_W": 5.2263697355284195,
+        "residual_max_W": 12.343707286887366
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.1204925486941,
+        "relation_r2": 0.9998344347826132,
+        "residual_p95_W": 5.212322865023905,
+        "residual_max_W": 11.946657374153347
+      }
+    }
+  },
+  {
+    "module": "12(4호기)",
+    "coefficient": 0.26666339174949777,
+    "intercept_W": 0.042830318597225414,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.1207310580739427,
+        "relation_r2": 0.9998345070103308,
+        "residual_p95_W": 5.2019487409844025,
+        "residual_max_W": 13.218030270635609
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.133891611582349,
+        "relation_r2": 0.9998350825897958,
+        "residual_p95_W": 5.241146989200842,
+        "residual_max_W": 12.005061700351234
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1235495019447352,
+        "relation_r2": 0.9998342223729649,
+        "residual_p95_W": 5.236548283774209,
+        "residual_max_W": 11.51870586522
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.1166665474144444,
+        "relation_r2": 0.9998370913613986,
+        "residual_p95_W": 5.202239018666978,
+        "residual_max_W": 10.765711313018073
+      }
+    }
+  },
+  {
+    "module": "13(3호기)",
+    "coefficient": 0.2666657396233557,
+    "intercept_W": -0.011313872875234665,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.2359139238369763,
+        "relation_r2": 0.9998101921062039,
+        "residual_p95_W": 5.574165186135768,
+        "residual_max_W": 18.30840927495774
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.2263916609107586,
+        "relation_r2": 0.9998133258750838,
+        "residual_p95_W": 5.574390961608332,
+        "residual_max_W": 14.781848914875354
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.214303848067085,
+        "relation_r2": 0.9998125830251225,
+        "residual_p95_W": 5.55656264477418,
+        "residual_max_W": 18.757572087088192
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.2216157940115293,
+        "relation_r2": 0.9998137209802325,
+        "residual_p95_W": 5.555228457206429,
+        "residual_max_W": 18.003575804967568
+      }
+    }
+  },
+  {
+    "module": "14(2호기)",
+    "coefficient": 0.266673412992487,
+    "intercept_W": -0.06883443981723758,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.119502486534882,
+        "relation_r2": 0.9998346842587613,
+        "residual_p95_W": 5.209346845766822,
+        "residual_max_W": 11.605215140749351
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.12329502121506,
+        "relation_r2": 0.999832512999823,
+        "residual_p95_W": 5.28218138345419,
+        "residual_max_W": 10.282602566258902
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.09686277493611,
+        "relation_r2": 0.9998402271623243,
+        "residual_p95_W": 5.119229328239861,
+        "residual_max_W": 11.166431764720528
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.130712376989801,
+        "relation_r2": 0.9998321544673584,
+        "residual_p95_W": 5.27360727470036,
+        "residual_max_W": 11.456882002606562
+      }
+    }
+  },
+  {
+    "module": "15(예비건조기)",
+    "coefficient": 0.2666444723170324,
+    "intercept_W": 0.24647284166303507,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.124475871461823,
+        "relation_r2": 0.9998340298769077,
+        "residual_p95_W": 5.21209506265072,
+        "residual_max_W": 12.487023110018072
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1137347004493456,
+        "relation_r2": 0.9998380645422057,
+        "residual_p95_W": 5.209606740098843,
+        "residual_max_W": 10.930422832612749
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1062555732733808,
+        "relation_r2": 0.9998354703519594,
+        "residual_p95_W": 5.217552779560719,
+        "residual_max_W": 11.47128380611457
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.1265941341746832,
+        "relation_r2": 0.9998346965704976,
+        "residual_p95_W": 5.220940937734667,
+        "residual_max_W": 10.623876079504043
+      }
+    }
+  },
+  {
+    "module": "16(호이스트)",
+    "coefficient": 0.2666616957903293,
+    "intercept_W": 0.04545628189907802,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.122526716169682,
+        "relation_r2": 0.9998346539766593,
+        "residual_p95_W": 5.218855546478812,
+        "residual_max_W": 11.890463369453755
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.129531414794567,
+        "relation_r2": 0.9998339382010871,
+        "residual_p95_W": 5.252173608216253,
+        "residual_max_W": 11.08406284793
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1223816160758124,
+        "relation_r2": 0.999835569953671,
+        "residual_p95_W": 5.16278841683952,
+        "residual_max_W": 9.958607850016506
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.121601154425119,
+        "relation_r2": 0.9998348162778657,
+        "residual_p95_W": 5.221430477540116,
+        "residual_max_W": 11.790690433252621
+      }
+    }
+  },
+  {
+    "module": "17(6호기)",
+    "coefficient": 0.2666491335794604,
+    "intercept_W": 0.19473177946065334,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.1195590559822723,
+        "relation_r2": 0.9998335321426403,
+        "residual_p95_W": 5.223228756043795,
+        "residual_max_W": 12.562784225194719
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1146398425354707,
+        "relation_r2": 0.9998352650822849,
+        "residual_p95_W": 5.230903085514637,
+        "residual_max_W": 10.363193816609964
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1089759784265514,
+        "relation_r2": 0.9998357769805267,
+        "residual_p95_W": 5.1643684596723,
+        "residual_max_W": 12.76828230461524
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.120776553592714,
+        "relation_r2": 0.9998334810063524,
+        "residual_p95_W": 5.237469591484156,
+        "residual_max_W": 11.111500113316197
+      }
+    }
+  },
+  {
+    "module": "18(우측분전반2)",
+    "coefficient": 0.2666588712959767,
+    "intercept_W": 0.08268937840375656,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.1312658631309906,
+        "relation_r2": 0.9998342090594974,
+        "residual_p95_W": 5.229554779487534,
+        "residual_max_W": 11.62397254878033
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1291912371699873,
+        "relation_r2": 0.9998313380021986,
+        "residual_p95_W": 5.243054705818211,
+        "residual_max_W": 13.669673447979221
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.124237451717685,
+        "relation_r2": 0.9998356849951759,
+        "residual_p95_W": 5.223919611475094,
+        "residual_max_W": 10.776716237664004
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.12857079554319,
+        "relation_r2": 0.9998347608818245,
+        "residual_p95_W": 5.226336266940232,
+        "residual_max_W": 10.524601069054825
+      }
+    }
+  },
+  {
+    "module": "2(L-1전등)",
+    "coefficient": 0.2666766298123036,
+    "intercept_W": -0.11296968701799415,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.1148827545171818,
+        "relation_r2": 0.9998352190699686,
+        "residual_p95_W": 5.201098677605454,
+        "residual_max_W": 11.807645530603168
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1287229283061944,
+        "relation_r2": 0.9998312117801508,
+        "residual_p95_W": 5.262376975803636,
+        "residual_max_W": 11.092949651984327
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1347107721140555,
+        "relation_r2": 0.9998314633768995,
+        "residual_p95_W": 5.264942162056443,
+        "residual_max_W": 11.178428169818744
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.12463528083536,
+        "relation_r2": 0.999834684093944,
+        "residual_p95_W": 5.205509323560591,
+        "residual_max_W": 10.81561085644853
+      }
+    }
+  },
+  {
+    "module": "3(분쇄기(2))",
+    "coefficient": 0.2666703517271582,
+    "intercept_W": -0.034741666334412,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.122904923652465,
+        "relation_r2": 0.9998338950047455,
+        "residual_p95_W": 5.234372421537832,
+        "residual_max_W": 12.198251901031654
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.140960898710948,
+        "relation_r2": 0.9998297323857315,
+        "residual_p95_W": 5.277496865657758,
+        "residual_max_W": 11.192850584890493
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1084117738320725,
+        "relation_r2": 0.9998331933267145,
+        "residual_p95_W": 5.2144444889602015,
+        "residual_max_W": 10.392167434903058
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.1206695725811295,
+        "relation_r2": 0.9998352049616919,
+        "residual_p95_W": 5.1960386241007654,
+        "residual_max_W": 11.08488233799153
+      }
+    }
+  },
+  {
+    "module": "4(분쇄기(1))",
+    "coefficient": 0.26668597752172585,
+    "intercept_W": -0.21028139372901933,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.1099956116806586,
+        "relation_r2": 0.9998359430638522,
+        "residual_p95_W": 5.1975119245757,
+        "residual_max_W": 12.517852981844044
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1047380454659574,
+        "relation_r2": 0.9998358973337773,
+        "residual_p95_W": 5.223385938578846,
+        "residual_max_W": 12.408113231266725
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1288507244247836,
+        "relation_r2": 0.999833797782909,
+        "residual_p95_W": 5.205357918913636,
+        "residual_max_W": 10.440924247547628
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.121720086047311,
+        "relation_r2": 0.999832169412967,
+        "residual_p95_W": 5.230954845483528,
+        "residual_max_W": 11.568353920373283
+      }
+    }
+  },
+  {
+    "module": "5(좌측분전반)",
+    "coefficient": 0.2666615011944484,
+    "intercept_W": 0.06626950769259565,
+    "training_minutes": 129150,
+    "calibration_minutes": 21525,
+    "fit_period": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "thresholds_frozen_before_evaluation": true,
+    "periods": {
+      "train_dec_feb": {
+        "n": 129150,
+        "residual_mae_W": 2.118373773295222,
+        "relation_r2": 0.9998357256502257,
+        "residual_p95_W": 5.209322595614771,
+        "residual_max_W": 12.499696729614698
+      },
+      "march_calibration": {
+        "n": 21525,
+        "residual_mae_W": 2.1182378858154,
+        "relation_r2": 0.9998327548411348,
+        "residual_p95_W": 5.271951115755928,
+        "residual_max_W": 10.672745449362992
+      },
+      "march_check": {
+        "n": 22960,
+        "residual_mae_W": 2.1261675124123878,
+        "relation_r2": 0.9998338415909507,
+        "residual_p95_W": 5.286075763690814,
+        "residual_max_W": 10.778127336691796
+      },
+      "april_development": {
+        "n": 41615,
+        "residual_mae_W": 2.108444065826408,
+        "relation_r2": 0.999835275915424,
+        "residual_p95_W": 5.154002602466835,
+        "residual_max_W": 11.54794160987467
+      }
+    }
+  }
+]

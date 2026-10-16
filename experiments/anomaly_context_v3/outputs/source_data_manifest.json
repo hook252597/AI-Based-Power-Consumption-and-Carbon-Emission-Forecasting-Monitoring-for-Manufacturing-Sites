@@ -1,0 +1,301 @@
+{
+  "complete": true,
+  "created_utc": "2026-10-16T03:21:17.276520+00:00",
+  "source": {
+    "path": "C:\\Users\\sangm\\Desktop\\제조AI\\프로젝트\\data\\rtu_data_full.csv",
+    "bytes": 4909245995,
+    "mtime_ns": 1791797922258748500,
+    "sha256": "3b4e1ff2125ca64612837530a8612fa7f044f398e508e00026097fc788d0dce5",
+    "sha256_method": "prior manifest SHA reused after exact size/mtime_ns and row count match",
+    "prior_manifest": "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\outputs\\agent_data\\manifest.json",
+    "rows": 33696013
+  },
+  "output": {
+    "path": "C:\\Users\\sangm\\Desktop\\제조AI\\AI_project\\experiments\\anomaly_context_v3\\data\\minute.parquet",
+    "bytes": 346586319,
+    "rows": 2808013,
+    "sort_order": [
+      "module(equipment)",
+      "timestamp"
+    ],
+    "float_storage": "float32; sufficient-statistic accumulation is float64",
+    "population_standard_deviation": true
+  },
+  "time": {
+    "first_localtime": "2024-12-01T00:00:00",
+    "last_localtime": "2025-04-30T00:00:00",
+    "canonical": "localtime parsed as declared Korean local wall-clock, timezone-naive",
+    "raw_unix_ms_minus_local_naive_epoch_ms_distribution": {
+      "28800000": 22042800,
+      "25200000": 11653213
+    },
+    "warning": "Source Unix timestamp and declared localtime disagree. Do not reinterpret localtime through source Unix timestamps."
+  },
+  "units": {
+    "activePower": "W (working assumption; source unit confirmation remains pending)",
+    "activePower_evidence": "accumActiveEnergy successive Wh increments approximately match activePower*5/3600, not activePower*1000*5/3600",
+    "accumulator_delta_over_expected_wh_from_W": {
+      "samples": 54989,
+      "median": 1.0004696649260347,
+      "p05": 0.5269256662390904,
+      "p95": 1.8368705969362291
+    },
+    "voltage": "V",
+    "current": "A",
+    "powerFactor": "%"
+  },
+  "quality": {
+    "expected_samples_per_minute": 12,
+    "complete_minute": "exactly 12 records at unique seconds 0,5,...55, all required sensor values present",
+    "missing_minutes": "not padded; downstream rolling features must break at gaps",
+    "duplicate_policy": "retained in moments, explicitly flagged, complete_minute=False; exclude incomplete minutes in model experiments",
+    "partial_final_minute": "retained and explicitly marked incomplete",
+    "source_sorted_within_equipment": true,
+    "raw_operation_value_counts": {
+      "1": 33696013
+    },
+    "operation_audit": "Separately scanned source operation column; count matches full source rows.",
+    "production_chunk_boundary_spotcheck": {
+      "minute": "2024-12-29T22:26:00",
+      "equipment": "1(PM-3)",
+      "source_row_boundary": 500000,
+      "reference_rows": 12,
+      "sensors": [
+        "activePower",
+        "voltageR",
+        "powerFactorT"
+      ],
+      "mean_and_population_std_match": true
+    }
+  },
+  "equipment": {
+    "1(PM-3)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "11(우측분전반1)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "12(4호기)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "13(3호기)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "14(2호기)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "15(예비건조기)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "16(호이스트)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "17(6호기)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "18(우측분전반2)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "2(L-1전등)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "3(분쇄기(2))": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "4(분쇄기(1))": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    },
+    "5(좌측분전반)": {
+      "raw_rows": 2592001,
+      "minutes": 216001,
+      "first_minute": "2024-12-01T00:00:00",
+      "last_minute": "2025-04-30T00:00:00",
+      "complete_minutes": 216000,
+      "incomplete_minutes": 1,
+      "entire_missing_minutes_between_first_last": 0,
+      "missing_sample_slots_in_observed_minutes": 11,
+      "duplicate_records": 0,
+      "off_grid_records": 0,
+      "minutes_with_missing_sensor": 0,
+      "source_time_order_violations": 0,
+      "operation_values": [
+        1.0
+      ]
+    }
+  },
+  "label_policy": "No is_outlier or flag labels read, and no May ground-truth file read.",
+  "runtime": {
+    "elapsed_seconds": 302.86,
+    "peak_observed_rss_mb": 895.45,
+    "chunksize": 500000,
+    "separate_operation_audit_seconds": 32.2
+  }
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "module": "1(PM-3)",
+    "power_currentR_correlation": 0.5753320907035832,
+    "power_pfR_correlation": -0.004177019650799309,
+    "power_lag1min_correlation": -0.003947011625844354,
+    "voltage_lag1min_correlation": 0.002602237143094893,
+    "power_lag60min_correlation": 0.0012082015546066934
+  },
+  {
+    "module": "11(우측분전반1)",
+    "power_currentR_correlation": 0.5769832917692391,
+    "power_pfR_correlation": -0.002929972741506703,
+    "power_lag1min_correlation": 0.004317608224137673,
+    "voltage_lag1min_correlation": -3.9866386664565845e-05,
+    "power_lag60min_correlation": -0.0020062725205099866
+  },
+  {
+    "module": "12(4호기)",
+    "power_currentR_correlation": 0.5784817214983429,
+    "power_pfR_correlation": 0.002658159005161185,
+    "power_lag1min_correlation": -0.0019538953188930606,
+    "voltage_lag1min_correlation": 0.003643134924550521,
+    "power_lag60min_correlation": 0.0005353445788864137
+  },
+  {
+    "module": "13(3호기)",
+    "power_currentR_correlation": 0.5776565328725113,
+    "power_pfR_correlation": 6.247948341148029e-05,
+    "power_lag1min_correlation": -0.0005923065727452129,
+    "voltage_lag1min_correlation": 0.003052993144020747,
+    "power_lag60min_correlation": -7.860694478594738e-06
+  },
+  {
+    "module": "14(2호기)",
+    "power_currentR_correlation": 0.5776311578231386,
+    "power_pfR_correlation": 0.00044883178907877906,
+    "power_lag1min_correlation": -0.00356015839046994,
+    "voltage_lag1min_correlation": -0.002352894217859656,
+    "power_lag60min_correlation": 0.00278727291299625
+  },
+  {
+    "module": "15(예비건조기)",
+    "power_currentR_correlation": 0.576196680085623,
+    "power_pfR_correlation": 0.0018687348541183068,
+    "power_lag1min_correlation": 0.0008719330737526837,
+    "voltage_lag1min_correlation": 0.003066478891657655,
+    "power_lag60min_correlation": 0.0020555703306223564
+  },
+  {
+    "module": "16(호이스트)",
+    "power_currentR_correlation": 0.5771883329855744,
+    "power_pfR_correlation": 0.003981616391153269,
+    "power_lag1min_correlation": 0.0003871296741175247,
+    "voltage_lag1min_correlation": -0.0023557012989108466,
+    "power_lag60min_correlation": -0.0019826749968403813
+  },
+  {
+    "module": "17(6호기)",
+    "power_currentR_correlation": 0.5748022678850864,
+    "power_pfR_correlation": -0.0012725269540673435,
+    "power_lag1min_correlation": -0.002989669909919378,
+    "voltage_lag1min_correlation": 2.5235660240753693e-05,
+    "power_lag60min_correlation": -0.0011973938354218172
+  },
+  {
+    "module": "18(우측분전반2)",
+    "power_currentR_correlation": 0.5794606285943036,
+    "power_pfR_correlation": -0.002702032461613371,
+    "power_lag1min_correlation": -0.0007911649097608775,
+    "voltage_lag1min_correlation": -0.002384608330579827,
+    "power_lag60min_correlation": -0.00038778807523618845
+  },
+  {
+    "module": "2(L-1전등)",
+    "power_currentR_correlation": 0.5761538073661844,
+    "power_pfR_correlation": 6.65060278818172e-05,
+    "power_lag1min_correlation": -9.621758051536282e-05,
+    "voltage_lag1min_correlation": -0.0005412891274853051,
+    "power_lag60min_correlation": -6.909974200706603e-05
+  },
+  {
+    "module": "3(분쇄기(2))",
+    "power_currentR_correlation": 0.5761823264155509,
+    "power_pfR_correlation": 0.0034787549061255137,
+    "power_lag1min_correlation": -0.0015506893903409025,
+    "voltage_lag1min_correlation": -0.001251533814920513,
+    "power_lag60min_correlation": -0.0005446770326009822
+  },
+  {
+    "module": "4(분쇄기(1))",
+    "power_currentR_correlation": 0.5774654982602373,
+    "power_pfR_correlation": 0.0031259462408397953,
+    "power_lag1min_correlation": -0.0003532712732583463,
+    "voltage_lag1min_correlation": -0.0003588378832792591,
+    "power_lag60min_correlation": -0.0011225005931829216
+  },
+  {
+    "module": "5(좌측분전반)",
+    "power_currentR_correlation": 0.5772358797430293,
+    "power_pfR_correlation": 0.0018332909034059948,
+    "power_lag1min_correlation": 0.002161059647310312,
+    "voltage_lag1min_correlation": -0.0015271014137989455,
+    "power_lag60min_correlation": -0.0008138516330910711
+  }
+]

@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Any
 
 from .agent_tools import (APP_DIR, DEFAULT_THRESHOLDS, EQUIPMENT_LIST, FAMILY_LABEL, ITEMS, NOW, TODAY,
-                          TOOL_SCHEMAS, AgentTools, _norm, forecast_period, resolve_equipment, sensor_period)
+                          TOOL_SCHEMAS, AgentTools, _norm, duration_text, forecast_period, resolve_equipment, sensor_period)
 
 SYSTEM_PATH = APP_DIR / "agentSystem.md"
 DEFAULT_MODEL = "gpt-5-mini"
@@ -93,7 +93,7 @@ def state_block(state: dict, tools: AgentTools) -> str:
               f"{', '.join(draft.get('missing_user_fields') or []) or '없음'}") if draft else "없음"
     return "\n".join([
         "[현재 상태]",
-        f"오늘 날짜: {TODAY} (기준 시각 {NOW:%H:%M} — 이후는 아직 오지 않은 시간)",
+        f"과거 데이터 체험 기준: {NOW:%Y-%m-%d %H:%M}. 마지막 실측일: {TODAY}. 실제 오늘 날짜와 다름.",
         f"조회 중인 날짜: {state.get('view_date')}",
         f"선택된 설비: {state.get('selected_equipment') or '공장 전체'}",
         f"이상현황 보기 기준: {view_range}",
@@ -108,10 +108,12 @@ def state_block(state: dict, tools: AgentTools) -> str:
         "- 기간을 말하지 않으면 '조회 중인 날짜'(월 질문은 그 날짜의 달) 기준으로 답하고, 어느 날짜인지 밝힌다.",
         "- 도구 인수는 제공된 함수 스키마만 쓴다(지침 예시의 start/end 인수는 쓰지 않는다). date를 생략하면 조회 중인 날짜가 쓰인다.",
         "- 기준 시각 이후(4/30, 5월)는 실측이 없다. get_power·get_forecast의 data_kind가 forecast면 반드시 '예측'이라고 말한다.",
-        "- 이상 판정은 시간 단위 집계다(그 시간 안 최저값 기준). 지속시간은 '약 N시간'으로 말한다.",
+        "- basis와 집계 단위를 반드시 따른다. event_count는 설비·항목별 연속 구간 수이며 고장 사건 수가 아니다. flagged_records는 5초 표본 수다. 서로 더하지 않는다.",
+        "- duration_seconds가 없으면 실제 지속 시간은 확인 불가다. 관측 시간대 수를 시간 단위 지속 시간으로 바꾸지 않는다. 누적 탐지 시간과 최장 연속 시간도 구분한다.",
         "- AI 이상탐지는 고정 모델 판정이며 규칙 임계치를 바꿔도 변하지 않는다. 원인을 단정하지 않는다.",
         "- 설비 13개의 전력 사용량은 거의 같다. 순위를 말할 때 차이가 매우 작다는 점을 함께 밝힌다.",
-        "- 보고서는 create_report 결과만 근거로 말하고, 저장·내보내기는 화면의 내보내기 버튼으로 한다고 안내한다.",
+        "- 보고서는 create_report 결과만 근거로 말한다. 미입력 항목과 export_blockers를 안내한다. 담당자 종합판정은 화면에서 사용자가 직접 확인해야 하며 AI는 확정할 수 없다.",
+        "- 작성 중인 초안과 날짜·설비가 다르면 기존 초안을 유지한다. 새 보고서는 화면에서 시작하도록 안내한다. 계약전력·최대수요전력은 추정해서 채우지 않는다.",
     ])
 
 
@@ -129,8 +131,24 @@ def _trim(history: list[dict]) -> list[dict]:
 
 
 def _compact(result: Any) -> str:
-    text = json.dumps(result, ensure_ascii=False, default=str)
-    return text if len(text) <= MAX_TOOL_CHARS else text[:MAX_TOOL_CHARS] + "…(생략)"
+    """보고서 상태·전체 건수를 보존하고 대표 자료만 전송한다. JSON을 중간에서 자르지 않는다."""
+    small = copy.deepcopy(result)
+    if isinstance(small, dict):
+        if isinstance(small.get("rows"), list):
+            small["rows"] = [{k: row.get(k) for k in ("name", "source", "required", "value")}
+                              for row in small["rows"] if row.get("required") or row.get("source") == "user" or row.get("value") not in (None, "", [])]
+        for key in ("items", "ai_items"):
+            if isinstance(small.get(key), list):
+                small[key] = small[key][:6]
+                small[f"shown_{key}"] = len(small[key])
+    text = json.dumps(small, ensure_ascii=False, default=str)
+    if len(text) > MAX_TOOL_CHARS and isinstance(small, dict):
+        if isinstance(small.get("rows"), list):
+            small["rows"] = [r for r in small["rows"] if r.get("required") or r.get("source") == "user"]
+        small.pop("series", None)
+        small["detail_note"] = "상세 표는 화면에서 확인하세요. 전체 건수와 필수 입력 상태는 보존했습니다."
+        text = json.dumps(small, ensure_ascii=False, default=str)
+    return text
 
 
 # -----------------------------------------------------------------------------
@@ -218,22 +236,27 @@ def _run_model(text: str, state: dict, tools: AgentTools, history: list[dict], t
 # -----------------------------------------------------------------------------
 # 5) 첫 화면 요약 (선택 날짜 기준)
 # -----------------------------------------------------------------------------
+def _alert_text(r: dict) -> str:
+    parts = []
+    for key, label in (("rule", "설정 기준"), ("ai", "AI 탐지")):
+        metric = r.get(key, {})
+        count = metric.get("event_count")
+        parts.append(f"{label} {metric.get('equipment_count', 0)}대 · " +
+                     (f"발생 구간 {count:,}개" if count is not None else f"이상 기록이 관측된 설비·시간 조합 {metric.get('affected_hours', 0):,}개(구간 수 확인 불가)"))
+    return "; ".join(parts)
+
+
 def opening_summary(state: dict, tools: AgentTools) -> str:
     view = state.get("view_date")
     r = tools.execute("get_anomalies", {"date": view})
-    state.setdefault("_agent_focus", {}).update(anomaly_date=view, equipment=None)  # "어디야?" 후속 질문용
+    state.setdefault("_agent_focus", {}).update(anomaly_date=view, equipment=None)
     if r.get("error"):
         return f"{view} 기록을 확인하지 못했습니다: {r['error']}"
     if not r.get("data_available"):
-        hint = " 이 날의 전력·요금은 AI 예측으로 안내해 드릴 수 있어요." if view > TODAY.isoformat() else ""
-        return f"{view}에는 설비 실측 기록이 없어 이상 여부를 판단할 수 없습니다.{hint}"
-    total = r["count"] + r["ai_count"]
-    head = f"{view}{' 오늘' if view == TODAY.isoformat() else ''} 기준, "
-    if total == 0:
-        return head + "감지된 이상 징후가 없습니다."
-    n = len(r.get("affected_equipment") or [])
-    return (f"⚠ {head}이상 징후가 감지됐습니다. 전압·역률 기준 미달 {r['count']}건, AI 이상탐지 {r['ai_count']}건 "
-            f"(설비 {n}곳)입니다. 어느 설비인지 보여드릴까요?")
+        return f"{view}에는 설비 실측 기록이 없어 상태를 판단할 수 없습니다. 실측이 있는 날짜를 선택하거나 전력 예측을 조회하세요."
+    if not r.get("affected_equipment"):
+        return f"{view}에는 탐지 기록이 없습니다. 실제 고장 여부는 현장 확인이 필요합니다."
+    return f"{view} 기록 요약: {_alert_text(r)}입니다. 탐지 구간은 고장 사건 수가 아닙니다. 설비를 골라 근거를 확인하세요."
 
 
 # -----------------------------------------------------------------------------
@@ -354,7 +377,7 @@ def demo_reply(text: str, state: dict, tools: AgentTools, trace: list[dict]) -> 
                          "없으면 기본 양식(제조현장 안전 점검 보고서)으로 작성하겠습니다.")
         missing = r.get("missing_user_fields") or []
         lines.append(("남은 필수 항목: " + ", ".join(missing) + ". 말씀해 주시면 바로 채우겠습니다.") if missing
-                     else "필수 항목이 모두 채워졌습니다. 오른쪽 미리보기를 확인하고 이대로 저장할까요? 내보내기 버튼으로 받을 수 있습니다.")
+                     else "필수 입력을 반영했습니다. 화면에서 담당자 종합판정을 확인하면 Excel 다운로드가 가능합니다.")
         return "\n".join(lines)
 
     # 작년 비교
@@ -405,10 +428,10 @@ def demo_reply(text: str, state: dict, tools: AgentTools, trace: list[dict]) -> 
         unit, th = rows[0]["unit"], rows[0]["threshold"]
         bad = [r for r in rows if r["under_threshold_hours"]]
         lines = [f"{'⚠ ' if bad else ''}{rows[0]['equipment']} {d} {FAMILY_LABEL[fam]}은 "
-                 + (f"기준({th:g}{unit}) 미만 시간이 있습니다." if bad else f"모두 기준({th:g}{unit}) 이상입니다.")]
+                 + (f"기준({th:g}{unit}) 미만 기록이 관측된 시간대가 있습니다." if bad else f"모두 기준({th:g}{unit}) 이상입니다.")]
         for r in rows:
             lines.append(f"· {r['label']}: 최저 {r['min']:g}{unit} ({r['min_hour']:02d}시)"
-                         + (f", 기준 미만 {len(r['under_threshold_hours'])}시간" if r["under_threshold_hours"] else ""))
+                         + (f", 기준 미만 기록이 있는 시간대 {len(r['under_threshold_hours'])}개(지속 시간 아님)" if r["under_threshold_hours"] else ""))
         if bad:
             lines.append("원인을 단정할 수는 없어 현장 점검을 권합니다.")
         return "\n".join(lines)
@@ -435,13 +458,10 @@ def demo_reply(text: str, state: dict, tools: AgentTools, trace: list[dict]) -> 
         if not r.get("data_available"):
             return r.get("note", "해당 기간에는 자료가 없습니다.")
         focus.update(anomaly_date=d, equipment=eq)
-        total = r["count"] + r["ai_count"]
         scope = eq or "공장 전체"
-        if total == 0:
-            return f"{d} {scope}에는 감지된 이상 징후가 없습니다."
-        n = len(r.get("affected_equipment") or [])
-        return (f"⚠ {d} {scope}에서 이상 징후가 감지됐습니다. 전압·역률 기준 미달 {r['count']}건, "
-                f"AI 이상탐지 {r['ai_count']}건(설비 {n}곳)입니다. 어느 설비인지 보여드릴까요?")
+        if not r.get("affected_equipment"):
+            return f"{d} {scope}에는 탐지 기록이 없습니다."
+        return f"{d} {scope}: {_alert_text(r)}입니다. 설정 기준 이탈과 AI 탐지는 별개이며 실제 고장을 확정하지 않습니다."
 
     return ("설비 이상 여부, 전압·역률, 전력 사용량·요금 예측, 설비별 순위, 보고서 작성을 도와드릴 수 있어요. "
             "예: '오늘 문제 있는 곳 있어?', '4호기 전압 어때?', '이번 달 전기요금 얼마나 나와?'")
@@ -449,12 +469,10 @@ def demo_reply(text: str, state: dict, tools: AgentTools, trace: list[dict]) -> 
 
 def _threshold_counts(r: dict) -> str:
     if not r.get("data_available"):
-        return f"{r.get('analysis_date')}에는 실측 자료가 없어 재분석 건수는 확인할 수 없습니다. 이상탐지 그래프 가이드선에 반영됩니다."
-    added = ", ".join(r.get("newly_abnormal") or []) or "없음"
-    removed = ", ".join(r.get("no_longer_abnormal") or []) or "없음"
-    return (f"{r['analysis_date']} 기준 이상 구간 {r['anomaly_count_before']}건 → {r['anomaly_count_after']}건, "
-            f"새로 포함된 설비: {added}, 제외된 설비: {removed}. 이상탐지 그래프 가이드선에 반영됩니다. "
-            "기준을 낮추면 이상이 사라진 게 아니라 안 보이게 되는 점 유의해 주세요.")
+        return f"{r.get('analysis_date')}에는 실측 자료가 없어 재분석 건수는 확인할 수 없습니다."
+    before, after = r.get("anomaly_count_before"), r.get("anomaly_count_after")
+    count_text = f"설정 기준 발생 구간 {before}개 → {after}개" if before is not None and after is not None else "시간대 집계만 있어 실제 발생 구간 수는 확인 불가"
+    return f"{r['analysis_date']} 기준 {count_text}입니다. AI 판정은 그대로입니다. 기준 변경은 실제 설비 상태가 바뀌었다는 뜻이 아닙니다."
 
 
 def _where(r: dict) -> str:
@@ -464,17 +482,15 @@ def _where(r: dict) -> str:
         return r.get("note", "해당 기간에는 자료가 없습니다.")
     affected = r.get("affected_equipment") or []
     if not affected:
-        return f"{r['date']}에는 이상 징후가 있는 설비가 없습니다."
-    lines = [f"{r['date']} 이상 징후가 있는 설비입니다."]
+        return f"{r['date']}에는 탐지 기록이 없습니다."
+    lines = [f"{r['date']} 탐지 기록이 있는 설비입니다."]
     worst = {}
     for e in r.get("items", []):
         worst.setdefault(e["equipment"], e)
-    for a in sorted(affected, key=lambda x: -(x["rule_events"] * 10 + x["ai_events"]))[:6]:
+    for a in affected[:6]:
         w = worst.get(a["equipment"])
-        detail = (f" · 가장 낮은 값 {w['item']} {w['value']:g}{w['unit']} (기준 {w['threshold']:g}{w['unit']}, "
-                  f"{w['deviation_pct']}%, 약 {w['duration_min'] // 60}시간)") if w else ""
-        kinds = ", ".join(a["items"]) if a["items"] else "AI 이상탐지만"
-        lines.append(f"{'⚠ ' if w else '· '}{a['equipment']} — {kinds}{detail}"
-                     + (f" · AI {a['ai_events']}구간" if a["ai_events"] else ""))
-    lines.append("원인은 단정할 수 없으니 편차가 큰 설비부터 현장 점검을 권합니다.")
+        detail = (f" · {w['item']} {w['value']:g}{w.get('unit', '')} (기준 {w['threshold']:g}{w.get('unit', '')}, "
+                  f"지속 {duration_text(w)})") if w else ""
+        lines.append(f"· {a['equipment']} — {', '.join(a['items']) or 'AI 탐지'}{detail}")
+    lines.append("이 목록은 고장 확인 결과가 아닙니다. 상세 기록과 현장 상태를 함께 확인하세요.")
     return "\n".join(lines)

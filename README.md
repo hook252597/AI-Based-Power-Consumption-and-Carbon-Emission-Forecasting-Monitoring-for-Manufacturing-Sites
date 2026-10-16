@@ -1,67 +1,108 @@
-# AI 기반 제조 현장 전력량, 탄소 배출량 예측 및 모니터링
-본 프로젝트는 과거 제조 현장 전력 데이터를 AI로 학습하여 미래 전력 소비량·전기요금·탄소 배출량을 예측하고,  관리팀이 대시보드 하나로 비용 산정과 추이 파악을 바로 처리할 수 있게 함을 목적으로 둠.
+# AI 기반 제조 현장 전력량·탄소 배출량 예측 및 모니터링
 
-- 기준 시각: **2025-04-29 09:00 고정** (00~08시까지 실측, 이후는 AI 예측)
-- 설비: 13개 (RTU 채널 1~5, 11~18)
-- 화면: 현황·예측 / 이상탐지 / 에이전트
+마가렛트의 전력 예산 조회, 설비 점검, 점검 보고서 작성 도구입니다.
 
-## 데이터 흐름
+## 로컬 검토 버전 (2026-10-16)
 
-```
-data/rtu_data_full.csv (원본 5초 RTU 기록, Git 제외)
-   │  python tools/prepare_dashboard_cache.py
-   │    ├─ ml/models/anomaly_v2   이상 판정 (Isolation Forest)
-   │    └─ ml/models/forecast_v2  4/30~5/31 전력 예측 (Extra Trees)
-   ▼
-ml/outputs/agent_data/ (캐시, Git 제외)
-   ├─ dashboard_hourly.parquet / .json     2024-12-01~2025-04-29 설비·시간별 실측 + AI 판정 + 경고 기준
-   └─ dashboard_forecast.parquet / .json   2025-04-30~2025-05-31 설비·시간별 예측
-   ▼
-dashboard_app.py ──(에이전트 탭)──▶ agent/
-```
+이 브랜치는 `main`의 `a388a8d`에서 분리한 작업 보관·팀 검토용 버전입니다. `main` 병합과 운영 사이트 배포는 진행하지 않았습니다.
 
-## 폴더 구성
+**이어서 작업할 때:** [완료 내용·미구현 사항·다음 순서](docs/HANDOFF_2026-10-16.md)와 [이상 탐지 실험 결과](experiments/anomaly_context_v3/README.md)를 먼저 확인하세요.
 
-| 경로 | 내용 |
-|---|---|
-| `dashboard_app.py` | Streamlit 대시보드 진입점 |
-| `agent/` | 대화형 에이전트 (`agent_tools.py` 도구, `agent_core.py` 모델 호출 루프, `agent_ui.py` 화면), 명세 `agent.md`, 시스템 프롬프트 `agentSystem.md`, 기본 보고서 양식 `BasicSafetyReportForm.xlsx` |
-| `tools/prepare_dashboard_cache.py` | 원본 CSV와 저장된 모델로 대시보드 캐시 생성 |
-| `ml/` | 모델 학습·검증 코드와 결과물 (자세한 내용은 `ml/README.md`) |
-| `data/` | 원본 데이터. `rtu_ground_truth_may.csv`는 5월 공장 전체 실측 |
-| `dashboard/` | 대시보드 명세 프롬프트(`dashBoardPrompt.md`)와 화면 이미지 |
-| `analyze/` | EDA 분석 보고서 |
-| `.streamlit/` | 테마(`config.toml`), API 키(`secrets.toml`, Git 제외) |
+- 기준 시점: **2025-04-30 00:00, 한국시간**. 4월 29일 전체 실측까지 사용합니다.
+- 실시간 수집 서비스가 아닌 과거 데이터 체험입니다.
+- 설비: **13대** (RTU 채널 1~5, 11~18).
+- 화면: **시작 가이드 / 현황·예측 / 설비 점검 / 보고서 도우미**.
+- 요금 180원/kWh, 탄소 0.424 kgCO₂/kWh의 고정 계수를 적용합니다.
 
-## 실행 방법 (저장소 루트에서)
+### 먼저 확인할 흐름
+
+1. 시작 가이드에서 원하는 작업을 선택합니다.
+2. 설비 점검에서 2025년 4월 28일, `1 (PM-3)`를 선택합니다. AI 탐지 1구간의 표본 누적·최장 시간이 **5초**인지 확인합니다.
+3. `15 (예비건조기)`의 같은 날 AI 표본 누적은 **16분 40초**입니다. 24개 시간대에 관측되어도 24시간 지속으로 해석하지 않습니다.
+4. 5월 31일을 선택하면 실측 없음 안내가 나오고, 마지막 실측일로 돌아갈 수 있습니다.
+5. 점검 화면에서 보고서를 시작하고 필수 내용을 입력합니다. 담당자가 종합판정을 확인한 후 Excel을 내려받습니다.
+6. 작성 중 날짜나 설비를 바꿔도 기존 초안은 유지됩니다. 새 대상은 새 보고서 시작에서 명시적으로 적용합니다.
+
+## 실행
+
+저장소 루트에서 실행합니다. 포함된 작은 캐시를 사용하므로 원본 CSV 재처리는 필요하지 않습니다.
 
 ```powershell
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+python -m streamlit run dashboard_app.py
+```
 
-# 1) 캐시 생성 — 최초 1회, 약 4분. data/rtu_data_full.csv 필요
+이 PC의 기존 환경을 이용한 검토용 실행:
+
+```powershell
+..\.venv\Scripts\python.exe tools\run_preview.py --port 8503 --enable-openai
+```
+
+`run_preview.py`는 로컬 `127.0.0.1`에만 서버를 엽니다. `--enable-openai`를 지정하면 상위 `AI_project/.streamlit/secrets.toml`의 키를 프로세스 환경에 전달합니다. 페이지 열기와 보고서 직접 작성은 API를 호출하지 않습니다. 질문 전송 버튼 또는 채팅 입력을 실행할 때 대화 API를 사용합니다.
+
+API 키는 저장소의 `.streamlit/secrets.toml` 또는 `OPENAI_API_KEY` 환경변수로 설정합니다. `OPENAI_MODEL` 기본값은 `gpt-5-mini`입니다. 키가 없으면 간단 조회 모드로 동작합니다. 키와 작성된 보고서는 커밋하지 않습니다.
+
+## 경보 집계와 표시 기준
+
+- **발생 구간**: 같은 설비·같은 항목에서 연속된 5초 탐지 표본을 묶은 수입니다. 정상 표본, 누락, 날짜 경계에서 나눕니다. 고장 사건 수가 아닙니다.
+- **표본 누적**: 탐지 표본 수 × 5초입니다. 연속 지속 시간과 구분합니다.
+- **최장 연속 구간**: 개별 구간 중 가장 긴 시간입니다. 종료 시각은 마지막 표본 시작 + 5초이며 제외 경계입니다.
+- 설정 기준의 수와 누적 시간은 센서 항목별 합계라 같은 시각이 중복될 수 있습니다. 설비 가동 중단 시간으로 사용하지 않습니다.
+- **4월 1~29일, 기본 설정 기준**은 검증된 5초 구간 캐시를 사용합니다. 이전 월이나 변경한 센서 기준은 시간별 요약만 있어 실제 구간 수·연속 시간은 확인 불가로 표시합니다. AI 판정은 센서 기준 변경과 독립적입니다.
+- **검토 우선**: 설정 기준 또는 AI 그룹의 표본 누적이 60초 이상이거나 구간 수가 3개 이상이면 먼저 표시하는 체험용 정책입니다. 고장·위험 등급이 아닙니다. 화면에서 조절해도 모델, 원기록, 탐지 수는 변하지 않습니다.
+- 교육용 상전압 210V, 선간전압 360V, 역률 85%는 실제 설비의 안전 기준으로 검증된 값이 아닙니다.
+
+### 캐시 구성
+
+| 파일 | 내용 |
+|---|---|
+| `ml/outputs/agent_data/dashboard_hourly.parquet/.json` | 12월~4월 설비·시간별 실측 요약, AI 표본 수·최대 점수, 센서 최저값 |
+| `ml/outputs/agent_data/dashboard_forecast.parquet/.json` | 4월 30일~5월 31일 설비·시간별 예측 |
+| `ml/outputs/agent_data/alert_events.parquet/.json` | 4월 1~29일의 검증된 58,057개 설정 기준·AI 구간과 검증 메타데이터 |
+
+4월 6,514,560개 5초 표본을 시간별 캐시의 표본 수, AI 개수·최대 점수, 9개 센서 최솟값과 대조해 일치시켰습니다. 기존 모델을 재학습하거나 경고 기준을 조정하지 않았습니다. 캐시 파일의 해시가 맞지 않으면 정확한 구간을 쓰지 않고 시간대 정보로 되돌아갑니다.
+
+원본을 다시 준비해야 할 때만 다음을 사용합니다.
+
+```powershell
 python tools/prepare_dashboard_cache.py
-#    python tools/prepare_dashboard_cache.py --forecast-only    # 예측만 다시 생성
-#    python tools/prepare_dashboard_cache.py --thresholds-only  # AI 경고 기준만 갱신
-
-# 2) 대시보드 실행
-streamlit run dashboard_app.py
+python tools/prepare_alert_events.py --source-cache ..\outputs\agent_data
 ```
 
-## 에이전트 API 키
+두 번째 명령은 검증된 `manifest.json`과 `daily` 5초 캐시 및 원본 파일이 필요합니다. 원본 대용량 파일은 Git에 포함하지 않습니다.
 
-`.streamlit/secrets.toml` 또는 환경변수에 넣습니다. 키가 없으면 데모 모드로 동작합니다.
+## 예측 해석
 
-```toml
-OPENAI_API_KEY = "..."
-OPENAI_MODEL = "gpt-5-mini"   # 생략 시 기본값
+- 월 총량에는 실제·예측·평균 보정 시간 수를 나누어 표시합니다. 현재 4월은 실측 696시간+예측 24시간, 5월은 예측 744시간입니다.
+- 전월 비교는 월별 일수 차이를 제외한 **일평균** 기준입니다.
+- 검증 결과는 5월 10일 00시~5월 31일 00시 **505시간**이며 월 전체 예측 744시간과 다릅니다.
+- 선택된 Extra Trees와 단순 평균 기준선을 함께 표시합니다. 이 검증 자료에서 평균 대비 성능 개선은 확인되지 않았습니다.
+- 제공된 검증 정답 수치를 Wh로 해석한 kWh 환산 성능입니다. 제공자 단위 확인과 새 기간 검증은 별도 과제입니다.
+
+## 보고서
+
+자동 근거 수집 → 필수 입력 → 담당자 종합판정 확인 → Excel 다운로드 순서입니다. 모델은 판정 문구를 제안할 수 있으나 담당자의 확인을 대신할 수 없습니다. 입력 수정 후에는 확인을 다시 받습니다.
+
+본문에는 대표 기록을, 별첨에는 설정 기준·AI 전체 내역 및 집계 근거를 넣습니다. 사용자가 비운 입력은 보고서에서도 비워집니다. 계약전력과 최대수요전력은 제공되지 않아 추정해서 채우지 않습니다.
+
+초안·양식·업로드는 브라우저 세션 메모리로 분리합니다. 공용 파일로 저장하지 않으며, 세션이 끝나면 사라질 수 있으므로 완성본은 다운로드해야 합니다.
+
+## 코드 구성과 검증
+
+| 경로 | 역할 |
+|---|---|
+| `dashboard_app.py` | 메뉴·필터·현황·설비 점검 화면 |
+| `dashboard_data.py` | 실측·예측 읽기 및 전력 집계 |
+| `ui_guide.py` | 첫 사용 가이드 |
+| `monitoring/alert_service.py` | 대시보드·에이전트·보고서 공통 경보 집계 |
+| `agent/` | 대화 도구, 보고서 작성·Excel 출력, 세션별 양식 |
+| `tools/` | 캐시 생성과 로컬 실행 |
+| `tests/` | 경보 의미, 보고서 보호, 화면 연결 회귀 검증 |
+| `ml/` | 기존 모델 학습·검증 코드와 결과 |
+
+```powershell
+python -m pip install pytest==8.4.2
+python -m pytest tests -q
 ```
 
-`secrets.toml`은 커밋하지 마세요.
-
-## Git에 올리지 않는 파일
-
-- `data/rtu_data_full.csv`, `data/rtu_data_full_flagged.csv` (GitHub 100MB 제한 초과)
-- `ml/outputs/agent_data/`의 대시보드 캐시 4개(`dashboard_hourly.*`, `dashboard_forecast.*`)를 뺀 나머지 파일
-  (캐시 4개는 Streamlit Cloud가 원본 CSV 없이 돌아가도록 커밋해 둠. 다시 만들면 함께 커밋)
-- `.streamlit/secrets.toml`
-- `agent/report_template.json`, `agent/report_template_default.json`, `agent/agent_state.json`, `agent/templates/` (에이전트가 실행 중 생성)
+자동 검증은 실제 OpenAI API를 호출하지 않습니다. 실행 의존성은 이 PC에서 검증한 버전으로 맞췄으며 모델 학습은 `ml/requirements.txt`를 따로 사용합니다.

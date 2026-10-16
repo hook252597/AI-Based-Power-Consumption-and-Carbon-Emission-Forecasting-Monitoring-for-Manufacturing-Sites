@@ -1,0 +1,65 @@
+{
+  "module": "1(PM-3)",
+  "seed": 20261016,
+  "candidate_limit_per_equipment_kind": 500,
+  "model_scores_inspected": false,
+  "thresholds_modified": false,
+  "feasibility_revision": "upward voltage / R-phase-only increase / power-current volatility",
+  "by_kind": {
+    "level_shift": {
+      "requested": 1,
+      "generated": 1,
+      "candidate_attempts": 1,
+      "original_direction_rejected": 1,
+      "original_direction_feasible": 0,
+      "revised_injection_rejected": 0,
+      "invalid_baseline_rejected": 0,
+      "no_eligible_equipment": false,
+      "skipped": 0
+    },
+    "volatility_increase": {
+      "requested": 1,
+      "generated": 1,
+      "candidate_attempts": 77,
+      "original_direction_rejected": 77,
+      "original_direction_feasible": 0,
+      "revised_injection_rejected": 76,
+      "invalid_baseline_rejected": 0,
+      "no_eligible_equipment": false,
+      "skipped": 0
+    },
+    "phase_imbalance": {
+      "requested": 1,
+      "generated": 1,
+      "candidate_attempts": 1,
+      "original_direction_rejected": 1,
+      "original_direction_feasible": 0,
+      "revised_injection_rejected": 0,
+      "invalid_baseline_rejected": 0,
+      "no_eligible_equipment": false,
+      "skipped": 0
+    },
+    "relation_break": {
+      "requested": 1,
+      "generated": 1,
+      "candidate_attempts": 1,
+      "original_direction_rejected": 0,
+      "original_direction_feasible": 1,
+      "revised_injection_rejected": 0,
+      "invalid_baseline_rejected": 0,
+      "no_eligible_equipment": false,
+      "skipped": 0
+    },
+    "persistent_drift": {
+      "requested": 1,
+      "generated": 1,
+      "candidate_attempts": 1,
+      "original_direction_rejected": 1,
+      "original_direction_feasible": 0,
+      "revised_injection_rejected": 0,
+      "invalid_baseline_rejected": 0,
+      "no_eligible_equipment": false,
+      "skipped": 0
+    }
+  }
+}

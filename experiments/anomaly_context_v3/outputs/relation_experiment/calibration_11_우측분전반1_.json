@@ -1,0 +1,1924 @@
+{
+  "module": "11(우측분전반1)",
+  "policies": {
+    "0.5": {
+      "threshold": 5.235487997894193,
+      "events": 7,
+      "observed_days": 14.947916666666666,
+      "events_per_day": 0.4682926829268293,
+      "target_events_per_day": 0.5
+    },
+    "1.0": {
+      "threshold": 4.502028523771352,
+      "events": 14,
+      "observed_days": 14.947916666666666,
+      "events_per_day": 0.9365853658536586,
+      "target_events_per_day": 1.0
+    },
+    "2.0": {
+      "threshold": 4.18175008351566,
+      "events": 30,
+      "observed_days": 14.947916666666666,
+      "events_per_day": 2.0069686411149825,
+      "target_events_per_day": 2.0
+    }
+  },
+  "grids": {
+    "0.5": [
+      {
+        "threshold": 1.764068371669964,
+        "events": 1330,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 88.97560975609757
+      },
+      {
+        "threshold": 1.7829085283889978,
+        "events": 1300,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 86.96864111498259
+      },
+      {
+        "threshold": 1.8023700931243463,
+        "events": 1277,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 85.42996515679442
+      },
+      {
+        "threshold": 1.827481408081772,
+        "events": 1258,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 84.15888501742161
+      },
+      {
+        "threshold": 1.8507186071278061,
+        "events": 1240,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 82.95470383275261
+      },
+      {
+        "threshold": 1.8735174288815677,
+        "events": 1211,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 81.01463414634146
+      },
+      {
+        "threshold": 1.891689529477757,
+        "events": 1186,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 79.34216027874565
+      },
+      {
+        "threshold": 1.9108322877508312,
+        "events": 1166,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 78.004181184669
+      },
+      {
+        "threshold": 1.9318167556016683,
+        "events": 1143,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 76.46550522648084
+      },
+      {
+        "threshold": 1.9545279751220401,
+        "events": 1122,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 75.06062717770035
+      },
+      {
+        "threshold": 1.9772172335169882,
+        "events": 1094,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 73.18745644599304
+      },
+      {
+        "threshold": 1.9985988919342121,
+        "events": 1062,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 71.04668989547038
+      },
+      {
+        "threshold": 2.019880566091564,
+        "events": 1041,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 69.6418118466899
+      },
+      {
+        "threshold": 2.043493650778343,
+        "events": 1023,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 68.43763066202091
+      },
+      {
+        "threshold": 2.063079000895321,
+        "events": 995,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 66.56445993031359
+      },
+      {
+        "threshold": 2.0852912006812563,
+        "events": 968,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 64.7581881533101
+      },
+      {
+        "threshold": 2.1075137982608476,
+        "events": 949,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 63.48710801393729
+      },
+      {
+        "threshold": 2.1292572056967023,
+        "events": 928,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 62.0822299651568
+      },
+      {
+        "threshold": 2.1530567919016987,
+        "events": 903,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 60.40975609756098
+      },
+      {
+        "threshold": 2.1737669759647336,
+        "events": 874,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 58.46968641114983
+      },
+      {
+        "threshold": 2.198464816338412,
+        "events": 858,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 57.3993031358885
+      },
+      {
+        "threshold": 2.2221140630233998,
+        "events": 838,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 56.06132404181185
+      },
+      {
+        "threshold": 2.247692024737351,
+        "events": 813,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 54.38885017421603
+      },
+      {
+        "threshold": 2.270256135213809,
+        "events": 791,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 52.91707317073171
+      },
+      {
+        "threshold": 2.294935438174939,
+        "events": 765,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 51.177700348432055
+      },
+      {
+        "threshold": 2.319932534492875,
+        "events": 739,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 49.438327526132404
+      },
+      {
+        "threshold": 2.348011767855812,
+        "events": 710,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 47.498257839721255
+      },
+      {
+        "threshold": 2.375178333571439,
+        "events": 688,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 46.026480836236935
+      },
+      {
+        "threshold": 2.401373176289888,
+        "events": 660,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 44.153310104529616
+      },
+      {
+        "threshold": 2.430364779119675,
+        "events": 642,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 42.94912891986063
+      },
+      {
+        "threshold": 2.4532172788320827,
+        "events": 620,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 41.47735191637631
+      },
+      {
+        "threshold": 2.4732459888776956,
+        "events": 603,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 40.34006968641115
+      },
+      {
+        "threshold": 2.4966614114592156,
+        "events": 584,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 39.06898954703833
+      },
+      {
+        "threshold": 2.524438567905624,
+        "events": 563,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 37.66411149825784
+      },
+      {
+        "threshold": 2.5497909288262655,
+        "events": 538,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 35.99163763066202
+      },
+      {
+        "threshold": 2.5768858848538874,
+        "events": 523,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 34.98815331010453
+      },
+      {
+        "threshold": 2.6047674258080855,
+        "events": 503,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 33.65017421602788
+      },
+      {
+        "threshold": 2.630766299217314,
+        "events": 477,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 31.910801393728224
+      },
+      {
+        "threshold": 2.659061887224549,
+        "events": 459,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 30.706620209059235
+      },
+      {
+        "threshold": 2.6893498064765757,
+        "events": 434,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 29.034146341463416
+      },
+      {
+        "threshold": 2.721447406581498,
+        "events": 415,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 27.763066202090595
+      },
+      {
+        "threshold": 2.7482864648984076,
+        "events": 400,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 26.7595818815331
+      },
+      {
+        "threshold": 2.780435737022739,
+        "events": 379,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 25.354703832752616
+      },
+      {
+        "threshold": 2.8097555525609734,
+        "events": 362,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 24.217421602787457
+      },
+      {
+        "threshold": 2.8409527217499613,
+        "events": 342,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 22.879442508710802
+      },
+      {
+        "threshold": 2.871811048178196,
+        "events": 324,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 21.675261324041813
+      },
+      {
+        "threshold": 2.8999893472888325,
+        "events": 311,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 20.805574912891988
+      },
+      {
+        "threshold": 2.930147282375107,
+        "events": 294,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 19.66829268292683
+      },
+      {
+        "threshold": 2.9618765233786246,
+        "events": 283,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 18.93240418118467
+      },
+      {
+        "threshold": 2.992141746032596,
+        "events": 269,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 17.99581881533101
+      },
+      {
+        "threshold": 3.025268008986081,
+        "events": 260,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 17.393728222996515
+      },
+      {
+        "threshold": 3.049812766088103,
+        "events": 246,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 16.45714285714286
+      },
+      {
+        "threshold": 3.0842603416908485,
+        "events": 231,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 15.453658536585367
+      },
+      {
+        "threshold": 3.1143266707623787,
+        "events": 215,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 14.383275261324043
+      },
+      {
+        "threshold": 3.149099057131936,
+        "events": 205,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 13.714285714285715
+      },
+      {
+        "threshold": 3.1816199252297035,
+        "events": 196,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 13.11219512195122
+      },
+      {
+        "threshold": 3.2182160470660786,
+        "events": 188,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 12.577003484320558
+      },
+      {
+        "threshold": 3.2515889415532357,
+        "events": 182,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 12.175609756097561
+      },
+      {
+        "threshold": 3.28678974868386,
+        "events": 173,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 11.573519163763066
+      },
+      {
+        "threshold": 3.3210013980772306,
+        "events": 165,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 11.038327526132404
+      },
+      {
+        "threshold": 3.3583588513738385,
+        "events": 152,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 10.168641114982579
+      },
+      {
+        "threshold": 3.397069415518336,
+        "events": 140,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 9.365853658536587
+      },
+      {
+        "threshold": 3.436318258875953,
+        "events": 130,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 8.696864111498257
+      },
+      {
+        "threshold": 3.4727189131376734,
+        "events": 121,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 8.094773519163763
+      },
+      {
+        "threshold": 3.515079866519832,
+        "events": 110,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 7.358885017421603
+      },
+      {
+        "threshold": 3.5528299508239667,
+        "events": 100,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 6.689895470383275
+      },
+      {
+        "threshold": 3.593567902572885,
+        "events": 92,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 6.154703832752613
+      },
+      {
+        "threshold": 3.6393675935697147,
+        "events": 89,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 5.9540069686411154
+      },
+      {
+        "threshold": 3.677788972385364,
+        "events": 79,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 5.285017421602788
+      },
+      {
+        "threshold": 3.730998371059645,
+        "events": 72,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 4.816724738675958
+      },
+      {
+        "threshold": 3.7700474079869175,
+        "events": 67,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 4.482229965156795
+      },
+      {
+        "threshold": 3.8146225049181397,
+        "events": 59,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.9470383275261325
+      },
+      {
+        "threshold": 3.8623086980320114,
+        "events": 54,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.612543554006969
+      },
+      {
+        "threshold": 3.9096706918631474,
+        "events": 52,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.4787456445993032
+      },
+      {
+        "threshold": 3.956349901538745,
+        "events": 51,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.4118466898954707
+      },
+      {
+        "threshold": 4.013519534578197,
+        "events": 46,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.0773519163763066
+      },
+      {
+        "threshold": 4.065557154633869,
+        "events": 44,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.9435540069686414
+      },
+      {
+        "threshold": 4.1252785134632255,
+        "events": 38,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.5421602787456448
+      },
+      {
+        "threshold": 4.18175008351566,
+        "events": 30,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.0069686411149825
+      },
+      {
+        "threshold": 4.2391575269068325,
+        "events": 28,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.8731707317073172
+      },
+      {
+        "threshold": 4.301777758643188,
+        "events": 22,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.4717770034843207
+      },
+      {
+        "threshold": 4.366748214125242,
+        "events": 19,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.2710801393728224
+      },
+      {
+        "threshold": 4.4366140082448515,
+        "events": 18,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.2041811846689896
+      },
+      {
+        "threshold": 4.502028523771352,
+        "events": 14,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.9365853658536586
+      },
+      {
+        "threshold": 4.5719627195283525,
+        "events": 13,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.8696864111498258
+      },
+      {
+        "threshold": 4.642254756463181,
+        "events": 13,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.8696864111498258
+      },
+      {
+        "threshold": 4.731907885896091,
+        "events": 12,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.802787456445993
+      },
+      {
+        "threshold": 4.81456488619481,
+        "events": 10,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.6689895470383276
+      },
+      {
+        "threshold": 4.911155464289556,
+        "events": 9,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.6020905923344948
+      },
+      {
+        "threshold": 5.034529234042214,
+        "events": 8,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.535191637630662
+      },
+      {
+        "threshold": 5.1189288790705145,
+        "events": 7,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.4682926829268293
+      },
+      {
+        "threshold": 5.235487997894193,
+        "events": 7,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.4682926829268293
+      },
+      {
+        "threshold": 5.35906585089095,
+        "events": 4,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.267595818815331
+      },
+      {
+        "threshold": 5.50121565093521,
+        "events": 1,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.06689895470383275
+      },
+      {
+        "threshold": 5.674612447587504,
+        "events": 1,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.06689895470383275
+      },
+      {
+        "threshold": 5.822477921121772,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 5.998054238418123,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.221195991955054,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.547034640325765,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.8997314235314535,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 7.490467034020483,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 8.81300527947669,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 9.288458612753104,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 10.619770059082796,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 11.100688190800005,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      }
+    ],
+    "1.0": [
+      {
+        "threshold": 1.764068371669964,
+        "events": 1330,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 88.97560975609757
+      },
+      {
+        "threshold": 1.7829085283889978,
+        "events": 1300,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 86.96864111498259
+      },
+      {
+        "threshold": 1.8023700931243463,
+        "events": 1277,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 85.42996515679442
+      },
+      {
+        "threshold": 1.827481408081772,
+        "events": 1258,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 84.15888501742161
+      },
+      {
+        "threshold": 1.8507186071278061,
+        "events": 1240,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 82.95470383275261
+      },
+      {
+        "threshold": 1.8735174288815677,
+        "events": 1211,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 81.01463414634146
+      },
+      {
+        "threshold": 1.891689529477757,
+        "events": 1186,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 79.34216027874565
+      },
+      {
+        "threshold": 1.9108322877508312,
+        "events": 1166,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 78.004181184669
+      },
+      {
+        "threshold": 1.9318167556016683,
+        "events": 1143,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 76.46550522648084
+      },
+      {
+        "threshold": 1.9545279751220401,
+        "events": 1122,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 75.06062717770035
+      },
+      {
+        "threshold": 1.9772172335169882,
+        "events": 1094,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 73.18745644599304
+      },
+      {
+        "threshold": 1.9985988919342121,
+        "events": 1062,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 71.04668989547038
+      },
+      {
+        "threshold": 2.019880566091564,
+        "events": 1041,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 69.6418118466899
+      },
+      {
+        "threshold": 2.043493650778343,
+        "events": 1023,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 68.43763066202091
+      },
+      {
+        "threshold": 2.063079000895321,
+        "events": 995,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 66.56445993031359
+      },
+      {
+        "threshold": 2.0852912006812563,
+        "events": 968,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 64.7581881533101
+      },
+      {
+        "threshold": 2.1075137982608476,
+        "events": 949,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 63.48710801393729
+      },
+      {
+        "threshold": 2.1292572056967023,
+        "events": 928,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 62.0822299651568
+      },
+      {
+        "threshold": 2.1530567919016987,
+        "events": 903,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 60.40975609756098
+      },
+      {
+        "threshold": 2.1737669759647336,
+        "events": 874,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 58.46968641114983
+      },
+      {
+        "threshold": 2.198464816338412,
+        "events": 858,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 57.3993031358885
+      },
+      {
+        "threshold": 2.2221140630233998,
+        "events": 838,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 56.06132404181185
+      },
+      {
+        "threshold": 2.247692024737351,
+        "events": 813,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 54.38885017421603
+      },
+      {
+        "threshold": 2.270256135213809,
+        "events": 791,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 52.91707317073171
+      },
+      {
+        "threshold": 2.294935438174939,
+        "events": 765,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 51.177700348432055
+      },
+      {
+        "threshold": 2.319932534492875,
+        "events": 739,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 49.438327526132404
+      },
+      {
+        "threshold": 2.348011767855812,
+        "events": 710,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 47.498257839721255
+      },
+      {
+        "threshold": 2.375178333571439,
+        "events": 688,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 46.026480836236935
+      },
+      {
+        "threshold": 2.401373176289888,
+        "events": 660,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 44.153310104529616
+      },
+      {
+        "threshold": 2.430364779119675,
+        "events": 642,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 42.94912891986063
+      },
+      {
+        "threshold": 2.4532172788320827,
+        "events": 620,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 41.47735191637631
+      },
+      {
+        "threshold": 2.4732459888776956,
+        "events": 603,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 40.34006968641115
+      },
+      {
+        "threshold": 2.4966614114592156,
+        "events": 584,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 39.06898954703833
+      },
+      {
+        "threshold": 2.524438567905624,
+        "events": 563,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 37.66411149825784
+      },
+      {
+        "threshold": 2.5497909288262655,
+        "events": 538,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 35.99163763066202
+      },
+      {
+        "threshold": 2.5768858848538874,
+        "events": 523,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 34.98815331010453
+      },
+      {
+        "threshold": 2.6047674258080855,
+        "events": 503,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 33.65017421602788
+      },
+      {
+        "threshold": 2.630766299217314,
+        "events": 477,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 31.910801393728224
+      },
+      {
+        "threshold": 2.659061887224549,
+        "events": 459,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 30.706620209059235
+      },
+      {
+        "threshold": 2.6893498064765757,
+        "events": 434,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 29.034146341463416
+      },
+      {
+        "threshold": 2.721447406581498,
+        "events": 415,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 27.763066202090595
+      },
+      {
+        "threshold": 2.7482864648984076,
+        "events": 400,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 26.7595818815331
+      },
+      {
+        "threshold": 2.780435737022739,
+        "events": 379,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 25.354703832752616
+      },
+      {
+        "threshold": 2.8097555525609734,
+        "events": 362,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 24.217421602787457
+      },
+      {
+        "threshold": 2.8409527217499613,
+        "events": 342,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 22.879442508710802
+      },
+      {
+        "threshold": 2.871811048178196,
+        "events": 324,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 21.675261324041813
+      },
+      {
+        "threshold": 2.8999893472888325,
+        "events": 311,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 20.805574912891988
+      },
+      {
+        "threshold": 2.930147282375107,
+        "events": 294,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 19.66829268292683
+      },
+      {
+        "threshold": 2.9618765233786246,
+        "events": 283,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 18.93240418118467
+      },
+      {
+        "threshold": 2.992141746032596,
+        "events": 269,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 17.99581881533101
+      },
+      {
+        "threshold": 3.025268008986081,
+        "events": 260,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 17.393728222996515
+      },
+      {
+        "threshold": 3.049812766088103,
+        "events": 246,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 16.45714285714286
+      },
+      {
+        "threshold": 3.0842603416908485,
+        "events": 231,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 15.453658536585367
+      },
+      {
+        "threshold": 3.1143266707623787,
+        "events": 215,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 14.383275261324043
+      },
+      {
+        "threshold": 3.149099057131936,
+        "events": 205,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 13.714285714285715
+      },
+      {
+        "threshold": 3.1816199252297035,
+        "events": 196,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 13.11219512195122
+      },
+      {
+        "threshold": 3.2182160470660786,
+        "events": 188,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 12.577003484320558
+      },
+      {
+        "threshold": 3.2515889415532357,
+        "events": 182,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 12.175609756097561
+      },
+      {
+        "threshold": 3.28678974868386,
+        "events": 173,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 11.573519163763066
+      },
+      {
+        "threshold": 3.3210013980772306,
+        "events": 165,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 11.038327526132404
+      },
+      {
+        "threshold": 3.3583588513738385,
+        "events": 152,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 10.168641114982579
+      },
+      {
+        "threshold": 3.397069415518336,
+        "events": 140,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 9.365853658536587
+      },
+      {
+        "threshold": 3.436318258875953,
+        "events": 130,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 8.696864111498257
+      },
+      {
+        "threshold": 3.4727189131376734,
+        "events": 121,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 8.094773519163763
+      },
+      {
+        "threshold": 3.515079866519832,
+        "events": 110,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 7.358885017421603
+      },
+      {
+        "threshold": 3.5528299508239667,
+        "events": 100,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 6.689895470383275
+      },
+      {
+        "threshold": 3.593567902572885,
+        "events": 92,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 6.154703832752613
+      },
+      {
+        "threshold": 3.6393675935697147,
+        "events": 89,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 5.9540069686411154
+      },
+      {
+        "threshold": 3.677788972385364,
+        "events": 79,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 5.285017421602788
+      },
+      {
+        "threshold": 3.730998371059645,
+        "events": 72,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 4.816724738675958
+      },
+      {
+        "threshold": 3.7700474079869175,
+        "events": 67,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 4.482229965156795
+      },
+      {
+        "threshold": 3.8146225049181397,
+        "events": 59,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.9470383275261325
+      },
+      {
+        "threshold": 3.8623086980320114,
+        "events": 54,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.612543554006969
+      },
+      {
+        "threshold": 3.9096706918631474,
+        "events": 52,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.4787456445993032
+      },
+      {
+        "threshold": 3.956349901538745,
+        "events": 51,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.4118466898954707
+      },
+      {
+        "threshold": 4.013519534578197,
+        "events": 46,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.0773519163763066
+      },
+      {
+        "threshold": 4.065557154633869,
+        "events": 44,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.9435540069686414
+      },
+      {
+        "threshold": 4.1252785134632255,
+        "events": 38,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.5421602787456448
+      },
+      {
+        "threshold": 4.18175008351566,
+        "events": 30,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.0069686411149825
+      },
+      {
+        "threshold": 4.2391575269068325,
+        "events": 28,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.8731707317073172
+      },
+      {
+        "threshold": 4.301777758643188,
+        "events": 22,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.4717770034843207
+      },
+      {
+        "threshold": 4.366748214125242,
+        "events": 19,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.2710801393728224
+      },
+      {
+        "threshold": 4.4366140082448515,
+        "events": 18,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.2041811846689896
+      },
+      {
+        "threshold": 4.502028523771352,
+        "events": 14,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.9365853658536586
+      },
+      {
+        "threshold": 4.5719627195283525,
+        "events": 13,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.8696864111498258
+      },
+      {
+        "threshold": 4.642254756463181,
+        "events": 13,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.8696864111498258
+      },
+      {
+        "threshold": 4.731907885896091,
+        "events": 12,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.802787456445993
+      },
+      {
+        "threshold": 4.81456488619481,
+        "events": 10,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.6689895470383276
+      },
+      {
+        "threshold": 4.911155464289556,
+        "events": 9,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.6020905923344948
+      },
+      {
+        "threshold": 5.034529234042214,
+        "events": 8,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.535191637630662
+      },
+      {
+        "threshold": 5.1189288790705145,
+        "events": 7,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.4682926829268293
+      },
+      {
+        "threshold": 5.235487997894193,
+        "events": 7,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.4682926829268293
+      },
+      {
+        "threshold": 5.35906585089095,
+        "events": 4,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.267595818815331
+      },
+      {
+        "threshold": 5.50121565093521,
+        "events": 1,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.06689895470383275
+      },
+      {
+        "threshold": 5.674612447587504,
+        "events": 1,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.06689895470383275
+      },
+      {
+        "threshold": 5.822477921121772,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 5.998054238418123,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.221195991955054,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.547034640325765,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.8997314235314535,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 7.490467034020483,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 8.81300527947669,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 9.288458612753104,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 10.619770059082796,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 11.100688190800005,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      }
+    ],
+    "2.0": [
+      {
+        "threshold": 1.764068371669964,
+        "events": 1330,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 88.97560975609757
+      },
+      {
+        "threshold": 1.7829085283889978,
+        "events": 1300,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 86.96864111498259
+      },
+      {
+        "threshold": 1.8023700931243463,
+        "events": 1277,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 85.42996515679442
+      },
+      {
+        "threshold": 1.827481408081772,
+        "events": 1258,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 84.15888501742161
+      },
+      {
+        "threshold": 1.8507186071278061,
+        "events": 1240,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 82.95470383275261
+      },
+      {
+        "threshold": 1.8735174288815677,
+        "events": 1211,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 81.01463414634146
+      },
+      {
+        "threshold": 1.891689529477757,
+        "events": 1186,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 79.34216027874565
+      },
+      {
+        "threshold": 1.9108322877508312,
+        "events": 1166,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 78.004181184669
+      },
+      {
+        "threshold": 1.9318167556016683,
+        "events": 1143,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 76.46550522648084
+      },
+      {
+        "threshold": 1.9545279751220401,
+        "events": 1122,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 75.06062717770035
+      },
+      {
+        "threshold": 1.9772172335169882,
+        "events": 1094,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 73.18745644599304
+      },
+      {
+        "threshold": 1.9985988919342121,
+        "events": 1062,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 71.04668989547038
+      },
+      {
+        "threshold": 2.019880566091564,
+        "events": 1041,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 69.6418118466899
+      },
+      {
+        "threshold": 2.043493650778343,
+        "events": 1023,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 68.43763066202091
+      },
+      {
+        "threshold": 2.063079000895321,
+        "events": 995,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 66.56445993031359
+      },
+      {
+        "threshold": 2.0852912006812563,
+        "events": 968,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 64.7581881533101
+      },
+      {
+        "threshold": 2.1075137982608476,
+        "events": 949,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 63.48710801393729
+      },
+      {
+        "threshold": 2.1292572056967023,
+        "events": 928,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 62.0822299651568
+      },
+      {
+        "threshold": 2.1530567919016987,
+        "events": 903,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 60.40975609756098
+      },
+      {
+        "threshold": 2.1737669759647336,
+        "events": 874,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 58.46968641114983
+      },
+      {
+        "threshold": 2.198464816338412,
+        "events": 858,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 57.3993031358885
+      },
+      {
+        "threshold": 2.2221140630233998,
+        "events": 838,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 56.06132404181185
+      },
+      {
+        "threshold": 2.247692024737351,
+        "events": 813,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 54.38885017421603
+      },
+      {
+        "threshold": 2.270256135213809,
+        "events": 791,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 52.91707317073171
+      },
+      {
+        "threshold": 2.294935438174939,
+        "events": 765,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 51.177700348432055
+      },
+      {
+        "threshold": 2.319932534492875,
+        "events": 739,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 49.438327526132404
+      },
+      {
+        "threshold": 2.348011767855812,
+        "events": 710,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 47.498257839721255
+      },
+      {
+        "threshold": 2.375178333571439,
+        "events": 688,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 46.026480836236935
+      },
+      {
+        "threshold": 2.401373176289888,
+        "events": 660,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 44.153310104529616
+      },
+      {
+        "threshold": 2.430364779119675,
+        "events": 642,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 42.94912891986063
+      },
+      {
+        "threshold": 2.4532172788320827,
+        "events": 620,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 41.47735191637631
+      },
+      {
+        "threshold": 2.4732459888776956,
+        "events": 603,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 40.34006968641115
+      },
+      {
+        "threshold": 2.4966614114592156,
+        "events": 584,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 39.06898954703833
+      },
+      {
+        "threshold": 2.524438567905624,
+        "events": 563,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 37.66411149825784
+      },
+      {
+        "threshold": 2.5497909288262655,
+        "events": 538,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 35.99163763066202
+      },
+      {
+        "threshold": 2.5768858848538874,
+        "events": 523,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 34.98815331010453
+      },
+      {
+        "threshold": 2.6047674258080855,
+        "events": 503,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 33.65017421602788
+      },
+      {
+        "threshold": 2.630766299217314,
+        "events": 477,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 31.910801393728224
+      },
+      {
+        "threshold": 2.659061887224549,
+        "events": 459,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 30.706620209059235
+      },
+      {
+        "threshold": 2.6893498064765757,
+        "events": 434,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 29.034146341463416
+      },
+      {
+        "threshold": 2.721447406581498,
+        "events": 415,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 27.763066202090595
+      },
+      {
+        "threshold": 2.7482864648984076,
+        "events": 400,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 26.7595818815331
+      },
+      {
+        "threshold": 2.780435737022739,
+        "events": 379,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 25.354703832752616
+      },
+      {
+        "threshold": 2.8097555525609734,
+        "events": 362,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 24.217421602787457
+      },
+      {
+        "threshold": 2.8409527217499613,
+        "events": 342,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 22.879442508710802
+      },
+      {
+        "threshold": 2.871811048178196,
+        "events": 324,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 21.675261324041813
+      },
+      {
+        "threshold": 2.8999893472888325,
+        "events": 311,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 20.805574912891988
+      },
+      {
+        "threshold": 2.930147282375107,
+        "events": 294,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 19.66829268292683
+      },
+      {
+        "threshold": 2.9618765233786246,
+        "events": 283,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 18.93240418118467
+      },
+      {
+        "threshold": 2.992141746032596,
+        "events": 269,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 17.99581881533101
+      },
+      {
+        "threshold": 3.025268008986081,
+        "events": 260,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 17.393728222996515
+      },
+      {
+        "threshold": 3.049812766088103,
+        "events": 246,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 16.45714285714286
+      },
+      {
+        "threshold": 3.0842603416908485,
+        "events": 231,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 15.453658536585367
+      },
+      {
+        "threshold": 3.1143266707623787,
+        "events": 215,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 14.383275261324043
+      },
+      {
+        "threshold": 3.149099057131936,
+        "events": 205,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 13.714285714285715
+      },
+      {
+        "threshold": 3.1816199252297035,
+        "events": 196,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 13.11219512195122
+      },
+      {
+        "threshold": 3.2182160470660786,
+        "events": 188,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 12.577003484320558
+      },
+      {
+        "threshold": 3.2515889415532357,
+        "events": 182,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 12.175609756097561
+      },
+      {
+        "threshold": 3.28678974868386,
+        "events": 173,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 11.573519163763066
+      },
+      {
+        "threshold": 3.3210013980772306,
+        "events": 165,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 11.038327526132404
+      },
+      {
+        "threshold": 3.3583588513738385,
+        "events": 152,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 10.168641114982579
+      },
+      {
+        "threshold": 3.397069415518336,
+        "events": 140,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 9.365853658536587
+      },
+      {
+        "threshold": 3.436318258875953,
+        "events": 130,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 8.696864111498257
+      },
+      {
+        "threshold": 3.4727189131376734,
+        "events": 121,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 8.094773519163763
+      },
+      {
+        "threshold": 3.515079866519832,
+        "events": 110,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 7.358885017421603
+      },
+      {
+        "threshold": 3.5528299508239667,
+        "events": 100,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 6.689895470383275
+      },
+      {
+        "threshold": 3.593567902572885,
+        "events": 92,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 6.154703832752613
+      },
+      {
+        "threshold": 3.6393675935697147,
+        "events": 89,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 5.9540069686411154
+      },
+      {
+        "threshold": 3.677788972385364,
+        "events": 79,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 5.285017421602788
+      },
+      {
+        "threshold": 3.730998371059645,
+        "events": 72,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 4.816724738675958
+      },
+      {
+        "threshold": 3.7700474079869175,
+        "events": 67,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 4.482229965156795
+      },
+      {
+        "threshold": 3.8146225049181397,
+        "events": 59,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.9470383275261325
+      },
+      {
+        "threshold": 3.8623086980320114,
+        "events": 54,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.612543554006969
+      },
+      {
+        "threshold": 3.9096706918631474,
+        "events": 52,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.4787456445993032
+      },
+      {
+        "threshold": 3.956349901538745,
+        "events": 51,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.4118466898954707
+      },
+      {
+        "threshold": 4.013519534578197,
+        "events": 46,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 3.0773519163763066
+      },
+      {
+        "threshold": 4.065557154633869,
+        "events": 44,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.9435540069686414
+      },
+      {
+        "threshold": 4.1252785134632255,
+        "events": 38,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.5421602787456448
+      },
+      {
+        "threshold": 4.18175008351566,
+        "events": 30,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 2.0069686411149825
+      },
+      {
+        "threshold": 4.2391575269068325,
+        "events": 28,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.8731707317073172
+      },
+      {
+        "threshold": 4.301777758643188,
+        "events": 22,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.4717770034843207
+      },
+      {
+        "threshold": 4.366748214125242,
+        "events": 19,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.2710801393728224
+      },
+      {
+        "threshold": 4.4366140082448515,
+        "events": 18,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 1.2041811846689896
+      },
+      {
+        "threshold": 4.502028523771352,
+        "events": 14,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.9365853658536586
+      },
+      {
+        "threshold": 4.5719627195283525,
+        "events": 13,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.8696864111498258
+      },
+      {
+        "threshold": 4.642254756463181,
+        "events": 13,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.8696864111498258
+      },
+      {
+        "threshold": 4.731907885896091,
+        "events": 12,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.802787456445993
+      },
+      {
+        "threshold": 4.81456488619481,
+        "events": 10,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.6689895470383276
+      },
+      {
+        "threshold": 4.911155464289556,
+        "events": 9,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.6020905923344948
+      },
+      {
+        "threshold": 5.034529234042214,
+        "events": 8,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.535191637630662
+      },
+      {
+        "threshold": 5.1189288790705145,
+        "events": 7,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.4682926829268293
+      },
+      {
+        "threshold": 5.235487997894193,
+        "events": 7,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.4682926829268293
+      },
+      {
+        "threshold": 5.35906585089095,
+        "events": 4,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.267595818815331
+      },
+      {
+        "threshold": 5.50121565093521,
+        "events": 1,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.06689895470383275
+      },
+      {
+        "threshold": 5.674612447587504,
+        "events": 1,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.06689895470383275
+      },
+      {
+        "threshold": 5.822477921121772,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 5.998054238418123,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.221195991955054,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.547034640325765,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 6.8997314235314535,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 7.490467034020483,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 8.81300527947669,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 9.288458612753104,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 10.619770059082796,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      },
+      {
+        "threshold": 11.100688190800005,
+        "events": 0,
+        "observed_days": 14.947916666666666,
+        "events_per_day": 0.0
+      }
+    ]
+  }
+}

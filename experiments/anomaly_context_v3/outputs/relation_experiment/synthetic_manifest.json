@@ -1,0 +1,1736 @@
+[
+  {
+    "probe_id": "1(PM-3):level_shift-001",
+    "kind": "level_shift",
+    "module": "1(PM-3)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5370762558492403,
+          "training_scale": 0.84569208528308,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageS": {
+          "final_mean_delta": 2.520380946244904,
+          "training_scale": 0.8401269820816346,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5240797038604983,
+          "training_scale": 0.8413599012868328,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "1(PM-3):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "1(PM-3)",
+    "truth": {
+      "start": "2025-04-18T02:31:00",
+      "end": "2025-04-18T03:01:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 650.9146423339844,
+          "median_std_after": 1836.7703955078125,
+          "training_scale": 207.42288848220906,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 6.889816999435425,
+          "median_std_after": 11.630937128067018,
+          "training_scale": 2.0947608353916674,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.382031679153442,
+          "median_std_after": 10.698188095092775,
+          "training_scale": 2.1071154776107304,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.771921396255493,
+          "median_std_after": 11.561062078475953,
+          "training_scale": 2.117000039724883,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "1(PM-3):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "1(PM-3)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.5370762558492403,
+          "training_scale": 0.84569208528308,
+          "scale_units": 3.0000000000000004
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "1(PM-3):relation_break-001",
+    "kind": "relation_break",
+    "module": "1(PM-3)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.37904334156667,
+          "training_scale": 2.0947608353916674,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.428461910442921,
+          "training_scale": 2.1071154776107304,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.468000158899532,
+          "training_scale": 2.117000039724883,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "1(PM-3):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "1(PM-3)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5370762558492403,
+          "training_scale": 0.84569208528308,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageS": {
+          "final_mean_delta": 2.520380946244904,
+          "training_scale": 0.8401269820816346,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5240797038604983,
+          "training_scale": 0.8413599012868328,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "11(우측분전반1):level_shift-001",
+    "kind": "level_shift",
+    "module": "11(우측분전반1)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.533377498233645,
+          "training_scale": 0.8444591660778817,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.534743323866927,
+          "training_scale": 0.8449144412889756,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.535243843819496,
+          "training_scale": 0.8450812812731653,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "11(우측분전반1):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "11(우측분전반1)",
+    "truth": {
+      "start": "2025-04-07T12:30:00",
+      "end": "2025-04-07T13:00:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 650.3329467773438,
+          "median_std_after": 1882.6370825195313,
+          "training_scale": 207.0660432061944,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 6.370959520339966,
+          "median_std_after": 11.340333490371705,
+          "training_scale": 2.1077333511115004,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.471586227416992,
+          "median_std_after": 11.51854146003723,
+          "training_scale": 2.106499018008131,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.854543685913086,
+          "median_std_after": 11.583541707992554,
+          "training_scale": 2.1176179132256534,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "11(우측분전반1):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "11(우측분전반1)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.533377498233645,
+          "training_scale": 0.8444591660778817,
+          "scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "11(우측분전반1):relation_break-001",
+    "kind": "relation_break",
+    "module": "11(우측분전반1)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.430933404446002,
+          "training_scale": 2.1077333511115004,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.425996072032524,
+          "training_scale": 2.106499018008131,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.470471652902614,
+          "training_scale": 2.1176179132256534,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "11(우측분전반1):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "11(우측분전반1)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.533377498233645,
+          "training_scale": 0.8444591660778817,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.534743323866927,
+          "training_scale": 0.8449144412889756,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.535243843819496,
+          "training_scale": 0.8450812812731653,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "12(4호기):level_shift-001",
+    "kind": "level_shift",
+    "module": "12(4호기)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5185146006590533,
+          "training_scale": 0.8395048668863511,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.520380946244904,
+          "training_scale": 0.8401269820816346,
+          "final_scale_units": 3.0000000000000004
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "12(4호기):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "12(4호기)",
+    "truth": {
+      "start": "2025-04-28T03:08:00",
+      "end": "2025-04-28T03:38:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 649.6593017578125,
+          "median_std_after": 1888.6500134277344,
+          "training_scale": 207.59472801033172,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 7.0217084884643555,
+          "median_std_after": 11.726541261672974,
+          "training_scale": 2.110822718615352,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.999627590179443,
+          "median_std_after": 11.873062400817872,
+          "training_scale": 2.10093957039937,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.665661334991455,
+          "median_std_after": 11.519895915985106,
+          "training_scale": 2.109278034863426,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "12(4호기):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "12(4호기)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "12(4호기):relation_break-001",
+    "kind": "relation_break",
+    "module": "12(4호기)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.443290874461407,
+          "training_scale": 2.110822718615352,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.40375828159748,
+          "training_scale": 2.10093957039937,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.437112139453705,
+          "training_scale": 2.109278034863426,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "12(4호기):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "12(4호기)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5185146006590533,
+          "training_scale": 0.8395048668863511,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.520380946244904,
+          "training_scale": 0.8401269820816346,
+          "final_scale_units": 3.0000000000000004
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "13(3호기):level_shift-001",
+    "kind": "level_shift",
+    "module": "13(3호기)",
+    "truth": {
+      "start": "2025-04-18T12:23:00",
+      "end": "2025-04-18T12:53:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.6186185911728597,
+          "training_scale": 0.8728728637242865,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.6278824519899002,
+          "training_scale": 0.8759608173299667,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageT": {
+          "final_mean_delta": 2.624183694374305,
+          "training_scale": 0.8747278981247684,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "14(2호기):level_shift-001",
+    "kind": "level_shift",
+    "module": "14(2호기)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5389086678789843,
+          "training_scale": 0.8463028892929948,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.533343564677539,
+          "training_scale": 0.844447854892513,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "14(2호기):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "14(2호기)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 712.9057922363281,
+          "median_std_after": 1844.185712890625,
+          "training_scale": 207.0059129447739,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 6.996411085128784,
+          "median_std_after": 11.155083589553833,
+          "training_scale": 2.108970512011212,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 7.018420934677124,
+          "median_std_after": 11.123937921524048,
+          "training_scale": 2.1077347650096714,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.385000467300415,
+          "median_std_after": 10.954937772750855,
+          "training_scale": 2.108970512011212,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "14(2호기):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "14(2호기)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "14(2호기):relation_break-001",
+    "kind": "relation_break",
+    "module": "14(2호기)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.435882048044848,
+          "training_scale": 2.108970512011212,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.430939060038686,
+          "training_scale": 2.1077347650096714,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.435882048044848,
+          "training_scale": 2.108970512011212,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "14(2호기):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "14(2호기)",
+    "truth": {
+      "start": "2025-04-22T00:09:00",
+      "end": "2025-04-22T00:39:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5389086678789843,
+          "training_scale": 0.8463028892929948,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.533343564677539,
+          "training_scale": 0.844447854892513,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "16(호이스트):level_shift-001",
+    "kind": "level_shift",
+    "module": "16(호이스트)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5129494974576074,
+          "training_scale": 0.8376498324858692,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5277784614760934,
+          "training_scale": 0.8425928204920311,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.525946049446349,
+          "training_scale": 0.8419820164821163,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "16(호이스트):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "16(호이스트)",
+    "truth": {
+      "start": "2025-04-15T13:10:00",
+      "end": "2025-04-15T13:40:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 685.6149291992188,
+          "median_std_after": 1839.6492810058594,
+          "training_scale": 207.78792305643069,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 6.65204644203186,
+          "median_std_after": 11.11147940635681,
+          "training_scale": 2.111439178217951,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.88117790222168,
+          "median_std_after": 11.112562351226806,
+          "training_scale": 2.105881144507361,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.762120485305786,
+          "median_std_after": 10.999895792007447,
+          "training_scale": 2.097850202895519,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "16(호이스트):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "16(호이스트)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.5129494974576074,
+          "training_scale": 0.8376498324858692,
+          "scale_units": 2.9999999999999996
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "16(호이스트):relation_break-001",
+    "kind": "relation_break",
+    "module": "16(호이스트)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.445756712871804,
+          "training_scale": 2.111439178217951,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.423524578029443,
+          "training_scale": 2.105881144507361,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.391400811582075,
+          "training_scale": 2.097850202895519,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "16(호이스트):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "16(호이스트)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5129494974576074,
+          "training_scale": 0.8376498324858692,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5277784614760934,
+          "training_scale": 0.8425928204920311,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.525946049446349,
+          "training_scale": 0.8419820164821163,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "18(우측분전반2):level_shift-001",
+    "kind": "level_shift",
+    "module": "18(우측분전반2)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.525946049446349,
+          "training_scale": 0.8419820164821163,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5236216008530623,
+          "training_scale": 0.8412072002843541,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "18(우측분전반2):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "18(우측분전반2)",
+    "truth": {
+      "start": "2025-04-10T06:42:00",
+      "end": "2025-04-10T07:12:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 632.5577087402344,
+          "median_std_after": 1849.3566723632812,
+          "training_scale": 208.7579250689168,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 6.8764543533325195,
+          "median_std_after": 10.885333614349365,
+          "training_scale": 2.1126763391176624,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.67293381690979,
+          "median_std_after": 11.640416460037232,
+          "training_scale": 2.119470119829793,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.989681959152222,
+          "median_std_after": 11.232541732788086,
+          "training_scale": 2.1120584656168924,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "18(우측분전반2):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "18(우측분전반2)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "18(우측분전반2):relation_break-001",
+    "kind": "relation_break",
+    "module": "18(우측분전반2)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.45070535647065,
+          "training_scale": 2.1126763391176624,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.477880479319172,
+          "training_scale": 2.119470119829793,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.44823386246757,
+          "training_scale": 2.1120584656168924,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "18(우측분전반2):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "18(우측분전반2)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.525946049446349,
+          "training_scale": 0.8419820164821163,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5236216008530623,
+          "training_scale": 0.8412072002843541,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "2(L-1전등):level_shift-001",
+    "kind": "level_shift",
+    "module": "2(L-1전등)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.52967874061805,
+          "training_scale": 0.8432262468726834,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageS": {
+          "final_mean_delta": 2.537042322293134,
+          "training_scale": 0.8456807740977113,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageT": {
+          "final_mean_delta": 2.520380946244904,
+          "training_scale": 0.8401269820816346,
+          "final_scale_units": 3.0000000000000004
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "2(L-1전등):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "2(L-1전등)",
+    "truth": {
+      "start": "2025-04-01T12:42:00",
+      "end": "2025-04-01T13:12:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 680.3541564941406,
+          "median_std_after": 1870.98599609375,
+          "training_scale": 206.62486173207006,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 7.010253667831421,
+          "median_std_after": 11.635000495910646,
+          "training_scale": 2.1003216968986,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.468030214309692,
+          "median_std_after": 11.286166410446167,
+          "training_scale": 2.1186991918520013,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.994194269180298,
+          "median_std_after": 10.98310425758362,
+          "training_scale": 2.0910550082852173,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "2(L-1전등):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "2(L-1전등)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.52967874061805,
+          "training_scale": 0.8432262468726834,
+          "scale_units": 2.9999999999999996
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "2(L-1전등):relation_break-001",
+    "kind": "relation_break",
+    "module": "2(L-1전등)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.4012867875944,
+          "training_scale": 2.1003216968986,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.474796767408005,
+          "training_scale": 2.1186991918520013,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.36422003314087,
+          "training_scale": 2.0910550082852173,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "2(L-1전등):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "2(L-1전등)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.52967874061805,
+          "training_scale": 0.8432262468726834,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageS": {
+          "final_mean_delta": 2.537042322293134,
+          "training_scale": 0.8456807740977113,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageT": {
+          "final_mean_delta": 2.520380946244904,
+          "training_scale": 0.8401269820816346,
+          "final_scale_units": 3.0000000000000004
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "3(분쇄기(2)):level_shift-001",
+    "kind": "level_shift",
+    "module": "3(분쇄기(2))",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5370762558492403,
+          "training_scale": 0.84569208528308,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageS": {
+          "final_mean_delta": 2.548206462252131,
+          "training_scale": 0.8494021540840437,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5240797038604983,
+          "training_scale": 0.8413599012868328,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "3(분쇄기(2)):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "3(분쇄기(2))",
+    "truth": {
+      "start": "2025-04-22T05:24:00",
+      "end": "2025-04-22T05:54:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 672.25439453125,
+          "median_std_after": 1911.1105322265626,
+          "training_scale": 207.6366698856792,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 7.038527965545654,
+          "median_std_after": 11.498499851226807,
+          "training_scale": 2.10402752400505,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.783940076828003,
+          "median_std_after": 11.383125,
+          "training_scale": 2.097850202895519,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.853164911270142,
+          "median_std_after": 11.176479034423828,
+          "training_scale": 2.1151464192225724,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "3(분쇄기(2)):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "3(분쇄기(2))",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.5370762558492403,
+          "training_scale": 0.84569208528308,
+          "scale_units": 3.0000000000000004
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "3(분쇄기(2)):relation_break-001",
+    "kind": "relation_break",
+    "module": "3(분쇄기(2))",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.4161100960202,
+          "training_scale": 2.10402752400505,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.391400811582075,
+          "training_scale": 2.097850202895519,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.46058567689029,
+          "training_scale": 2.1151464192225724,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "3(분쇄기(2)):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "3(분쇄기(2))",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5370762558492403,
+          "training_scale": 0.84569208528308,
+          "final_scale_units": 3.0000000000000004
+        },
+        "voltageS": {
+          "final_mean_delta": 2.548206462252131,
+          "training_scale": 0.8494021540840437,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5240797038604983,
+          "training_scale": 0.8413599012868328,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "4(분쇄기(1)):level_shift-001",
+    "kind": "level_shift",
+    "module": "4(분쇄기(1))",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.52967874061805,
+          "training_scale": 0.8432262468726834,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageS": {
+          "final_mean_delta": 2.525946049446349,
+          "training_scale": 0.8419820164821163,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5240797038604983,
+          "training_scale": 0.8413599012868328,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "4(분쇄기(1)):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "4(분쇄기(1))",
+    "truth": {
+      "start": "2025-04-12T14:23:00",
+      "end": "2025-04-12T14:53:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 687.1654052734375,
+          "median_std_after": 1905.1939099121091,
+          "training_scale": 207.50374083522516,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 6.895640134811401,
+          "median_std_after": 10.949520568847657,
+          "training_scale": 2.0915184134107947,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 6.819008827209473,
+          "median_std_after": 11.505812673568727,
+          "training_scale": 2.098468076396289,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 7.138104438781738,
+          "median_std_after": 11.650978736877441,
+          "training_scale": 2.1027917770035094,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "4(분쇄기(1)):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "4(분쇄기(1))",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.52967874061805,
+          "training_scale": 0.8432262468726834,
+          "scale_units": 2.9999999999999996
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "4(분쇄기(1)):relation_break-001",
+    "kind": "relation_break",
+    "module": "4(분쇄기(1))",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.366073653643179,
+          "training_scale": 2.0915184134107947,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.393872305585155,
+          "training_scale": 2.098468076396289,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.411167108014038,
+          "training_scale": 2.1027917770035094,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "4(분쇄기(1)):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "4(분쇄기(1))",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.52967874061805,
+          "training_scale": 0.8432262468726834,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageS": {
+          "final_mean_delta": 2.525946049446349,
+          "training_scale": 0.8419820164821163,
+          "final_scale_units": 3.0
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5240797038604983,
+          "training_scale": 0.8413599012868328,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "5(좌측분전반):level_shift-001",
+    "kind": "level_shift",
+    "module": "5(좌측분전반)",
+    "truth": {
+      "start": "2025-04-11T21:21:00",
+      "end": "2025-04-11T21:51:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5296448070619437,
+          "training_scale": 0.8432149356873146,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5185146006590533,
+          "training_scale": 0.8395048668863511,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "5(좌측분전반):volatility_increase-001",
+    "kind": "volatility_increase",
+    "module": "5(좌측분전반)",
+    "truth": {
+      "start": "2025-04-15T21:13:00",
+      "end": "2025-04-15T21:43:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "activePower": {
+          "median_std_before": 654.5836486816406,
+          "median_std_after": 1914.8811193847655,
+          "training_scale": 207.1558540180226,
+          "lower_bound": 0.0
+        },
+        "currentR": {
+          "median_std_before": 6.988506078720093,
+          "median_std_after": 11.92289584159851,
+          "training_scale": 2.095996582393208,
+          "lower_bound": 0.0
+        },
+        "currentS": {
+          "median_std_before": 7.024728298187256,
+          "median_std_after": 11.81022928237915,
+          "training_scale": 2.105108802631398,
+          "lower_bound": 0.0
+        },
+        "currentT": {
+          "median_std_before": 6.855691909790039,
+          "median_std_after": 11.468708639144896,
+          "training_scale": 2.1015574439001403,
+          "lower_bound": 0.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "5(좌측분전반):phase_imbalance-001",
+    "kind": "phase_imbalance",
+    "module": "5(좌측분전반)",
+    "truth": {
+      "start": "2025-04-23T19:07:00",
+      "end": "2025-04-23T19:37:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  },
+  {
+    "probe_id": "5(좌측분전반):relation_break-001",
+    "kind": "relation_break",
+    "module": "5(좌측분전반)",
+    "truth": {
+      "start": "2025-04-18T05:54:00",
+      "end": "2025-04-18T06:24:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "currentR": {
+          "mean_delta": 8.383986329572831,
+          "training_scale": 2.095996582393208,
+          "scale_units": 4.0
+        },
+        "currentS": {
+          "mean_delta": 8.420435210525593,
+          "training_scale": 2.105108802631398,
+          "scale_units": 4.0
+        },
+        "currentT": {
+          "mean_delta": 8.406229775600561,
+          "training_scale": 2.1015574439001403,
+          "scale_units": 4.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores.",
+      "interpretation": "Current-versus-power relationship perturbation; could represent measurement inconsistency."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": true
+  },
+  {
+    "probe_id": "5(좌측분전반):persistent_drift-001",
+    "kind": "persistent_drift",
+    "module": "5(좌측분전반)",
+    "truth": {
+      "start": "2025-04-02T07:32:00",
+      "end": "2025-04-02T08:02:00",
+      "injection_minutes": 30
+    },
+    "severity": {
+      "severity": "moderate, training-scale based and clipped to stay inside original rules",
+      "changes": {
+        "voltageR": {
+          "final_mean_delta": 2.5278123950322,
+          "training_scale": 0.8426041316773999,
+          "final_scale_units": 3.0
+        },
+        "voltageS": {
+          "final_mean_delta": 2.5296448070619437,
+          "training_scale": 0.8432149356873146,
+          "final_scale_units": 2.9999999999999996
+        },
+        "voltageT": {
+          "final_mean_delta": 2.5185146006590533,
+          "training_scale": 0.8395048668863511,
+          "final_scale_units": 3.0
+        }
+      },
+      "feasibility_revision": "2026-10-16: source voltage minima clipped at 210V; fixed direction changed without inspecting model scores."
+    },
+    "notice": "One-minute aggregate synthetic functionality test; not a raw 5-second injection or real-fault accuracy measurement.",
+    "seed": 20261016,
+    "original_direction_feasible_on_same_window": false
+  }
+]

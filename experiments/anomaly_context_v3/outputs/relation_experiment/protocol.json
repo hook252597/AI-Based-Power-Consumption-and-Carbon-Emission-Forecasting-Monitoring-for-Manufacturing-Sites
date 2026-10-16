@@ -1,0 +1,49 @@
+{
+  "created_utc": "2026-10-16T03:35:14.306024+00:00",
+  "sha256": "ea34d13e61ecfefe147bbd311c42d973e5482c566dd64e94f57ddf5360425a2d",
+  "protocol": {
+    "version": 1,
+    "experiment": "relation_residual",
+    "seed": 20261016,
+    "status": "Exploratory follow-up after a source sensor-relation audit; not an untouched final holdout.",
+    "hypothesis_source": "outputs/sensor_relation_audit.json; no results from the four-detector comparison used to choose parameters.",
+    "formula": "activePower_mean = intercept + coefficient * sum(voltage_phase_mean * current_phase_mean), phases R/S/T.",
+    "regression": "Per-equipment ordinary least squares, LinearRegression(fit_intercept=True,n_jobs=1).",
+    "train": [
+      "2024-12-01",
+      "2025-03-01"
+    ],
+    "calibration": "Reuse run_experiment.calibrate with March1-15 absolute residual scores only; budget 0.5/1/2 events per observed equipment day.",
+    "march_check": [
+      "2025-03-16",
+      "2025-04-01"
+    ],
+    "april_development": [
+      "2025-04-01",
+      "2025-04-30"
+    ],
+    "score": "Absolute contemporaneous observed-power minus learned relation-predicted-power residual.",
+    "score_unit": "W under source activePower unit assumption; source specification confirmation remains pending.",
+    "comparison_minutes": "Exactly build_features(frame).valid, including five past complete minutes and midnight/gap resets.",
+    "labels_used": false,
+    "may_used": false,
+    "primary_budget": 1.0,
+    "persistence_minutes": 3,
+    "decision_time": "End of third consecutive flagged complete minute.",
+    "synthetic": "Reuse the same generator, training-only sensor scales, seed, rule-safe paired controls, amended directions and max_per_type=1 per equipment.",
+    "results_interpretation": "Report event counts and flagged-time burden, paired synthetic recall/delay and baseline pre-existing alerts. No real-fault precision/recall claim.",
+    "limitations": [
+      "Contemporaneous cross-sensor consistency is not future forecasting.",
+      "Product of minute means differs from mean of products; aggregation covariance contributes to residual.",
+      "A learned coefficient absorbs source conventions; it is not a verified electrical conversion factor.",
+      "Coherent current and power changes can stay on the relation and be missed.",
+      "Changes in within-minute variability without changed means are intentionally invisible to this relation score.",
+      "Sensor inconsistencies can produce a residual without equipment damage.",
+      "April and source audit are development data; new real data and human-confirmed events remain necessary."
+    ],
+    "original_experiment_modified": false,
+    "dashboard_modified": false,
+    "git_upload": false,
+    "api_calls": 0
+  }
+}

@@ -12,12 +12,10 @@
   ml/outputs/forecast_v2/summary.json               예측 모델 이름·MAE
   (동업자 에이전트 agent_runtime 의 코드·캐시는 사용하지 않는다)
 
-보고서 양식(5절):
-  agent/BasicSafetyReportForm.xlsx   기본 양식(칸 배경색: 청록=auto, 노랑=user, 없음=blank)
-  agent/report_template.json         현재 양식 (자동 생성)
-  agent/report_template_default.json 기본 양식 사본 — reset_report_template 이 여기서 복구
-  agent/agent_state.json             template_asked (앱을 다시 켜도 유지)
-  agent/templates/                   업로드된 양식 원본(내보내기 때 그대로 채운다)
+보고서 양식:
+  agent/BasicSafetyReportForm.xlsx 기본 양식은 읽기 전용이다.
+  변경 양식·업로드 원본·초안은 현재 브라우저 세션에만 보관한다.
+  종합판정은 담당자의 화면 확인 뒤에만 내보낼 수 있다.
 
 모든 도구는 JSON 직렬화 가능한 dict/list를 돌려주고, 실패해도 예외를 밖으로 던지지 않는다.
 """
@@ -46,8 +44,8 @@ FORECAST_PATH = ML / "outputs/agent_data/dashboard_forecast.parquet"
 SUMMARY_PATH = ML / "outputs/forecast_v2/summary.json"
 HOURLY_META_PATH = ML / "outputs/agent_data/dashboard_hourly.json"   # ai_thresholds 포함(같은 스크립트가 생성)
 
-NOW = datetime(2025, 4, 29, 9, 0)   # 고정 기준 시점(대시보드와 동일)
-TODAY = NOW.date()
+NOW = datetime(2025, 4, 30, 0, 0)   # 고정 기준 시점(대시보드와 동일)
+TODAY = (NOW - timedelta(seconds=1)).date()
 WON_PER_KWH = 180.0
 KGCO2_PER_KWH = 0.424
 MODULE = "module(equipment)"
@@ -218,7 +216,7 @@ def _day(d: date, equipment: str | None = None) -> pd.DataFrame:
 def _no_data_note(d: date) -> str:
     period = sensor_period()
     span = f"{period[0]}~{period[1]}" if period else "없음"
-    if d > TODAY or (d == TODAY and NOW.hour == 0):
+    if d >= NOW.date():
         fp = forecast_period()
         hint = f" 전력·요금은 AI 예측({fp[0]}~{fp[1][:10]})으로만 확인할 수 있습니다." if fp and fp[0] <= _iso(d) <= fp[1][:10] else ""
         return f"{d}은(는) 기준 시점({NOW:%Y-%m-%d %H:%M}) 이후라 실측이 없습니다.{hint}"
@@ -266,65 +264,39 @@ def _money(kwh: float | None) -> dict:
 # -----------------------------------------------------------------------------
 # 이상 판정 (시간 단위 집계: 해당 시간 안의 5초 측정 최저값 기준)
 # -----------------------------------------------------------------------------
-def _runs(hours: list[int]) -> list[list[int]]:
-    out: list[list[int]] = []
-    for h in sorted(hours):
-        if out and h == out[-1][-1] + 1:
-            out[-1].append(h)
-        else:
-            out.append([h])
-    return out
+def alert_summary(d: date, thresholds: dict, equipment: str | None = None) -> dict:
+    from monitoring.alert_service import get_alert_summary
+    return get_alert_summary(_iso(d), thresholds=thresholds, equipment=equipment, cutoff=NOW)
 
 
 def _events(d: date, thresholds: dict, equipment: str | None = None) -> tuple[list[dict], list[dict]]:
-    df = _day(d, equipment)
-    rule, ai = [], []
-    if df.empty:
-        return rule, ai
-    ai_th = ai_thresholds()
-    for name, g in df.groupby("equipment", sort=False):
-        g = g.sort_values("hour")
-        for key, (col, label, unit, fam) in ITEMS.items():
-            th = float(thresholds[fam])
-            bad = g[g[col] < th]
-            for run in _runs(bad["hour"].tolist()):
-                part = g[g["hour"].isin(run)]
-                value = float(part[col].min())
-                at = int(part.loc[part[col].idxmin(), "hour"])
-                rule.append({"equipment": name, "item": label, "item_key": key,
-                             "timestamp": f"{d} {run[0]:02d}:00", "end": f"{d} {run[-1] + 1:02d}:00",
-                             "min_at_hour": f"{at:02d}시", "value": round(value, 2), "unit": unit,
-                             "threshold": th, "deviation_pct": round((value - th) / th * 100, 1),
-                             "duration_min": len(run) * 60})
-        for run in _runs(g.loc[g["ai_flags"] > 0, "hour"].tolist()):
-            part = g[g["hour"].isin(run)]
-            ai.append({"equipment": name, "item": "AI 이상탐지", "timestamp": f"{d} {run[0]:02d}:00",
-                       "end": f"{d} {run[-1] + 1:02d}:00", "value": round(float(part["ai_score_max"].max()), 4),
-                       "threshold": ai_th.get(name), "flagged_records": int(part["ai_flags"].sum()),
-                       "duration_min": len(run) * 60})
-    rule.sort(key=lambda e: (e["deviation_pct"], e["timestamp"]))
-    ai.sort(key=lambda e: (-e["flagged_records"], e["timestamp"]))
-    return rule, ai
+    summary = alert_summary(d, thresholds, equipment)
+    return summary.get("rule_events", []), summary.get("ai_events", [])
+
+
+def duration_text(event: dict) -> str:
+    seconds = event.get("duration_seconds")
+    if seconds is None:
+        return "확인 불가 · 이상 기록이 관측된 시간대"
+    seconds = int(seconds)
+    if seconds < 60:
+        return f"{seconds}초"
+    minutes, seconds = divmod(seconds, 60)
+    return f"{minutes}분" + (f" {seconds}초" if seconds else "")
 
 
 def _status(d: date, thresholds: dict) -> dict[str, dict]:
-    """설비별 {status: normal|abnormal|no_data, abnormal_items: [...]}"""
-    df = _day(d)
+    summary = alert_summary(d, thresholds)
+    rows = {row["equipment"]: row for row in summary.get("equipment_rows", [])}
     out = {}
     for _, name in EQUIPMENT_LIST:
-        g = df[df["equipment"] == name] if len(df) else df
-        if g.empty:
-            out[name] = {"status": "no_data", "abnormal_items": []}
-            continue
-        items = []
-        for fam, cols in (("phase_voltage", ["voltageR", "voltageS", "voltageT"]),
-                          ("line_voltage", ["voltageRS", "voltageST", "voltageTR"]),
-                          ("power_factor", ["powerFactorR", "powerFactorS", "powerFactorT"])):
-            if (g[cols] < thresholds[fam]).any().any():
-                items.append(FAMILY_LABEL[fam])
-        if (g["ai_flags"] > 0).any():
-            items.append("AI 이상탐지")
-        out[name] = {"status": "abnormal" if items else "normal", "abnormal_items": items}
+        row = rows.get(name, {})
+        items = sorted({e["item"] for e in summary.get("rule_events", []) if e["equipment"] == name})
+        ai = row.get("ai", {})
+        if ai.get("flagged_records", 0) or ai.get("affected_hours", 0):
+            items.append("AI 탐지")
+        out[name] = {"status": "no_data" if not row.get("data_available") else "abnormal" if items else "normal",
+                     "abnormal_items": items}
     return out
 
 
@@ -440,39 +412,32 @@ def parse_docx(content: bytes) -> dict:
 
 
 class TemplateStore:
-    """report_template.json / report_template_default.json / agent_state.json 관리."""
+    """브라우저 세션에만 양식과 업로드를 보관한다. 공용 파일은 읽기 전용이다."""
 
-    def __init__(self, app_dir: Path = APP_DIR):
+    def __init__(self, app_dir: Path = APP_DIR, state: dict | None = None):
         self.app_dir = Path(app_dir)
-        self.current_path = self.app_dir / "report_template.json"
-        self.default_path = self.app_dir / "report_template_default.json"
-        self.state_path = self.app_dir / "agent_state.json"
-        self.upload_dir = self.app_dir / "templates"
+        self.state = state if state is not None else {}
+        self.data = self.state.setdefault("_agent_templates", {})
 
-    # -- 기본 양식 등록 (앱 시작 시) --------------------------------------
     def ensure_default(self) -> dict:
-        source = self.app_dir / DEFAULT_TEMPLATE_FILE
-        # 양식 파일이나 파싱 규칙이 바뀌면 기본 양식을 다시 만든다
-        digest = (hashlib.sha256(source.read_bytes()).hexdigest() + f":p{PARSER_VERSION}") if source.is_file() else None
-        default = self._read(self.default_path)
-        if default is None or default.get("source_sha256") != digest:
-            parsed = parse_xlsx(source.read_bytes()) if source.is_file() else {"fields": [], "sheet": None}
+        if "default" not in self.data:
+            source = self.app_dir / DEFAULT_TEMPLATE_FILE
+            content = source.read_bytes() if source.is_file() else b""
+            parsed = parse_xlsx(content) if content else {"fields": [], "sheet": None}
             for f in parsed["fields"]:
                 f["required"] = _norm(f["name"]) in DEFAULT_REQUIRED
-            default = {"name": DEFAULT_TEMPLATE_NAME, "is_default": True, "layout": "xlsx",
-                       "source_file": DEFAULT_TEMPLATE_FILE, "source_path": str(source), "source_sha256": digest,
-                       "sheet": parsed["sheet"], "fields": parsed["fields"],
-                       "registered_at": datetime.now().isoformat(timespec="seconds")}
-            self._write(self.default_path, default)
-            if self._read(self.current_path) is None or self._read(self.current_path).get("is_default"):
-                self._write(self.current_path, default)
-        if self._read(self.current_path) is None:
-            self._write(self.current_path, default)
-        return default
+                if _norm(f["name"]) == "종합판정":
+                    f.update(source="user", required=True)
+            self.data["default"] = {"name": DEFAULT_TEMPLATE_NAME, "is_default": True, "layout": "xlsx",
+                "source_file": DEFAULT_TEMPLATE_FILE, "source_path": str(source),
+                "source_sha256": hashlib.sha256(content).hexdigest(), "sheet": parsed["sheet"],
+                "fields": parsed["fields"], "registered_at": datetime.now().isoformat(timespec="seconds")}
+        self.data.setdefault("current", copy.deepcopy(self.data["default"]))
+        return copy.deepcopy(self.data["default"])
 
     def get(self) -> dict:
-        current = self._read(self.current_path)
-        return current if current is not None else self.ensure_default()
+        self.ensure_default()
+        return copy.deepcopy(self.data["current"])
 
     def save(self, fields: list[dict], layout: str = "table", source_file: str | None = None,
              name: str | None = None, source_path: str | None = None, sheet: str | None = None) -> dict:
@@ -483,52 +448,37 @@ class TemplateStore:
                 continue
             source = f.get("source") if f.get("source") in ("auto", "user", "blank", "formula") else classify_by_name(fname)
             item = {k: v for k, v in f.items() if k in ("cell", "kind", "hint", "columns", "rows", "section") and v is not None}
-            item.update(name=fname, source=source, required=bool(f.get("required", False)), kind=f.get("kind") or "field")
+            if _norm(fname) == "종합판정":
+                source = "user"
+            item.update(name=fname, source=source, required=bool(f.get("required", False)) or _norm(fname) == "종합판정", kind=f.get("kind") or "field")
             clean.append(item)
         if not clean:
             raise ValueError("양식 항목이 비어 있습니다.")
         template = {"name": name or (Path(source_file).stem if source_file else "사용자 양식"), "is_default": False,
-                    "layout": layout, "source_file": source_file, "source_path": source_path, "sheet": sheet,
-                    "fields": clean, "registered_at": datetime.now().isoformat(timespec="seconds")}
-        self._write(self.current_path, template)
+            "layout": layout, "source_file": source_file, "source_path": None, "sheet": sheet,
+            "fields": clean, "registered_at": datetime.now().isoformat(timespec="seconds")}
+        if source_path:
+            template["_source_bytes"] = self.data.get("uploads", {}).get(str(source_path))
+        self.data["current"] = template
         self.mark_asked()
-        return template
+        return self.get()
 
     def reset(self) -> dict:
-        default = self._read(self.default_path) or self.ensure_default()
-        self._write(self.current_path, default)
+        self.data["current"] = self.ensure_default()
         self.mark_asked()
-        return default
+        return self.get()
 
     def store_upload(self, filename: str, content: bytes) -> Path:
-        self.upload_dir.mkdir(parents=True, exist_ok=True)
         safe = re.sub(r"[^\w.\-가-힣]", "_", Path(filename).name)
-        path = self.upload_dir / f"{datetime.now():%Y%m%d%H%M%S}_{safe}"
-        path.write_bytes(content)
+        path = Path(hashlib.sha256(content).hexdigest()[:12] + "_" + safe)
+        self.data.setdefault("uploads", {})[str(path)] = bytes(content)
         return path
 
-    # -- 최초 1회 질문 여부(파일에 저장) -----------------------------------
     def template_asked(self) -> bool:
-        return bool((self._read(self.state_path) or {}).get("template_asked"))
+        return bool(self.data.get("template_asked"))
 
     def mark_asked(self) -> None:
-        state = self._read(self.state_path) or {}
-        state["template_asked"] = True
-        self._write(self.state_path, state)
-
-    @staticmethod
-    def _read(path: Path) -> dict | None:
-        try:
-            return json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            return None
-
-    @staticmethod
-    def _write(path: Path, value: dict) -> None:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(path.suffix + ".tmp")
-        tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
-        tmp.replace(path)
+        self.data["template_asked"] = True
 
 
 def _safe_cell_text(value: Any) -> str:
@@ -538,35 +488,63 @@ def _safe_cell_text(value: Any) -> str:
 
 
 def export_xlsx(draft: dict, template: dict) -> bytes:
-    """초안을 Excel로 내보낸다. 원본 xlsx 양식이 있으면 그 칸에 그대로 채운다(디자인 유지)."""
+    """원본 양식의 대표 내역과 누락 없는 전체 별첨을 함께 내보낸다."""
     import openpyxl
+    if not draft.get("ready_to_export") or not draft.get("judgment_confirmed"):
+        raise ValueError("필수 입력과 담당자 종합판정 확인을 완료한 뒤 다운로드하세요.")
     src = template.get("source_path")
-    rows = draft.get("rows", [])
-    if src and Path(src).is_file() and str(src).lower().endswith(".xlsx"):
-        wb = openpyxl.load_workbook(src)
+    content = template.get("_source_bytes")
+    if template.get("layout") == "xlsx" and (content or src and Path(src).is_file()):
+        wb = openpyxl.load_workbook(io.BytesIO(content) if content else src)
         ws = wb[template["sheet"]] if template.get("sheet") in wb.sheetnames else wb.active
-        for row in rows:
-            if row.get("source") in ("blank", "formula") or row.get("value") in (None, ""):
+        for row in draft.get("rows", []):
+            if row.get("source") in ("blank", "formula"):
+                if row.get("source") == "formula" and "계약전력대비" in _norm(row["name"]) and row.get("cell"):
+                    ws[row["cell"]] = None  # 최대수요전력이 없으므로 0%로 오해시키지 않음
                 continue
             if row.get("kind") == "table":
-                for cells, record in zip(row.get("rows") or [], row.get("value") or []):
+                records = row.get("value") or []
+                for i, cells in enumerate(row.get("rows") or []):
+                    record = records[i] if i < len(records) else {}
                     for col, coord in cells.items():
-                        if record.get(col) not in (None, ""):
-                            ws[coord] = _safe_cell_text(record[col])
+                        value = record.get(col)
+                        ws[coord] = _safe_cell_text(value) if value not in (None, "") else None
             elif row.get("cell"):
-                ws[row["cell"]] = _safe_cell_text(row["value"])
+                value = row.get("value")
+                ws[row["cell"]] = _safe_cell_text(value) if value not in (None, "") else None
     else:
         wb = openpyxl.Workbook()
         ws = wb.active
         ws.title = "보고서"
         ws.append([template.get("name", "보고서")])
-        ws.append([f"{draft.get('date')} · {draft.get('equipment')}"])
-        ws.append([])
-        for row in rows:
-            value = row.get("value")
-            if row.get("kind") == "table" and isinstance(value, list):
-                value = "\n".join(" · ".join(f"{k} {v}" for k, v in rec.items()) for rec in value)
-            ws.append([row["name"], "" if row.get("source") == "blank" else _safe_cell_text(value or "")])
+        for row in draft.get("rows", []):
+            if row.get("kind") != "table":
+                ws.append([row["name"], "" if row.get("source") == "blank" else _safe_cell_text(row.get("value") or "")])
+    evidence = wb.create_sheet("집계 기준 및 확인")
+    evidence.append(["보고서 대상", f"{draft.get('date')} · {draft.get('equipment')}"])
+    evidence.append(["담당자 확정 종합판정", draft.get("judgment")])
+    evidence.append(["판정 확인 시각", draft.get("judgment_confirmed_at")])
+    evidence.append(["집계 근거", draft.get("alert_basis")])
+    evidence.append(["구간 의미", "설비·항목별 연속 탐지 구간이며 고장 사건 수가 아닙니다. 시간대 집계만 있으면 지속 시간은 확인 불가입니다."])
+    evidence.append(["주의", "설정 기준과 AI 탐지는 별개입니다. 기준 이탈은 실제 고장이나 위험을 확정하지 않습니다."])
+    for row in draft.get("rows", []):
+        if row.get("kind") == "table":
+            records = row.get("value") or []
+            capacity = len(row.get("rows") or [])
+            evidence.append([row["name"], f"본문 대표 {min(capacity, len(records))}개 / 전체 내역 {len(records)}개. 전체 내역 별첨을 확인하세요."])
+    for title, events in (("설정 기준 전체 내역", draft.get("rule_events", [])), ("AI 탐지 전체 내역", draft.get("ai_events", []))):
+        sheet = wb.create_sheet(title)
+        sheet.append(["설비", "항목", "시작 또는 관측 시간대", "종료", "측정값", "단위", "설정 기준", "탐지 표본 수", "연속 구간 지속 시간", "집계 근거"])
+        for e in events:
+            sheet.append([_safe_cell_text(e.get("equipment", "")), _safe_cell_text(e.get("item", "")),
+                str(e.get("timestamp", "")), str(e.get("end", "")), e.get("value"), e.get("unit"), e.get("threshold"),
+                e.get("flagged_records"), duration_text(e), e.get("basis")])
+        sheet.freeze_panes = "A2"
+        sheet.auto_filter.ref = sheet.dimensions
+        for col in sheet.columns:
+            sheet.column_dimensions[col[0].column_letter].width = 23
+    evidence.column_dimensions["A"].width = 29
+    evidence.column_dimensions["B"].width = 100
     buf = io.BytesIO()
     wb.save(buf)
     return buf.getvalue()
@@ -580,7 +558,7 @@ class AgentTools:
 
     def __init__(self, state: dict, templates: TemplateStore | None = None):
         self.state = state
-        self.templates = templates or TemplateStore()
+        self.templates = templates or TemplateStore(state=state)
         state.setdefault("view_date", _iso(TODAY))
         state.setdefault("selected_equipment", EQUIPMENT_LIST[0][1])
         state.setdefault("thresholds", dict(DEFAULT_THRESHOLDS))
@@ -623,27 +601,23 @@ class AgentTools:
     def get_anomalies(self, date: str | None = None, equipment: str | None = None) -> dict:
         d = self._date(date)
         eq = resolve_equipment(equipment)
-        if _day(d, eq).empty:
-            return {"date": _iso(d), "equipment": eq or "전체", "count": 0, "items": [], "ai_count": 0, "ai_items": [],
-                    "data_available": False, "note": _no_data_note(d)}
-        rule, ai = _events(d, self.thresholds, eq)
-        per_eq: dict[str, dict] = {}
-        for e in rule:
-            per_eq.setdefault(e["equipment"], {"rule_events": 0, "ai_events": 0, "items": set()})
-            per_eq[e["equipment"]]["rule_events"] += 1
-            per_eq[e["equipment"]]["items"].add(e["item"])
-        for e in ai:
-            per_eq.setdefault(e["equipment"], {"rule_events": 0, "ai_events": 0, "items": set()})
-            per_eq[e["equipment"]]["ai_events"] += 1
-        summary = [{"equipment": k, "rule_events": v["rule_events"], "ai_events": v["ai_events"],
-                    "items": sorted(v["items"])} for k, v in per_eq.items()]
-        partial = d == TODAY
-        return {"date": _iso(d), "equipment": eq or "전체", "count": len(rule), "items": rule[:20],
-                "ai_count": len(ai), "ai_items": ai[:10], "affected_equipment": summary,
-                "data_available": True, "thresholds": self.thresholds,
-                "basis": "시간 단위 집계 — 그 시간 안의 5초 측정 최저값이 임계치 미만이면 이상. 지속시간은 해당 시간 수 × 60분(최대치)",
-                "note": (f"오늘은 기준 시점 {NOW:%H:%M}까지의 기록입니다. " if partial else "")
-                        + "AI 이상탐지는 규칙 임계치와 별개인 고정 모델 판정이며 고장 원인을 확정하지 않습니다."}
+        result = alert_summary(d, self.thresholds, eq)
+        rule, ai = result.get("rule_events", []), result.get("ai_events", [])
+        affected = []
+        for row in result.get("equipment_rows", []):
+            r, a = row.get("rule", {}), row.get("ai", {})
+            if r.get("affected_hours", 0) or a.get("affected_hours", 0):
+                affected.append({"equipment": row["equipment"], "rule_events": r.get("event_count"),
+                    "ai_events": a.get("event_count"), "rule_affected_hours": r.get("affected_hours", 0),
+                    "ai_affected_hours": a.get("affected_hours", 0),
+                    "items": sorted({e["item"] for e in rule if e["equipment"] == row["equipment"]})})
+        return {"date": _iso(d), "equipment": eq or "전체", "count": result.get("rule", {}).get("event_count"),
+            "ai_count": result.get("ai", {}).get("event_count"), "rule": result.get("rule", {}), "ai": result.get("ai", {}),
+            "items": rule[:20], "ai_items": ai[:10], "affected_equipment": affected,
+            "data_available": result.get("data_available", False), "thresholds": self.thresholds,
+            "basis": result.get("basis"), "note": result.get("note", ""),
+            "shown_rule_items": min(len(rule), 20), "shown_ai_items": min(len(ai), 10),
+            "event_count_note": "발생 구간은 설비·항목별 연속 표본이며 고장 사건 수가 아닙니다. 시간대만 있는 경우 구간 수·지속 시간은 확인 불가입니다."}
 
     # 3
     def get_measurements(self, date: str | None = None, equipment: str | None = None, item: str = "phase_voltage_R") -> dict:
@@ -664,7 +638,7 @@ class AgentTools:
                 "series": series, "min": round(float(g.loc[idx, col]), 2), "min_hour": int(g.loc[idx, "hour"]),
                 "under_threshold_hours": [int(h) for h in g.loc[g[col] < th, "hour"]],
                 "data_available": True, "basis": "시간별 값 = 그 시간 안의 5초 측정 최저값",
-                "note": f"오늘은 기준 시점 {NOW:%H:%M}까지의 기록입니다." if d == TODAY else ""}
+                "note": f"오늘은 기준 시점 {NOW:%H:%M}까지의 기록입니다." if d == NOW.date() and NOW.hour else ""}
 
     # 4
     def get_power(self, date: str | None = None, equipment: str | None = None, granularity: str = "hour") -> dict:
@@ -694,7 +668,7 @@ class AgentTools:
                 "hours": int(len(per_hour)), "cost_rate_krw_per_kwh": WON_PER_KWH, "co2_factor_kg_per_kwh": KGCO2_PER_KWH,
                 "data_kind": kind, "data_available": True,
                 "note": ("AI 예측값입니다(실측 아님). " if kind == "forecast" else "")
-                        + (f"오늘은 기준 시점 {NOW:%H:%M}까지의 실측입니다." if d == TODAY and kind == "actual" else "")}
+                        + (f"오늘은 기준 시점 {NOW:%H:%M}까지의 실측입니다." if d == NOW.date() and NOW.hour and kind == "actual" else "")}
 
     # 5
     def get_power_ranking(self, date: str | None = None) -> dict:
@@ -711,7 +685,7 @@ class AgentTools:
                   "share_pct": round(float(v) / total * 100, 2) if total else None} for i, (name, v) in enumerate(per.items())]
         return {"date": _iso(d), "total_kwh": round(total, 3), "items": items, "data_kind": kind, "data_available": True,
                 "note": ("AI 예측 기준 순위입니다. " if kind == "forecast" else "")
-                        + (f"오늘은 {NOW:%H:%M}까지의 실측 기준입니다." if d == TODAY and kind == "actual" else "")}
+                        + (f"오늘은 {NOW:%H:%M}까지의 실측 기준입니다." if d == NOW.date() and NOW.hour and kind == "actual" else "")}
 
     # 6
     def get_forecast(self, month: str | None = None, equipment: str | None = None) -> dict:
@@ -768,8 +742,8 @@ class AgentTools:
         def abnormal(th):
             return {n for n, s in _status(d, th).items() if s["status"] == "abnormal"}
         available = not _day(d).empty
-        b_rule, _ = _events(d, before)
-        a_rule, _ = _events(d, after)
+        b_summary = alert_summary(d, before)
+        a_summary = alert_summary(d, after)
         was, now = (abnormal(before), abnormal(after)) if available else (set(), set())
         change = ", ".join(f"{FAMILY_LABEL[k]} {before[k]:g} → {after[k]:g}" for k in after if after[k] != before[k])
         entry = {"at": datetime.now().strftime("%Y-%m-%d %H:%M"), "by": "사용자", "change": change,
@@ -777,8 +751,8 @@ class AgentTools:
         self.state["thresholds"] = after
         self.state.setdefault("threshold_history", []).append(entry)
         return {"before": before, "after": after, "changed": True, "analysis_date": _iso(d), "data_available": available,
-                "anomaly_count_before": len(b_rule) if available else None,
-                "anomaly_count_after": len(a_rule) if available else None,
+                "anomaly_count_before": b_summary.get("rule", {}).get("event_count") if available else None,
+                "anomaly_count_after": a_summary.get("rule", {}).get("event_count") if available else None,
                 "newly_abnormal": sorted(now - was) if available else None,
                 "no_longer_abnormal": sorted(was - now) if available else None,
                 "log_entry": entry, "note": "규칙 임계치만 바꿨습니다. AI 판정은 바뀌지 않습니다."}
@@ -818,36 +792,93 @@ class AgentTools:
     # 12
     def create_report(self, date: str | None = None, equipment: str | None = None,
                       action_taken: str = "", extra_fields: Any = None) -> dict:
-        d = self._date(date)
         draft = self.state.get("report_draft") or {}
-        eq = resolve_equipment(equipment) or (draft.get("equipment") if draft else None) \
-            or resolve_equipment(self.state.get("selected_equipment"))
-        same = draft and draft.get("date") == _iso(d) and draft.get("equipment") == eq
+        d = self._date(date or draft.get("date"))
+        eq = resolve_equipment(equipment) or draft.get("equipment") or resolve_equipment(self.state.get("selected_equipment"))
+        same = bool(draft and draft.get("date") == _iso(d) and draft.get("equipment") == eq)
+        if draft and not same:
+            return {"error": "작성 중인 보고서의 대상이 다릅니다. 기존 초안을 유지했습니다. 화면의 '현재 선택으로 새 보고서'에서 확인 후 시작하세요.",
+                    "target_conflict": True, "draft_date": draft.get("date"), "draft_equipment": draft.get("equipment")}
         user_values = dict(draft.get("user_values", {})) if same else {}
         template = self.templates.get()
         names = {_norm(f["name"]): f["name"] for f in template.get("fields", []) if f["source"] == "user"}
-        unknown = []
         extras = extra_fields or {}
         if isinstance(extras, list):
             extras = {str(r.get("name")): r.get("value") for r in extras if isinstance(r, dict)}
+        unknown = [str(k) for k in extras if _norm(k) not in names] if isinstance(extras, dict) else []
+        if unknown:
+            return {"error": "양식에서 찾지 못한 항목입니다. 항목 이름을 확인하세요.", "unknown_fields": unknown,
+                    "allowed_fields": list(names.values())}
         for key, value in (extras.items() if isinstance(extras, dict) else []):
-            target = names.get(_norm(key))
-            if target is None:
-                unknown.append(str(key))
-            elif value not in (None, ""):
+            target = names[_norm(key)]
+            if value is None or not str(value).strip():
+                user_values.pop(target, None)
+            else:
                 user_values[target] = str(value)
         if action_taken:
             action_field = next((n for k, n in names.items() if "조치내용" in k), None)
             if action_field:
                 user_values[action_field] = str(action_taken)
-        self.state["report_draft"] = self._build_draft(d, eq, user_values, template, action_taken or draft.get("action_taken", ""))
-        result = copy.deepcopy(self.state["report_draft"])
-        result["unknown_fields"] = unknown
+        action_field = next((n for k, n in names.items() if "조치내용" in k), None)
+        action = user_values.get(action_field, "") if action_field else (action_taken or draft.get("action_taken", ""))
+        new_draft = self._build_draft(d, eq, user_values, template, action)
+        new_draft["revision"] = int(draft.get("revision", 0)) + 1
+        self.state["report_draft"] = new_draft
+        self._set_export_state()
+        result = copy.deepcopy(new_draft)
+        result.pop("rule_events", None)
+        result.pop("ai_events", None)
+        result["unknown_fields"] = []
         result["template_asked"] = self.templates.template_asked()
         for row in result["rows"]:
             row.pop("rows", None)
             row.pop("cell", None)
+            if isinstance(row.get("value"), list):
+                row["total_count"] = len(row["value"])
+                row["value"] = row["value"][:3]
+                row["shown_count"] = len(row["value"])
         return result
+
+    def start_new_report(self, date: str | None = None, equipment: str | None = None) -> dict:
+        """사용자가 화면에서 새 초안을 선택했을 때만 호출한다. 모델 도구에는 노출하지 않는다."""
+        d = self._date(date)
+        eq = resolve_equipment(equipment) or resolve_equipment(self.state.get("selected_equipment"))
+        previous = self.state.get("report_draft")
+        if previous:
+            self.state["previous_report_draft"] = copy.deepcopy(previous)
+        self.state.pop("report_draft", None)
+        return self.create_report(_iso(d), eq)
+
+    def confirm_judgment(self, judgment: str) -> dict:
+        """화면의 담당자 확인 버튼 전용. 모델 호출 가능한 도구 목록에 포함하지 않는다."""
+        if judgment not in ("적합", "추가 점검 필요", "조치 후 재확인 필요"):
+            raise ValueError("종합판정을 선택하세요.")
+        draft = self.state.get("report_draft")
+        if not draft:
+            raise ValueError("보고서 초안을 먼저 시작하세요.")
+        draft["judgment"] = judgment
+        draft["judgment_confirmed"] = True
+        draft["judgment_confirmed_at"] = datetime.now().isoformat(timespec="seconds")
+        for row in draft["rows"]:
+            if _norm(row["name"]) == "종합판정":
+                row["value"] = judgment
+                draft["user_values"][row["name"]] = judgment
+        self._set_export_state()
+        return {"confirmed": True, "ready_to_export": draft["ready_to_export"]}
+
+    def _set_export_state(self) -> None:
+        draft = self.state.get("report_draft")
+        if not draft:
+            return
+        missing = [r["name"] for r in draft["rows"] if r.get("required") and r.get("source") == "user" and not str(r.get("value") or "").strip()]
+        blockers = missing + list(draft.get("required_auto_missing", []))
+        if not draft.get("judgment_confirmed"):
+            blockers.append("담당자 종합판정 확인")
+        if not draft.get("data_available"):
+            blockers.append("대상 날짜의 실측 자료 확인")
+        draft["missing_user_fields"] = missing
+        draft["export_blockers"] = list(dict.fromkeys(blockers))
+        draft["ready_to_export"] = not blockers
 
     # -- 보고서 초안 ------------------------------------------------------
     def _refresh_draft(self) -> None:
@@ -856,6 +887,8 @@ class AgentTools:
             d = _parse_date(draft["date"])
             self.state["report_draft"] = self._build_draft(d, draft["equipment"], draft.get("user_values", {}),
                                                            self.templates.get(), draft.get("action_taken", ""))
+            self.state["report_draft"]["revision"] = int(draft.get("revision", 0)) + 1
+            self._set_export_state()
 
     def _context(self, d: date, eq: str | None) -> dict:
         g = _day(d, eq)
@@ -872,9 +905,10 @@ class AgentTools:
             p = self.get_power(_iso(day), eq, "day")
             return p if p.get("data_available") and p.get("data_kind") == "actual" else None
         prev_day = (pd.Timestamp(d) - pd.DateOffset(months=1)).date()
-        rule, ai = _events(d, th, eq)
+        summary = alert_summary(d, th, eq)
+        rule, ai = summary.get("rule_events", []), summary.get("ai_events", [])
         return {"date": d, "equipment": eq, "meas": meas, "power": power(d), "prev": power(prev_day),
-                "events": rule, "ai_events": ai}
+                "events": rule, "ai_events": ai, "alert_summary": summary}
 
     def _auto_value(self, field: dict, ctx: dict) -> Any:
         name = _norm(field["name"])
@@ -882,10 +916,10 @@ class AgentTools:
         suffix = suffix.rstrip(")")
         if field.get("kind") == "table":
             out = []
-            for e in ctx["events"][: max(1, len(field.get("rows") or [1, 1, 1, 1]))]:
+            for e in ctx["events"]:
                 out.append({"발생 일시": e["timestamp"], "이상 항목": f"{e['item']}", "측정값": f"{e['value']} {e['unit']}",
-                            "기준값": f"{e['threshold']:g} {e['unit']}", "편차": f"{e['deviation_pct']}%",
-                            "지속 시간": f"약 {e['duration_min'] // 60}시간"})
+                            "기준값": f"{e['threshold']:g} {e['unit']}", "편차": f"{e.get('deviation_pct', round((e['value'] - e['threshold']) / e['threshold'] * 100, 1))}%",
+                            "지속 시간": duration_text(e)})
             return out or None
         if re.fullmatch(r"(설비명|설비|대상설비|점검대상설비|장비명)", base):
             return ctx["equipment"]
@@ -906,8 +940,8 @@ class AgentTools:
             return f"{p['total_cost_krw']:,.0f}" if p else None
         if re.search(r"탄소", base):
             return f"{p['total_co2_kg']:,.1f}" if p else None
-        if re.search(r"최대수요전력", base):
-            return f"{p['peak_hour_kwh']:,.1f}" if p else None   # 시간 평균 기준
+        if re.search(r"최대수요전력|계약전력", base):
+            return None  # 계약전력·최대수요전력의 측정 근거가 없음
         first = ctx["events"][0] if ctx["events"] else None
         if re.search(r"발생일시", base):
             return first["timestamp"] if first else None
@@ -918,9 +952,9 @@ class AgentTools:
         if re.search(r"기준값|임계", base):
             return f"{first['threshold']:g} {first['unit']}" if first else None
         if re.search(r"편차", base):
-            return f"{first['deviation_pct']}%" if first else None
+            return f"{first.get('deviation_pct', round((first['value'] - first['threshold']) / first['threshold'] * 100, 1))}%" if first else None
         if re.search(r"지속시간", base):
-            return f"약 {first['duration_min'] // 60}시간" if first else None
+            return duration_text(first) if first else None
         if re.search(r"점검일|일자|날짜", base):
             return _iso(ctx["date"])
         return None
@@ -948,7 +982,10 @@ class AgentTools:
         return {"date": _iso(d), "equipment": eq, "template_name": template.get("name"),
                 "is_default_template": template.get("is_default", False), "rows": rows, "user_values": user_values,
                 "action_taken": action_taken, "missing_user_fields": missing_user, "missing_auto_fields": missing_auto,
-                "ready_to_export": not missing_user and not required_auto_missing,
+                "ready_to_export": False, "required_auto_missing": required_auto_missing,
+                "export_blockers": missing_user + required_auto_missing + ["담당자 종합판정 확인"],
+                "rule_events": ctx["events"], "ai_events": ctx["ai_events"], "alert_basis": ctx["alert_summary"].get("basis"),
+                "judgment_confirmed": False, "judgment": None,
                 "data_available": not _day(d, eq).empty,
                 "note": "" if not _day(d, eq).empty else _no_data_note(d)}
 

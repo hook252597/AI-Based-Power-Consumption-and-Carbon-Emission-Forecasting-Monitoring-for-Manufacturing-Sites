@@ -1,0 +1,98 @@
+{
+  "created_utc": "2026-10-16T03:28:37.469078+00:00",
+  "reason": "Minute voltage minima are frequently clipped at the existing 210 V lower bound, so originally downward synthetic changes cannot satisfy the predeclared within-rule condition. This is a source-data feasibility amendment, not detector-outcome tuning.",
+  "model_scores_inspected": false,
+  "score_thresholds_changed": false,
+  "model_training_changed": false,
+  "source_evidence": {
+    "module": "1(PM-3)",
+    "period": "April 2025",
+    "voltageR_min_minimum": 210.0,
+    "voltageR_min_mean": 210.7672882080078,
+    "voltageR_min_at_210_fraction": 0.0064174708460046455
+  },
+  "frozen_alternative_directions": {
+    "level_shift": "R/S/T voltage increase at training-scale based magnitude, below 300 V.",
+    "persistent_drift": "R/S/T voltage gradual increase, below 300 V.",
+    "phase_imbalance": "Only R-phase voltage increases; S/T unchanged.",
+    "volatility_increase": "Active power and three phase currents receive larger within-minute standard deviation, with feasible symmetric min/max and nonnegative values.",
+    "relation_break": "Unchanged current-versus-power relationship perturbation."
+  },
+  "candidate_limit_per_equipment_kind": 500,
+  "repeated_failure_passes": 0,
+  "original_direction_rejections_are_counted": true,
+  "same_window_baseline_unchanged": true,
+  "notice": "Still one-minute aggregate functionality tests only; not raw 5-second injections or actual-fault performance.",
+  "pm3_generation_seconds": 0.418,
+  "pm3_generation_audit": {
+    "seed": 20261016,
+    "candidate_limit_per_equipment_kind": 500,
+    "model_scores_inspected": false,
+    "thresholds_modified": false,
+    "feasibility_revision": "upward voltage / R-phase-only increase / power-current volatility",
+    "by_kind": {
+      "level_shift": {
+        "requested": 1,
+        "generated": 1,
+        "candidate_attempts": 1,
+        "original_direction_rejected": 1,
+        "original_direction_feasible": 0,
+        "revised_injection_rejected": 0,
+        "invalid_baseline_rejected": 0,
+        "no_eligible_equipment": false,
+        "skipped": 0
+      },
+      "volatility_increase": {
+        "requested": 1,
+        "generated": 1,
+        "candidate_attempts": 77,
+        "original_direction_rejected": 77,
+        "original_direction_feasible": 0,
+        "revised_injection_rejected": 76,
+        "invalid_baseline_rejected": 0,
+        "no_eligible_equipment": false,
+        "skipped": 0
+      },
+      "phase_imbalance": {
+        "requested": 1,
+        "generated": 1,
+        "candidate_attempts": 1,
+        "original_direction_rejected": 1,
+        "original_direction_feasible": 0,
+        "revised_injection_rejected": 0,
+        "invalid_baseline_rejected": 0,
+        "no_eligible_equipment": false,
+        "skipped": 0
+      },
+      "relation_break": {
+        "requested": 1,
+        "generated": 1,
+        "candidate_attempts": 1,
+        "original_direction_rejected": 0,
+        "original_direction_feasible": 1,
+        "revised_injection_rejected": 0,
+        "invalid_baseline_rejected": 0,
+        "no_eligible_equipment": false,
+        "skipped": 0
+      },
+      "persistent_drift": {
+        "requested": 1,
+        "generated": 1,
+        "candidate_attempts": 1,
+        "original_direction_rejected": 1,
+        "original_direction_feasible": 0,
+        "revised_injection_rejected": 0,
+        "invalid_baseline_rejected": 0,
+        "no_eligible_equipment": false,
+        "skipped": 0
+      }
+    }
+  },
+  "generated_kinds": [
+    "level_shift",
+    "volatility_increase",
+    "phase_imbalance",
+    "relation_break",
+    "persistent_drift"
+  ]
+}

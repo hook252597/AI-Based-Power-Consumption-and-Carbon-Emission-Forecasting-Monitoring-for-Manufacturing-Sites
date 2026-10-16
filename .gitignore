@@ -230,3 +230,7 @@ ml/outputs/agent_data/*
 !ml/outputs/agent_data/dashboard_hourly.json
 !ml/outputs/agent_data/dashboard_forecast.parquet
 !ml/outputs/agent_data/dashboard_forecast.json
+
+# Verified April five-second event intervals for local review and future deployment
+!ml/outputs/agent_data/alert_events.parquet
+!ml/outputs/agent_data/alert_events.json
