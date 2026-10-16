@@ -487,6 +487,146 @@ def _safe_cell_text(value: Any) -> str:
     return "'" + s if s[:1] in ("=", "+", "-", "@") else s
 
 
+def ai_notification_snapshot(day: str, equipment: str | None, policy: dict | None = None) -> dict:
+    """Keep notification evidence separate from immutable model detections."""
+    from monitoring.ai_notifications import get_ai_notifications
+    result = get_ai_notifications(day, equipment=equipment, policy=policy, cutoff=NOW)
+    return copy.deepcopy({key: result.get(key) for key in (
+        "status", "data_available", "policy", "policy_version", "summary", "coverage", "notifications", "note")})
+
+
+
+SENSOR_KINDS = {"voltage_severe": "전압 단발 큰 변화", "voltage_sustained": "전압 범위 이탈 지속",
+                "pf_sharp": "역률 급락", "pf_sustained": "역률 낮은 상태 지속"}
+SENSOR_COUNT_KEYS = ("original_event_count", "ai_record_count", "event_count", "group_count",
+                     "voltage_severe_count", "voltage_sustained_count", "pf_sharp_count", "pf_sustained_count")
+
+
+def sensor_insight_snapshot(day: str, equipment: str | None, policy: dict | None = None,
+                            context: dict | None = None) -> dict:
+    """Freeze selected sensor evidence without replacing original model records."""
+    from monitoring.sensor_insights import get_sensor_insights, normalize_policy
+    eq = resolve_equipment(equipment) if equipment else None
+    if equipment and eq is None:
+        raise ValueError("센서 점검 정보의 설비를 확인할 수 없습니다.")
+    selected = str(day)[:10]
+    context = context or {}
+    context_dates = [str(context[k])[:10] for k in ("day", "date") if context.get(k)]
+    try:
+        same_policy = policy is None or normalize_policy(context.get("policy")) == normalize_policy(policy)
+    except (ValueError, TypeError):
+        same_policy = False
+    from_selection = bool(same_policy and eq and context_dates and all(x == selected for x in context_dates)
+        and resolve_equipment(context.get("equipment")) == eq
+        and isinstance(context.get("policy"), dict) and isinstance(context.get("summary"), dict)
+        and isinstance(context.get("events"), list) and isinstance(context.get("groups"), list))
+    if from_selection:
+        row = copy.deepcopy(context["summary"])
+        context_available = bool(row.get("data_available")) and context.get("data_available", True) and context.get("status", "ok") == "ok"
+        result = {"status": "ok" if context_available else "unavailable",
+            "data_available": bool(context_available), "day": selected,
+            "policy": copy.deepcopy(context["policy"]), "summary": row,
+            "per_equipment": [{**row, "equipment": eq}], "events": context["events"], "groups": context["groups"],
+            "coverage": context.get("coverage", {}), "source": context.get("source", {}),
+            "note": (context.get("note") or "") + " 화면에서 선택한 센서 점검 정보와 조건을 초안에 고정했습니다."}
+    else:
+        result = get_sensor_insights(selected, policy=policy, cutoff=NOW)
+    per = [copy.deepcopy(row) for row in result.get("per_equipment", [])
+           if eq is None or resolve_equipment(row.get("equipment")) == eq]
+    available = bool(result.get("data_available"))
+    counts = copy.deepcopy(result.get("summary") or {})
+    if eq:
+        available = available and bool(per and per[0].get("data_available"))
+        counts = {key: per[0].get(key) if per else None for key in SENSOR_COUNT_KEYS}
+    if not available:
+        counts = dict.fromkeys(SENSOR_COUNT_KEYS)
+    events = [copy.deepcopy(row) for row in result.get("events", [])
+              if available and (eq is None or resolve_equipment(row.get("equipment")) == eq)]
+    groups = [copy.deepcopy(row) for row in result.get("groups", [])
+              if available and (eq is None or resolve_equipment(row.get("equipment")) == eq)]
+    coverage = copy.deepcopy(result.get("coverage") or {})
+    if eq:
+        coverage["equipment"] = eq
+        coverage["observed_records"] = per[0].get("observed_records") if per else None
+    return {"snapshot_type": "sensor_insights_v1", "status": "ok" if available else "unavailable",
+        "data_available": available, "day": selected, "date": selected, "equipment": eq or "전체",
+        "policy": copy.deepcopy(result.get("policy") or policy or {}), "summary": counts,
+        "per_equipment": per, "events": events, "groups": groups, "coverage": coverage,
+        "source": copy.deepcopy(result.get("source") or {}), "captured_from": "dashboard_selection" if from_selection else "verified_sensor_cache",
+        "note": (result.get("note") or "") + " 전압은 기본 220V 가정의 실험용 정보입니다. 실제 정격·안전 기준 또는 고장을 확정하지 않습니다. "
+        "센서 구간 지속 시간과 같은 설비·항목의 정보 묶음 시간 범위는 다릅니다. 원래 AI 탐지 기록은 별도로 모두 보존합니다."}
+
+
+def compact_sensor_snapshot(snapshot: dict | None, limit: int = 12) -> dict | None:
+    """Bound tool copies only; report state and workbook keep every evidence row."""
+    if not snapshot:
+        return snapshot
+    result = copy.deepcopy(snapshot)
+    for key, singular in (("events", "event"), ("groups", "group")):
+        rows = result.get(key) or []
+        total_key = f"total_{singular}_count"
+        result[total_key] = max(result.get(total_key) or 0, len(rows)) if result.get("data_available") else None
+        result[f"shown_{singular}_count"] = min(limit, len(rows))
+        result[key] = rows[:limit]
+        for row in result[key]:
+            for ids in ("source_ai_event_ids", "trigger_ai_event_ids", "event_ids"):
+                if isinstance(row.get(ids), list):
+                    row[f"total_{ids}"] = max(row.get(f"total_{ids}") or 0, len(row[ids]))
+                    row[ids] = row[ids][:6]
+                    row[f"shown_{ids}"] = len(row[ids])
+    result["detail_note"] = "전체 건수는 summary, 대표 목록은 events/groups입니다. 전체 내역은 화면·보고서 별첨에 있습니다."
+    return result
+
+
+def _sensor_item_label(item: str) -> str:
+    for col, label, unit, family in ITEMS.values():
+        if col == item:
+            return label
+    return item
+
+
+def _sensor_unit(item: str) -> str:
+    return "V" if str(item).startswith("voltage") else "%" if str(item).startswith("powerFactor") else ""
+
+
+def _export_sensor_insights(wb, evidence, snapshot: dict) -> None:
+    summary = snapshot.get("summary") or {}
+    available = snapshot.get("data_available")
+    evidence.append(["센서 점검 정보", "원래 AI 탐지와 별도인 실험용 센서 정보입니다. 실제 알림 발송·고장 판정이 아닙니다."])
+    evidence.append(["센서 정보 자료 상태", snapshot.get("status")])
+    evidence.append(["초안 생성 당시 센서 조건", json.dumps(snapshot.get("policy"), ensure_ascii=False)])
+    evidence.append(["센서 정보 구간 수", summary.get("event_count") if available else "확인 불가"])
+    evidence.append(["센서 정보 묶음 수", summary.get("group_count") if available else "확인 불가"])
+    evidence.append(["전압 가정", "220V를 가정한 실험 조건이며 실제 정격·허용 범위는 확인이 필요합니다."])
+    evidence.append(["구간 시간과 묶음 시간", "구간 지속 시간은 같은 센서 조건의 실제 관측 시간입니다. 같은 설비·항목·유형·방향을 시간 간격으로 묶으며 묶음 사이 공백은 지속 시간에 더하지 않습니다. 첫~마지막 조건 충족 범위는 연속 이상 시간이나 설비 중단 시간이 아닙니다."])
+    evidence.append(["판단 당시와 사후 관측", "조건 충족 시각의 값·지속 시간·AI 근거와 이후 관측까지 포함한 최저/최고·총 지속 시간·연관 AI 근거를 구분합니다."])
+    sheet = wb.create_sheet("센서 점검 정보")
+    sheet.append(["설비", "센서", "정보 유형", "방향", "센서 구간 시작", "센서 구간 종료", "첫 조건 충족 시각",
+        "조건 충족 시 값", "이후 포함 최저/최고", "단위", "관측된 구간 지속 시간(초)", "조건 충족 당시 지속 시간(초)",
+        "급락 시작 전 기준선(%, 구간 중 고정)", "역률 하락 폭(%p)", "판단 시 AI 점수", "판단 시 AI 근거 ID", "이후 포함 AI 근거 ID"])
+    for row in snapshot.get("events") or []:
+        sheet.append([_safe_cell_text(row.get("equipment", "")), _safe_cell_text(_sensor_item_label(row.get("item", ""))),
+            SENSOR_KINDS.get(row.get("kind"), row.get("kind")), {"low": "낮음", "high": "높음"}.get(row.get("direction"), row.get("direction")),
+            row.get("start"), row.get("end"), row.get("trigger_at"), row.get("value_at_trigger"), row.get("extreme_value"),
+            _sensor_unit(row.get("item", "")), row.get("duration_seconds"), row.get("duration_at_trigger_seconds"),
+            row.get("baseline"), row.get("drop_pp"), row.get("ai_score"),
+            _safe_cell_text(", ".join(row.get("trigger_ai_event_ids") or [])), _safe_cell_text(", ".join(row.get("source_ai_event_ids") or []))])
+    grouped = wb.create_sheet("센서 정보 묶음")
+    grouped.append(["설비", "센서", "정보 유형", "방향", "첫 조건 충족", "마지막 조건 충족", "포함 구간 수",
+        "최초 확인 값", "이후 포함 최저/최고", "단위", "포함 구간 중 최장 지속(초)", "포함 센서 구간 ID", "이후 포함 AI 근거 ID"])
+    for row in snapshot.get("groups") or []:
+        grouped.append([_safe_cell_text(row.get("equipment", "")), _safe_cell_text(_sensor_item_label(row.get("item", ""))),
+            SENSOR_KINDS.get(row.get("kind"), row.get("kind")), {"low": "낮음", "high": "높음"}.get(row.get("direction"), row.get("direction")),
+            row.get("first_trigger_at"), row.get("last_trigger_at"), row.get("event_count"), row.get("first_value_at_trigger"),
+            row.get("extreme_value"), _sensor_unit(row.get("item", "")), row.get("max_event_duration_seconds"),
+            _safe_cell_text(", ".join(row.get("event_ids") or [])), _safe_cell_text(", ".join(row.get("source_ai_event_ids") or []))])
+    for target in (sheet, grouped):
+        target.freeze_panes = "A2"
+        target.auto_filter.ref = target.dimensions
+        for column in target.columns:
+            target.column_dimensions[column[0].column_letter].width = 25
+
+
 def export_xlsx(draft: dict, template: dict) -> bytes:
     """원본 양식의 대표 내역과 누락 없는 전체 별첨을 함께 내보낸다."""
     import openpyxl
@@ -543,6 +683,27 @@ def export_xlsx(draft: dict, template: dict) -> bytes:
         sheet.auto_filter.ref = sheet.dimensions
         for col in sheet.columns:
             sheet.column_dimensions[col[0].column_letter].width = 23
+    sensor_snapshot = draft.get("sensor_insight_snapshot")
+    if sensor_snapshot:
+        _export_sensor_insights(wb, evidence, sensor_snapshot)
+    snapshot = draft.get("ai_notification_snapshot")
+    if snapshot and not sensor_snapshot:
+        totals = snapshot.get("summary") or {}
+        evidence.append(["AI 알림 분리", "전체 AI 탐지 내역은 그대로 보존하며, 알림 후보는 별도 정책으로 계산합니다. 실제 발송·고장 확정이 아닙니다."])
+        evidence.append(["알림 정책 상태", snapshot.get("status")])
+        evidence.append(["초안 생성 당시 알림 정책", json.dumps(snapshot.get("policy"), ensure_ascii=False)])
+        evidence.append(["알림 후보 묶음", totals.get("notification_count") if snapshot.get("data_available") else "확인 불가"])
+        evidence.append(["묶음 시간 해석", "첫 조건 충족부터 마지막 갱신까지의 범위는 연속 이상 시간이나 설비 중단 시간이 아닙니다."])
+        sheet = wb.create_sheet("AI 알림 후보")
+        sheet.append(["설비", "첫 조건 충족 시각", "마지막 후보 시각", "최초 확인 점수", "후속 포함 확인 점수 최대", "후보 발생 횟수", "선정 이유", "연관 AI 구간 ID"])
+        for item in snapshot.get("notifications") or []:
+            sheet.append([_safe_cell_text(item.get("equipment", "")), item.get("first_trigger_at"), item.get("last_trigger_at"),
+                item.get("first_score_at_trigger"), item.get("score_max_at_triggers"), item.get("candidate_count"),
+                _safe_cell_text(", ".join({"sustained": "연속 시간 충족", "repeated": "반복 횟수 충족"}.get(reason, reason) for reason in item.get("reasons") or [])), ", ".join(item.get("source_event_ids") or [])])
+        sheet.freeze_panes = "A2"
+        sheet.auto_filter.ref = sheet.dimensions
+        for column in sheet.columns:
+            sheet.column_dimensions[column[0].column_letter].width = 26
     evidence.column_dimensions["A"].width = 29
     evidence.column_dimensions["B"].width = 100
     buf = io.BytesIO()
@@ -602,6 +763,13 @@ class AgentTools:
         d = self._date(date)
         eq = resolve_equipment(equipment)
         result = alert_summary(d, self.thresholds, eq)
+        insights = sensor_insight_snapshot(_iso(d), eq, self.state.get("sensor_insight_policy"))
+        notifications = ai_notification_snapshot(_iso(d), eq, self.state.get("ai_notification_policy"))
+        notifications["legacy_compatibility"] = True
+        notifications["display_note"] = "이전 점수·반복 실험의 호환 자료입니다. 현재 점검 정보는 sensor_insights를 사용하세요."
+        notification_rows = notifications.get("notifications") or []
+        notifications["shown_notification_count"] = min(20, len(notification_rows))
+        notifications["notifications"] = notification_rows[:20]
         rule, ai = result.get("rule_events", []), result.get("ai_events", [])
         affected = []
         for row in result.get("equipment_rows", []):
@@ -613,6 +781,7 @@ class AgentTools:
                     "items": sorted({e["item"] for e in rule if e["equipment"] == row["equipment"]})})
         return {"date": _iso(d), "equipment": eq or "전체", "count": result.get("rule", {}).get("event_count"),
             "ai_count": result.get("ai", {}).get("event_count"), "rule": result.get("rule", {}), "ai": result.get("ai", {}),
+            "sensor_insights": compact_sensor_snapshot(insights), "ai_notifications": notifications,
             "items": rule[:20], "ai_items": ai[:10], "affected_equipment": affected,
             "data_available": result.get("data_available", False), "thresholds": self.thresholds,
             "basis": result.get("basis"), "note": result.get("note", ""),
@@ -828,6 +997,12 @@ class AgentTools:
         result = copy.deepcopy(new_draft)
         result.pop("rule_events", None)
         result.pop("ai_events", None)
+        result["sensor_insight_snapshot"] = compact_sensor_snapshot(result.get("sensor_insight_snapshot"))
+        if result.get("ai_notification_snapshot"):
+            legacy = result["ai_notification_snapshot"]
+            legacy["total_notification_count"] = len(legacy.get("notifications") or [])
+            legacy["notifications"] = (legacy.get("notifications") or [])[:12]
+            legacy["legacy_compatibility"] = True
         result["unknown_fields"] = []
         result["template_asked"] = self.templates.template_asked()
         for row in result["rows"]:
@@ -907,8 +1082,19 @@ class AgentTools:
         prev_day = (pd.Timestamp(d) - pd.DateOffset(months=1)).date()
         summary = alert_summary(d, th, eq)
         rule, ai = summary.get("rule_events", []), summary.get("ai_events", [])
+        previous = self.state.get("report_draft") or {}
+        same = previous.get("date") == _iso(d) and previous.get("equipment") == eq
+        if same:
+            # Old drafts retain their old evidence; edits do not silently migrate policy.
+            snapshot = copy.deepcopy(previous.get("ai_notification_snapshot"))
+            sensor_snapshot = copy.deepcopy(previous.get("sensor_insight_snapshot"))
+        else:
+            selected_context = self.state.pop("sensor_insight_report_context", None)
+            sensor_snapshot = sensor_insight_snapshot(_iso(d), eq, self.state.get("sensor_insight_policy"), selected_context)
+            snapshot = None
         return {"date": d, "equipment": eq, "meas": meas, "power": power(d), "prev": power(prev_day),
-                "events": rule, "ai_events": ai, "alert_summary": summary}
+                "events": rule, "ai_events": ai, "alert_summary": summary, "ai_notification_snapshot": snapshot,
+                "sensor_insight_snapshot": sensor_snapshot}
 
     def _auto_value(self, field: dict, ctx: dict) -> Any:
         name = _norm(field["name"])
@@ -985,6 +1171,8 @@ class AgentTools:
                 "ready_to_export": False, "required_auto_missing": required_auto_missing,
                 "export_blockers": missing_user + required_auto_missing + ["담당자 종합판정 확인"],
                 "rule_events": ctx["events"], "ai_events": ctx["ai_events"], "alert_basis": ctx["alert_summary"].get("basis"),
+                "ai_notification_snapshot": ctx["ai_notification_snapshot"],
+                "sensor_insight_snapshot": ctx["sensor_insight_snapshot"],
                 "judgment_confirmed": False, "judgment": None,
                 "data_available": not _day(d, eq).empty,
                 "note": "" if not _day(d, eq).empty else _no_data_note(d)}

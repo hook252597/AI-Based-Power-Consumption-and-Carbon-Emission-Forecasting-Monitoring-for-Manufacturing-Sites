@@ -236,7 +236,7 @@ render_agent_tab()
     app.run()
     assert not app.exception
     assert app.session_state['report_draft']==original
-    assert any('화면의 날짜·설비를 바꿔도 이 초안은 유지' in x.value for x in app.info)
+    assert any('작성 중: 2025-04-28 · 1 (PM-3) · 생성 당시 자료 고정' in x.value for x in app.info)
 
 
 

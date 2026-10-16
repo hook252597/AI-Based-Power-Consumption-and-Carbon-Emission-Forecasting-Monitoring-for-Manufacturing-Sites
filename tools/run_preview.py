@@ -28,5 +28,5 @@ else:
     env.pop('OPENAI_API_KEY', None)
 subprocess.run([sys.executable, '-m', 'streamlit', 'run', str(repo/'dashboard_app.py'),
                 '--server.address', '127.0.0.1', '--server.port', str(args.port),
-                '--server.headless', 'true', '--browser.gatherUsageStats', 'false'],
+                '--server.headless', 'true', '--server.fileWatcherType', 'poll', '--browser.gatherUsageStats', 'false'],
                cwd=repo, env=env, check=True)

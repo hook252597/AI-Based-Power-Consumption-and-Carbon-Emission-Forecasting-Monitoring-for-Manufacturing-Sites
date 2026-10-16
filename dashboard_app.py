@@ -27,6 +27,10 @@ def init_state():
                 'priority_seconds': 60, 'priority_events': 3}
     for key, value in defaults.items():
         st.session_state.setdefault(key, value)
+    if st.query_params.get('view') in ('ai-notifications', 'sensor-insights') and not st.session_state.get('_notification_link_applied'):
+        st.session_state.update(active_tab='이상탐지', nav_page='이상탐지', inspection_mode='확인할 정보', _notification_link_applied=True)
+    if st.session_state.get('inspection_mode') == 'AI 알림 후보':
+        st.session_state['inspection_mode'] = '확인할 정보'
     pending = st.session_state.pop('_pending_tab', None)
     if pending in PAGES:
         st.session_state['active_tab'] = pending
@@ -72,18 +76,18 @@ def header():
     left, right = st.columns([5, 2])
     with left:
         st.markdown('<div class="brand"><span class="brand-mark">M</span>마가렛트</div>', unsafe_allow_html=True)
-        st.caption('전력 예산을 확인하고, 점검 기록을 보고서로 남기세요.')
     with right:
         with st.expander('화면 설정 · 도움말'):
-            mode = st.radio('화면 모드', ['light', 'dark'], format_func=lambda x: '밝은 화면' if x == 'light' else '어두운 화면', index=int(st.session_state['theme'] == 'dark'), horizontal=True)
-            if mode != st.session_state['theme']:
-                st.session_state['theme'] = mode
-                st.rerun()
+            st.session_state.setdefault('dashboard_theme_mode', st.session_state['theme'])
+            st.radio('화면 모드', ['light', 'dark'], format_func=lambda x: '밝은 화면' if x == 'light' else '어두운 화면',
+                     key='dashboard_theme_mode', horizontal=True,
+                     on_change=lambda: st.session_state.update(theme=st.session_state['dashboard_theme_mode']))
             if st.button('처음 사용 가이드', use_container_width=True):
                 navigate('시작 가이드')
             st.caption('요금 180원/kWh · 탄소 0.424 kgCO₂/kWh를 적용한 추정값입니다.')
     st.markdown('<div class="context-line">과거 데이터 체험 · 실시간 수집 아님 · 자료 기준 2025.04.30 00:00</div>', unsafe_allow_html=True)
-    st.radio('작업 선택', PAGES, key='nav_page', index=PAGES.index(st.session_state['active_tab']), format_func=PAGE_LABELS.get,
+    st.session_state.setdefault('nav_page', st.session_state['active_tab'])
+    st.radio('작업 선택', PAGES, key='nav_page', format_func=PAGE_LABELS.get,
              horizontal=True, label_visibility='collapsed', on_change=lambda: st.session_state.update(active_tab=st.session_state['nav_page']))
     st.divider()
 
@@ -115,10 +119,9 @@ def context_filters():
             day = current_date()
             if day.isoformat() in D.sensor_dates():
                 st.markdown(f'**{day:%Y.%m.%d} · 센서 실측 자료**')
-                st.caption('설비별 전력·전압·역률·AI 탐지 기록을 확인할 수 있어요.')
             elif day >= date(2025, 4, 30):
                 st.markdown(f'**{day:%Y.%m.%d} · 전력 예측 기간**')
-                st.caption('전력·요금·탄소 예측만 제공해요. 센서 상태를 판단할 실측은 없어요.')
+                st.caption('전력·요금·탄소 예측 제공 · 센서 실측 없음')
     ss['view_date'] = current_date().isoformat()
     ss['view_range'] = ss.get('anomaly_view', 'daily')
 
@@ -183,7 +186,6 @@ def finish_chart(fig, ytitle, height=340):
 def render_overview():
     ss = st.session_state
     st.title('현황·예측')
-    st.write('예상 비용과 사용량을 확인하고, 점검이 필요한 기록으로 이동하세요.')
     context_filters()
     day = current_date()
     hv = D.month_hourly_values(day.year, day.month)
@@ -197,8 +199,8 @@ def render_overview():
     cols = st.columns(3)
     title = f'{day.month}월 합계' if (day.year, day.month) < (2025, 4) else f'{day.month}월 예상 합계'
     metric_card(cols[0], title + ' 요금', D.won(power * 180) if power is not None else '자료 없음', compare)
-    metric_card(cols[1], title + ' 전력량', D.kwh(power) if power is not None else '자료 없음', '월별 일수가 달라 사용 패턴은 일평균으로 비교해요.')
-    metric_card(cols[2], title + ' 탄소배출량', D.kgco2(power * .424) if power is not None else '자료 없음', '전력 사용량에 고정 탄소계수를 적용한 추정치')
+    metric_card(cols[1], title + ' 전력량', D.kwh(power) if power is not None else '자료 없음')
+    metric_card(cols[2], title + ' 탄소배출량', D.kgco2(power * .424) if power is not None else '자료 없음')
     actual_n = int(hv.actual.notna().sum())
     predicted_n = int((hv.actual.isna() & hv.pred.notna()).sum())
     filled_n = int(hv.value.isna().sum())
@@ -232,31 +234,15 @@ def render_overview():
         else:
             st.info('선택한 기간에는 이 그래프를 그릴 자료가 없어요. 다른 날짜를 선택해 주세요.')
         st.plotly_chart(finish_chart(fig, unit), use_container_width=True, config={'displayModeBar': False})
-        st.caption('실측은 4월 29일까지, AI 예측은 4월 30일부터예요. 자료가 없는 시간은 선으로 연결하지 않아요.')
-    left, right = st.columns([3, 2])
-    with left:
-        with st.container(border=True):
-            st.subheader('설비 점검으로 이어가기')
-            summary = summary_for()
-            rows = alert_rows(summary)
-            review = [r for r in rows if r['_priority'] == 0]
-            records = [r for r in rows if r['_priority'] <= 1]
-            if not summary.get('data_available'):
-                st.info('선택일은 센서 실측이 없어 점검 상태를 판단할 수 없어요.')
-            else:
-                st.write(f'검토 우선 **{len(review)}대** · 탐지 기록이 있는 설비 **{len(records)}대 / 13대**')
-                if records:
-                    st.dataframe(pd.DataFrame(records[:4])[['설비', '표시 상태', '설정 기준 이탈', 'AI 탐지']], hide_index=True, use_container_width=True)
-                else:
-                    st.write('선택일의 탐지 기록이 없어요. 실제 설비 안전을 보증하는 판정은 아니에요.')
-            if st.button('설비별 근거 확인 →', type='primary', use_container_width=True):
-                navigate('이상탐지')
-    with right:
-        with st.container(border=True):
-            st.subheader('이번 화면 읽는 법')
-            st.write(f'**{day.month}월 예상 요금**은 월 전체 예산을 확인하는 값이에요.')
-            st.write('**일평균 전월 대비**는 월별 일수 차이를 제외한 사용 패턴 비교예요.')
-            st.write('**검토 우선**은 기록을 먼저 살펴보기 위한 분류예요. 고장 확정이나 위험 등급은 아니에요.')
+        st.caption('실측: 4월 29일까지 · AI 예측: 4월 30일부터')
+    from monitoring.sensor_insights import get_sensor_insights
+    from ui_sensor_insights import render_equipment_overview
+    insights = get_sensor_insights(day.isoformat(), policy=ss.get('sensor_insight_policy'), cutoff=D.NOW)
+    st.subheader('설비 한 번에 보기')
+    render_equipment_overview(insights, key_prefix='overview')
+    if st.button('설비별 근거 확인 →', type='primary', use_container_width=True):
+        ss['inspection_mode'] = '확인할 정보'
+        navigate('이상탐지')
     render_validation()
 
 
@@ -285,11 +271,23 @@ def render_validation():
 def render_anomaly():
     ss = st.session_state
     st.title('설비 점검')
-    st.write('기록이 많은 설비부터 근거를 확인하고, 필요한 내용을 보고서로 가져가세요.')
     context_filters()
+    inspection_mode = st.radio('확인할 내용', ['확인할 정보', '전체 탐지 기록'], key='inspection_mode', horizontal=True)
+    if inspection_mode == '확인할 정보':
+        from ui_sensor_insights import render_sensor_insights
+        result = render_sensor_insights(current_date().isoformat())
+        if result and result.get('data_available'):
+            selected = ss.get('sensor_insight_detail_equipment')
+            if selected in D.EQUIPMENT_NAMES:
+                render_sensor_detail(selected, summary_for(equipment=selected), insights=result)
+        elif st.button('마지막 실측일 · 4월 29일 보기', type='primary'):
+            ss.update(selected_year=2025, selected_month=4, selected_day=29)
+            ss.pop('context_month', None); ss.pop('context_day', None)
+            st.rerun()
+        return
     summary = summary_for()
     if not summary.get('data_available'):
-        st.info('이 날짜에는 전압·역률 실측이 없어서 이상 여부를 판단할 수 없어요. 전력 예측과 센서 실측은 다른 자료예요.')
+        st.info('이 날짜에는 전압·역률 실측이 없어서 상태를 판단할 수 없어요.')
         if st.button('마지막 실측일 · 4월 29일 보기', type='primary'):
             ss.update(selected_year=2025, selected_month=4, selected_day=29)
             ss.pop('context_month', None); ss.pop('context_day', None)
@@ -326,7 +324,7 @@ def render_anomaly():
         left, right = st.columns([5, 4])
         with left:
             st.subheader('설비별 기록')
-            view = st.radio('표시할 설비', ['기록 있는 설비', '검토 우선', '전체 설비'], horizontal=True)
+            view = st.radio('표시할 설비', ['전체 설비', '기록 있는 설비', '검토 우선'], horizontal=True)
             visible = [r for r in rows if view == '전체 설비' or (view == '검토 우선' and r['_priority'] == 0) or (view == '기록 있는 설비' and r['_priority'] <= 1)]
             if visible:
                 table = pd.DataFrame(visible).drop(columns=['_priority', '_records'])
@@ -355,16 +353,17 @@ def render_anomaly():
                 st.write(f"{label}: **{event_value(item)}** · 표본 누적 **{duration_text(item.get('sample_duration_seconds'))}**")
                 if item.get('longest_duration_seconds') is not None:
                     st.caption(f"최장 연속 구간 {duration_text(item['longest_duration_seconds'])}")
-            st.caption('표본 누적은 표시된 5초 기록을 합친 시간이에요. 설정 기준 시간은 센서별 중복이 포함되며 설비 고장 시간과 달라요.')
-            if st.button('이 설비로 보고서 시작 →', type='primary', use_container_width=True):
+            st.caption('표본 누적: 탐지된 5초 기록의 합 · 고장 시간 아님')
+            def request_report():
                 ss['report_start_requested'] = True
-                navigate('에이전트')
+                ss['_pending_tab'] = '에이전트'
+            st.button('이 설비로 보고서 시작 →', type='primary', use_container_width=True, on_click=request_report)
     render_sensor_detail(ss['selected_equipment'], detail)
 
 
-def render_sensor_detail(equipment, detail):
+def render_sensor_detail(equipment, detail, insights=None):
     with st.container(border=True):
-        st.subheader('어떤 값이 달랐나요?')
+        st.subheader(f'{equipment} · 시간별 최저값 참고')
         family = st.radio('측정 항목', ['상전압', '선간전압', '역률'], horizontal=True)
         settings = {'상전압': (['voltageR', 'voltageS', 'voltageT'], ['R상', 'S상', 'T상'], 'phase_voltage', 'V'),
                     '선간전압': (['voltageRS', 'voltageST', 'voltageTR'], ['RS', 'ST', 'TR'], 'line_voltage', 'V'),
@@ -375,10 +374,19 @@ def render_sensor_detail(equipment, detail):
         fig = go.Figure()
         for col, label, color in zip(columns, names, [TEAL, BLUE, '#b96b21']):
             fig.add_scatter(x=data.hour, y=data[col], name=label, mode='lines+markers', line=dict(color=color, width=2), connectgaps=False)
-        fig.add_hline(y=st.session_state['thresholds'][key], line_color='#b96b21', line_dash='dash', annotation_text='설정 하한', annotation_position='bottom right')
+        if insights and family in ('상전압', '역률'):
+            policy = insights['policy']
+            if family == '상전압':
+                lines = [(policy['voltage_low'], '지속 하한'), (policy['voltage_severe_low'], '큰 이탈 하한')]
+            else:
+                lines = [(policy['pf_low'], '지속 저하'), (policy['pf_sharp_low'], '급락 값 조건')]
+            for value, label in lines:
+                fig.add_hline(y=value, line_color='#b96b21', line_dash='dash', annotation_text=label, annotation_position='bottom right')
+        else:
+            fig.add_hline(y=st.session_state['thresholds'][key], line_color='#b96b21', line_dash='dash', annotation_text='설정 하한', annotation_position='bottom right')
         fig.update_xaxes(title='시각 (한국시간)')
         st.plotly_chart(finish_chart(fig, unit), use_container_width=True, config={'displayModeBar': False})
-        st.caption('각 점은 해당 한 시간에 관측된 최저값이에요. 선이 낮게 이어져도 그 시간 내내 기준을 벗어났다는 뜻은 아니에요. 실제 연속 구간은 아래 기록에서 확인하세요.')
+        st.caption('시간별 최저값 · 실제 지속 시간은 개별 기록에서 확인')
     with st.expander('발생 기록 전체 보기 · 기준 이탈과 AI 탐지 구분'):
         records = []
         for source_key, label in [('rule_events', '설정 기준'), ('ai_events', 'AI 탐지')]:
@@ -396,7 +404,6 @@ def render_sensor_detail(equipment, detail):
 
 def render_report():
     st.title('보고서 도우미')
-    st.write('조회 근거를 가져오고, 담당자가 확인한 내용을 더해 점검 보고서를 완성하세요.')
     context_filters()
     from agent.agent_ui import render_agent_tab
     render_agent_tab(st.session_state)
@@ -417,7 +424,7 @@ def main():
     else:
         render_report()
     st.divider()
-    st.caption('마가렛트 · 박정열 · 김민찬 · 최경철 | 예측·탐지 결과는 점검과 비용 추정을 돕는 참고 자료입니다.')
+    st.caption('마가렛트 · 박정열 · 김민찬 · 최경철')
 
 
 if __name__ == '__main__':

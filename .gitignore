@@ -234,3 +234,13 @@ ml/outputs/agent_data/*
 # Verified April five-second event intervals for local review and future deployment
 !ml/outputs/agent_data/alert_events.parquet
 !ml/outputs/agent_data/alert_events.json
+
+# Verified AI detection samples for a separate notification policy preview
+!ml/outputs/agent_data/ai_notification_samples.parquet
+!ml/outputs/agent_data/ai_notification_samples.json
+
+# Portable default-policy sensor review results (no raw telemetry or secrets)
+!ml/outputs/agent_data/sensor_insights/
+ml/outputs/agent_data/sensor_insights/*
+!ml/outputs/agent_data/sensor_insights/manifest.json
+!ml/outputs/agent_data/sensor_insights/*.json.gz

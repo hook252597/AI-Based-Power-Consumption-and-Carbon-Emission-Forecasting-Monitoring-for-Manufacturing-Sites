@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Any
 
 from .agent_tools import (APP_DIR, DEFAULT_THRESHOLDS, EQUIPMENT_LIST, FAMILY_LABEL, ITEMS, NOW, TODAY,
-                          TOOL_SCHEMAS, AgentTools, _norm, duration_text, forecast_period, resolve_equipment, sensor_period)
+                          TOOL_SCHEMAS, AgentTools, _norm, compact_sensor_snapshot, duration_text, forecast_period, resolve_equipment, sensor_period)
 
 SYSTEM_PATH = APP_DIR / "agentSystem.md"
 DEFAULT_MODEL = "gpt-5-mini"
@@ -111,6 +111,12 @@ def state_block(state: dict, tools: AgentTools) -> str:
         "- basis와 집계 단위를 반드시 따른다. event_count는 설비·항목별 연속 구간 수이며 고장 사건 수가 아니다. flagged_records는 5초 표본 수다. 서로 더하지 않는다.",
         "- duration_seconds가 없으면 실제 지속 시간은 확인 불가다. 관측 시간대 수를 시간 단위 지속 시간으로 바꾸지 않는다. 누적 탐지 시간과 최장 연속 시간도 구분한다.",
         "- AI 이상탐지는 고정 모델 판정이며 규칙 임계치를 바꿔도 변하지 않는다. 원인을 단정하지 않는다.",
+        "- get_anomalies의 sensor_insights가 현재 센서 점검 정보다. 전압 단발 큰 변화·지속, 역률 급락·지속을 구분한다. ai_notifications는 이전 점수·반복 실험의 호환 자료로 현재 기본 정책처럼 설명하지 않는다.",
+        "- ai_count는 원래 AI 구간 수, sensor_insights.summary.event_count는 센서 정보 구간 수, group_count는 같은 설비·항목·유형·방향으로 묶은 수다. 서로 합하거나 고장 사건 수로 말하지 않는다. 원래 AI 기록은 모두 보존한다.",
+        "- 센서 점검 정보에는 판단 당시 AI 근거가 필요하지만 센서 조건의 지속 시간에는 조건을 만족한 AI 미표시 표본도 포함될 수 있다. 반복 횟수나 AI 연속 판정 시간으로 바꿔 설명하지 않는다. 점수는 고장 확률이 아니다.",
+        "- 전압 기본값은 정격 220V를 가정한 실험 조건이다. 실제 설비 정격·허용 범위·고장 여부는 확인되지 않았다. 임계치와 단위는 해당 policy를 따르고 역률 차이는 %p로 설명한다.",
+        "- start/end와 duration_seconds는 관측된 센서 조건 구간이다. trigger_at/value_at_trigger/duration_at_trigger_seconds/trigger_ai_event_ids는 판단 시점 정보이고 extreme_value/source_ai_event_ids는 이후 관측을 포함할 수 있다. 미래 정보를 과거 판단 근거로 말하지 않는다. baseline은 급락 시작 전 관측의 중앙값을 구간 동안 고정한 값이며, AI 근거가 늦으면 trigger 직전 중앙값과 다를 수 있다.",
+        "- first_trigger_at~last_trigger_at 묶음 범위에는 공백이 있으므로 연속 이상 시간·설비 중단·정상 복귀로 말하지 않는다. 자료 없음은 0건이나 정상으로 해석하지 않는다. 실제 알림은 발송하지 않는다.",
         "- 설비 13개의 전력 사용량은 거의 같다. 순위를 말할 때 차이가 매우 작다는 점을 함께 밝힌다.",
         "- 보고서는 create_report 결과만 근거로 말한다. 미입력 항목과 export_blockers를 안내한다. 담당자 종합판정은 화면에서 사용자가 직접 확인해야 하며 AI는 확정할 수 없다.",
         "- 작성 중인 초안과 날짜·설비가 다르면 기존 초안을 유지한다. 새 보고서는 화면에서 시작하도록 안내한다. 계약전력·최대수요전력은 추정해서 채우지 않는다.",
@@ -141,11 +147,27 @@ def _compact(result: Any) -> str:
             if isinstance(small.get(key), list):
                 small[key] = small[key][:6]
                 small[f"shown_{key}"] = len(small[key])
+        for key in ("sensor_insights", "sensor_insight_snapshot"):
+            if isinstance(small.get(key), dict):
+                small[key] = compact_sensor_snapshot(small[key], limit=3)
+        for key in ("ai_notifications", "ai_notification_snapshot"):
+            if isinstance(small.get(key), dict):
+                old = small[key]
+                old["notifications"] = (old.get("notifications") or [])[:3]
+                old["shown_notification_count"] = len(old["notifications"])
+                old["legacy_compatibility"] = True
     text = json.dumps(small, ensure_ascii=False, default=str)
     if len(text) > MAX_TOOL_CHARS and isinstance(small, dict):
         if isinstance(small.get("rows"), list):
             small["rows"] = [r for r in small["rows"] if r.get("required") or r.get("source") == "user"]
         small.pop("series", None)
+        for key in ("sensor_insights", "sensor_insight_snapshot"):
+            if isinstance(small.get(key), dict):
+                small[key] = compact_sensor_snapshot(small[key], limit=0)
+        for key in ("ai_notifications", "ai_notification_snapshot"):
+            if isinstance(small.get(key), dict):
+                small[key]["notifications"] = []
+                small[key]["shown_notification_count"] = 0
         small["detail_note"] = "상세 표는 화면에서 확인하세요. 전체 건수와 필수 입력 상태는 보존했습니다."
         text = json.dumps(small, ensure_ascii=False, default=str)
     return text
@@ -256,7 +278,11 @@ def opening_summary(state: dict, tools: AgentTools) -> str:
         return f"{view}에는 설비 실측 기록이 없어 상태를 판단할 수 없습니다. 실측이 있는 날짜를 선택하거나 전력 예측을 조회하세요."
     if not r.get("affected_equipment"):
         return f"{view}에는 탐지 기록이 없습니다. 실제 고장 여부는 현장 확인이 필요합니다."
-    return f"{view} 기록 요약: {_alert_text(r)}입니다. 탐지 구간은 고장 사건 수가 아닙니다. 설비를 골라 근거를 확인하세요."
+    sensor = r.get("sensor_insights") or {}
+    counts = sensor.get("summary") or {}
+    info = (f"센서 점검 정보 {counts.get('event_count')}구간 · {counts.get('group_count')}묶음. "
+            if sensor.get("data_available") else "센서 점검 정보는 확인할 수 없습니다. ")
+    return f"{view} 기록 요약: {info}원기록은 {_alert_text(r)}입니다. 정보 후보와 탐지 구간은 고장 판정이 아닙니다. 설비를 골라 근거를 확인하세요."
 
 
 # -----------------------------------------------------------------------------

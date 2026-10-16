@@ -15,6 +15,7 @@ pending_template, template_upload_open, checklist.
 from __future__ import annotations
 
 import html
+import json
 import os
 import re
 import time
@@ -123,12 +124,16 @@ def _filled(v) -> bool:
 # -----------------------------------------------------------------------------
 def _ensure_summary(state: dict, tools: AgentTools) -> None:
     """화면을 처음 열 때와 조회 날짜가 바뀔 때, 에이전트가 먼저 그 날의 이상 요약을 말한다."""
-    if state.get("_agent_summary_date") == state["view_date"]:
+    signature = (str(state["view_date"]), json.dumps(state.get("sensor_insight_policy") or {}, sort_keys=True, ensure_ascii=False))
+    if state.get("_agent_summary_signature") == signature:
         return
-    lead = f"조회 날짜를 {state['view_date']}로 바꾸셨네요. " if state.get("_agent_summary_date") else ""
+    previous_date = state.get("_agent_summary_date")
+    lead = (f"조회 날짜를 {state['view_date']}로 바꾸셨네요. " if previous_date and previous_date != state["view_date"]
+            else "센서 정보 조건을 바꾸어 다시 요약했어요. " if previous_date else "")
     state.setdefault("messages", []).append(
         {"role": "assistant", "content": lead + opening_summary(state, tools), "mode": "summary"})
     state["_agent_summary_date"] = state["view_date"]
+    state["_agent_summary_signature"] = signature
 
 
 def _template_rows(state: dict, template: dict) -> list[dict]:
@@ -302,9 +307,9 @@ def _report_panel(state: dict, tools: AgentTools) -> None:
     st.caption("1 대상 확인 → 2 조치 기록 → 3 필수 입력·담당자 판정 → 4 Excel 다운로드")
     st.markdown(f"**현재 선택: {html.escape(current_date)} · {html.escape(current_eq)}**")
     if draft:
-        st.info(f"작성 중인 보고서: {draft['date']} · {draft['equipment']} — 화면의 날짜·설비를 바꿔도 이 초안은 유지됩니다.")
+        st.info(f"작성 중: {draft['date']} · {draft['equipment']} · 생성 당시 자료 고정")
         with st.expander("현재 선택으로 새 보고서 시작", expanded=bool(state.get("report_start_requested"))):
-            st.caption("작성 중인 내용을 유지하려면 그대로 닫으세요. 새로 시작하면 이전 초안은 이번 세션에서 한 번 복원할 수 있습니다.")
+            st.caption("새로 시작하면 기존 초안이 교체됩니다. 이전 초안은 한 번 복원할 수 있어요.")
             if st.button("현재 선택으로 새 보고서", key="ag_new_report", use_container_width=True):
                 tools.start_new_report(current_date, current_eq)
                 tools.templates.mark_asked()
@@ -312,7 +317,7 @@ def _report_panel(state: dict, tools: AgentTools) -> None:
                 state["_ag_form_generation"] = state.get("_ag_form_generation", 0) + 1
                 st.rerun()
     else:
-        st.caption("선택한 날짜·설비의 자료를 채운 뒤 점검 내용과 담당자 정보를 입력합니다.")
+        st.caption("선택한 대상의 자료를 자동으로 채웁니다.")
         if st.button("선택한 대상으로 보고서 시작", type="primary", key="ag_start_report", use_container_width=True):
             tools.start_new_report(current_date, current_eq)
             tools.templates.mark_asked()
@@ -331,9 +336,20 @@ def _report_panel(state: dict, tools: AgentTools) -> None:
         st.progress(done / len(required) if required else 1.0, text=f"필수 입력 {done} / {len(required)} 완료")
         if not draft.get("data_available"):
             st.warning("선택한 보고서 대상의 실측 자료가 없습니다. 날짜·설비를 확인한 뒤 새 보고서를 시작하세요.")
+        snapshot = draft.get("sensor_insight_snapshot")
+        if snapshot:
+            totals = snapshot.get("summary") or {}
+            if snapshot.get("data_available"):
+                count_text = f"센서 정보 {totals.get('event_count')}구간 · {totals.get('group_count')}묶음"
+            else:
+                count_text = "센서 점검 정보 확인 불가"
+            st.caption(f"별첨: AI 원기록 전체 · {count_text}")
+            st.caption("점검 참고 자료 · 실제 고장 판정 아님")
+        elif draft.get("ai_notification_snapshot"):
+            st.caption("이전 정책의 초안입니다. 현재 확인 정보를 반영하려면 새 보고서를 시작하세요.")
         _manual_form(state, tools, draft)
         st.markdown("**3. 담당자 종합판정**")
-        st.caption("센서 기준 판정과 별개입니다. 실제 점검 결과를 확인한 담당자가 선택하세요. 내용을 수정하면 다시 확인해야 합니다.")
+        st.caption("실제 점검 결과를 선택하세요. 내용 수정 시 다시 확인합니다.")
         revision = draft.get("revision", 0)
         options = ["판정을 선택하세요", "적합", "추가 점검 필요", "조치 후 재확인 필요"]
         judgment = st.selectbox("점검 결과", options, index=options.index(draft["judgment"]) if draft.get("judgment") in options else 0,
@@ -344,7 +360,7 @@ def _report_panel(state: dict, tools: AgentTools) -> None:
         if draft.get("judgment_confirmed"):
             st.success(f"담당자 확인 완료: {draft['judgment']}")
         with st.expander("자동으로 채운 자료·전체 양식 미리보기", expanded=False):
-            st.caption("설정 기준 이탈과 AI 탐지는 고장을 확정하지 않습니다. 전체 탐지 내역은 Excel 별첨에 포함됩니다.")
+            st.caption("전체 탐지 내역은 Excel 별첨에 포함됩니다.")
             for row in draft["rows"]:
                 if row.get("kind") == "table":
                     records = row.get("value") or []
@@ -379,7 +395,7 @@ def _manual_form(state: dict, tools: AgentTools, draft: dict) -> None:
     generation = state.get("_ag_form_generation", 0)
     revision = draft.get("revision", 0)
     st.markdown("**2. 조치 기록과 필수 정보**")
-    st.caption("별표(*) 항목부터 입력하세요. 입력값을 지우고 반영하면 보고서에서도 지워집니다. 실제로 수행하지 않은 조치는 적지 않아도 됩니다.")
+    st.caption("필수(*) 항목과 실제 수행한 조치를 입력하세요.")
     with st.form("ag_manual_form"):
         values = {}
         visible = [r for r in manual if r.get("required") or "조치내용" in re.sub(r"\s", "", r["name"])]
@@ -412,7 +428,7 @@ def render_agent_tab(state: dict | None = None) -> None:
     api_key, model = load_settings()
     _ensure_summary(state, tools)
     st.markdown(agent_css(state.get("theme", "light")), unsafe_allow_html=True)
-    st.caption("자료를 질문으로 확인하고 점검 보고서를 작성하세요. 보고서 시작·직접 입력·다운로드는 대화 없이도 사용할 수 있습니다.")
+    st.caption("자료에 질문하거나, 바로 보고서를 작성하세요.")
     left, right = st.columns([4, 6], gap="large")
     with left:
         with st.expander("AI에게 자료 질문하기", expanded=False):

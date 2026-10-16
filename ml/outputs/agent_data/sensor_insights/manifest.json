@@ -1,0 +1,552 @@
+{
+  "format_version": 1,
+  "complete": true,
+  "created_utc": "2026-10-16T11:49:15.985945+00:00",
+  "policy": {
+    "voltage_severe_low": 198.0,
+    "voltage_severe_high": 242.0,
+    "voltage_low": 207.0,
+    "voltage_high": 233.0,
+    "voltage_duration_seconds": 60,
+    "pf_sharp_low": 70.0,
+    "pf_drop_pp": 20.0,
+    "baseline_seconds": 300,
+    "pf_low": 80.0,
+    "pf_duration_seconds": 180,
+    "merge_minutes": 10
+  },
+  "sample_seconds": 5,
+  "algorithm_sha256": "74de40ca84556cad8a1c5a66b662e613100f2e5bcd68dc03ea95a2433a8fb7bc",
+  "model_sha256": "54c232d430dd316c2bf878b7727f52a84ce75c571f993e1f4db7f4da061dafb6",
+  "dashboard_model_sha256": "4a4f976c46789c4bd86f2bdd9fa44616bcb206807d9d95f11585461a39101046",
+  "model_export_metadata_sha256": "5415bb2ed31b55a379f7edb86a9cda04600f161925f765cd7a7519e0cc3ce5eb",
+  "model_file": "ml/models/anomaly_v2/selected_model.joblib",
+  "source_sha256": "3b4e1ff2125ca64612837530a8612fa7f044f398e508e00026097fc788d0dce5",
+  "source_manifest_sha256": "9295ae341a9936f2d4517588d27689316543534e867b896e8d96375bff38e855",
+  "original_ai_events_sha256": "00b4f881f902867cf4b73a0bda1e6415166c26e86e239fb73f7ca77186edfcdc",
+  "dates": {
+    "2025-04-01": {
+      "file": "2025-04-01.json.gz",
+      "size": 74353,
+      "uncompressed_size": 555571,
+      "sha256": "10ffb07bfc50e5b6f3f380998d19cff050969a2195d6e6b1d2737691c662f3da",
+      "source_partition_sha256": "c92c5aed77579343b0d63cdec777df32e43b019bb48008ec7af0b4e090797514",
+      "evaluated_through": "2025-04-02T00:00:00",
+      "summary": {
+        "original_event_count": 426,
+        "ai_record_count": 429,
+        "event_count": 385,
+        "group_count": 224,
+        "voltage_severe_count": 83,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 302,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-02": {
+      "file": "2025-04-02.json.gz",
+      "size": 76107,
+      "uncompressed_size": 569224,
+      "sha256": "0fee2382ba53e680dd57e52621d00f5a447abc767b0ca74b47f71cff0c33093a",
+      "source_partition_sha256": "af69a47a88bfe82e154fcae1661f78450c8981942d04b33939b933252b5581e7",
+      "evaluated_through": "2025-04-03T00:00:00",
+      "summary": {
+        "original_event_count": 421,
+        "ai_record_count": 425,
+        "event_count": 410,
+        "group_count": 233,
+        "voltage_severe_count": 95,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 315,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-03": {
+      "file": "2025-04-03.json.gz",
+      "size": 79754,
+      "uncompressed_size": 591586,
+      "sha256": "23f56544594713a1b0d3bc3b02cdbb9f2ac7f13e856e7b2156ec4eb264e8697c",
+      "source_partition_sha256": "16321bc7418d3d951f7c0cc6e27f8a3c0a0482e43a27efb6c127f6c782175bb1",
+      "evaluated_through": "2025-04-04T00:00:00",
+      "summary": {
+        "original_event_count": 444,
+        "ai_record_count": 444,
+        "event_count": 434,
+        "group_count": 233,
+        "voltage_severe_count": 101,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 333,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-04": {
+      "file": "2025-04-04.json.gz",
+      "size": 77494,
+      "uncompressed_size": 570943,
+      "sha256": "e0e201153d20bae37394cc4624ea13db3757682aaf0600673bb23459edb7f21f",
+      "source_partition_sha256": "c55e1c06054fab48c438d915818ef1ca0ebd721feee4cabc60347e5c3ff13331",
+      "evaluated_through": "2025-04-05T00:00:00",
+      "summary": {
+        "original_event_count": 438,
+        "ai_record_count": 441,
+        "event_count": 413,
+        "group_count": 209,
+        "voltage_severe_count": 69,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 344,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-05": {
+      "file": "2025-04-05.json.gz",
+      "size": 84039,
+      "uncompressed_size": 624919,
+      "sha256": "36affa2ce8524fc9ebfc8c6f82fe5aaa80e7df97f421782536c34f3d0fddc57b",
+      "source_partition_sha256": "34d9d0b72b08fcb5cd9264afe26e3da35aac7fd6a9b91d330c22c15bfe1c7322",
+      "evaluated_through": "2025-04-06T00:00:00",
+      "summary": {
+        "original_event_count": 454,
+        "ai_record_count": 457,
+        "event_count": 470,
+        "group_count": 246,
+        "voltage_severe_count": 87,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 383,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-06": {
+      "file": "2025-04-06.json.gz",
+      "size": 81973,
+      "uncompressed_size": 605290,
+      "sha256": "d1bed90c80b47754eb10906f6eb8215834b6cab8af437987c815c616e500a899",
+      "source_partition_sha256": "d241f68e5c9ee148af79b987ba41b3e419eb4746c53e191ef433417cc6b3e53b",
+      "evaluated_through": "2025-04-07T00:00:00",
+      "summary": {
+        "original_event_count": 447,
+        "ai_record_count": 449,
+        "event_count": 454,
+        "group_count": 230,
+        "voltage_severe_count": 80,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 374,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-07": {
+      "file": "2025-04-07.json.gz",
+      "size": 72608,
+      "uncompressed_size": 536266,
+      "sha256": "4cc3616eff78f7cfc5771eed19b7bea5a87cd9f7aca7402fa2cfbf7779e73913",
+      "source_partition_sha256": "7d890c430dc1729c853ca60cd990717283268ec91f587d24c43fcfcad33b10f5",
+      "evaluated_through": "2025-04-08T00:00:00",
+      "summary": {
+        "original_event_count": 406,
+        "ai_record_count": 408,
+        "event_count": 375,
+        "group_count": 227,
+        "voltage_severe_count": 79,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 296,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-08": {
+      "file": "2025-04-08.json.gz",
+      "size": 74407,
+      "uncompressed_size": 552879,
+      "sha256": "6ffd416fe92831cfd178daafe0b5ea6e171f95bf9500dbc765896516c7e1a3be",
+      "source_partition_sha256": "d52e27093f99cc6dcc6818ac9e49948cb7f8f4a533be01709fc52c774e0ea264",
+      "evaluated_through": "2025-04-09T00:00:00",
+      "summary": {
+        "original_event_count": 398,
+        "ai_record_count": 399,
+        "event_count": 422,
+        "group_count": 208,
+        "voltage_severe_count": 84,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 338,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-09": {
+      "file": "2025-04-09.json.gz",
+      "size": 80612,
+      "uncompressed_size": 606267,
+      "sha256": "851cdbd84f66cd93d0df69b0f6433b66e6669daeae02f4c0986e305cf0e1d539",
+      "source_partition_sha256": "64402a35ef56dbd0f4427c2458d3faa867c9eabaf91751e27c53680701b73b3c",
+      "evaluated_through": "2025-04-10T00:00:00",
+      "summary": {
+        "original_event_count": 433,
+        "ai_record_count": 434,
+        "event_count": 464,
+        "group_count": 227,
+        "voltage_severe_count": 84,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 380,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-10": {
+      "file": "2025-04-10.json.gz",
+      "size": 77650,
+      "uncompressed_size": 578852,
+      "sha256": "42ebcbad34b6b7204b4658017815008a60e9156316d493269502ce2ebd00aa2b",
+      "source_partition_sha256": "8ce898496c3d90466cf3a01c52ace06a61216a7dc2f059f0c7d0143cc49b0e95",
+      "evaluated_through": "2025-04-11T00:00:00",
+      "summary": {
+        "original_event_count": 438,
+        "ai_record_count": 440,
+        "event_count": 414,
+        "group_count": 230,
+        "voltage_severe_count": 88,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 326,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-11": {
+      "file": "2025-04-11.json.gz",
+      "size": 77037,
+      "uncompressed_size": 577978,
+      "sha256": "ab0a0dcd52c9e5ca680fe539b85f8d39cb5289e67f5f059d9ea40c6d5befa6db",
+      "source_partition_sha256": "798b8ae66bab4d965aa999d248b63d8e1c73d289cb3a241b79cf8110d2175472",
+      "evaluated_through": "2025-04-12T00:00:00",
+      "summary": {
+        "original_event_count": 428,
+        "ai_record_count": 432,
+        "event_count": 418,
+        "group_count": 231,
+        "voltage_severe_count": 92,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 326,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-12": {
+      "file": "2025-04-12.json.gz",
+      "size": 75797,
+      "uncompressed_size": 564008,
+      "sha256": "2e0e2617e293f42e79daa64e81e44b9134e34dfd5bf62a5a517ad646b70a6cec",
+      "source_partition_sha256": "daafbaaea3cac85131c8f2217e3431dc902c9f352302e9b185624c04efe99d9e",
+      "evaluated_through": "2025-04-13T00:00:00",
+      "summary": {
+        "original_event_count": 419,
+        "ai_record_count": 421,
+        "event_count": 409,
+        "group_count": 230,
+        "voltage_severe_count": 83,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 326,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-13": {
+      "file": "2025-04-13.json.gz",
+      "size": 84809,
+      "uncompressed_size": 634536,
+      "sha256": "a31da6994ca853ddc99b12d7823387afa52b84e4e19a11bcb3282d6a10ef9e1a",
+      "source_partition_sha256": "775988ef1a3898075e4b51c0c187e38f42483990011ce35747c74d4d342eefee",
+      "evaluated_through": "2025-04-14T00:00:00",
+      "summary": {
+        "original_event_count": 472,
+        "ai_record_count": 475,
+        "event_count": 473,
+        "group_count": 231,
+        "voltage_severe_count": 82,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 391,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-14": {
+      "file": "2025-04-14.json.gz",
+      "size": 74782,
+      "uncompressed_size": 560727,
+      "sha256": "e72e2ab1ff905e7ebd578c19e17f5302a2def93149389efaa30f7424891cebf6",
+      "source_partition_sha256": "90982afd1b5f5aaaa018b201aa922bebd59da12a0d3f611c887c38c07a3ebb81",
+      "evaluated_through": "2025-04-15T00:00:00",
+      "summary": {
+        "original_event_count": 404,
+        "ai_record_count": 409,
+        "event_count": 411,
+        "group_count": 232,
+        "voltage_severe_count": 84,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 327,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-15": {
+      "file": "2025-04-15.json.gz",
+      "size": 78208,
+      "uncompressed_size": 579997,
+      "sha256": "ec5ad2f4e883bd80d501c610e827243dc72de6e5749b8c88ead50a8f1ebae92c",
+      "source_partition_sha256": "323f158bd50f1d385f601996ac53b74ecdc0cd8f48e1594a9862fb07c3225d87",
+      "evaluated_through": "2025-04-16T00:00:00",
+      "summary": {
+        "original_event_count": 429,
+        "ai_record_count": 433,
+        "event_count": 424,
+        "group_count": 233,
+        "voltage_severe_count": 84,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 340,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-16": {
+      "file": "2025-04-16.json.gz",
+      "size": 74217,
+      "uncompressed_size": 554135,
+      "sha256": "33d7bd3695c747fa6e8b1b62fd4e1d44cb9f1888aa828e8b8a590cb4708bbbac",
+      "source_partition_sha256": "cd1ab1ac555cc9821c51e1d9aa8f4f925c48743118dc448e63f8eb33c56adfe9",
+      "evaluated_through": "2025-04-17T00:00:00",
+      "summary": {
+        "original_event_count": 406,
+        "ai_record_count": 409,
+        "event_count": 409,
+        "group_count": 214,
+        "voltage_severe_count": 79,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 330,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-17": {
+      "file": "2025-04-17.json.gz",
+      "size": 76728,
+      "uncompressed_size": 568204,
+      "sha256": "3bd167a22a8e92524908b10c7a985cf96db813a47f34cb6fdaed506f616bc2b5",
+      "source_partition_sha256": "75595f7f1d6f2bbc9c1b249a5161a3fecf84412d1179f75b8bdfe4e30d982950",
+      "evaluated_through": "2025-04-18T00:00:00",
+      "summary": {
+        "original_event_count": 436,
+        "ai_record_count": 440,
+        "event_count": 407,
+        "group_count": 213,
+        "voltage_severe_count": 81,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 326,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-18": {
+      "file": "2025-04-18.json.gz",
+      "size": 78315,
+      "uncompressed_size": 586066,
+      "sha256": "195a957fca0b89506bd09c30d774a91f1e9604bde793764d5d977f06b6c98e7f",
+      "source_partition_sha256": "25c8f1489c575b6390d85c4121fb90bf84cf63f6cb1f9012868bb479acbe33a3",
+      "evaluated_through": "2025-04-19T00:00:00",
+      "summary": {
+        "original_event_count": 423,
+        "ai_record_count": 425,
+        "event_count": 432,
+        "group_count": 239,
+        "voltage_severe_count": 83,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 349,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-19": {
+      "file": "2025-04-19.json.gz",
+      "size": 71988,
+      "uncompressed_size": 537486,
+      "sha256": "d538c9e8860e5ee1acec2a055dc7405dca05da938b2ff5ec5a5f5450100e1329",
+      "source_partition_sha256": "0f2c03d065d2812cb1b6e512b2607313c4a88c05f6c448526cefad1c54531fb9",
+      "evaluated_through": "2025-04-20T00:00:00",
+      "summary": {
+        "original_event_count": 395,
+        "ai_record_count": 396,
+        "event_count": 390,
+        "group_count": 222,
+        "voltage_severe_count": 81,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 309,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-20": {
+      "file": "2025-04-20.json.gz",
+      "size": 84101,
+      "uncompressed_size": 629751,
+      "sha256": "285d1c786ee252d6e59b4b110076680ec6582660c958e5ab97063d9e79f5b570",
+      "source_partition_sha256": "11f743f73d7b31839fe09209b2fc13bc9f35952635d594907289873de7f1bc4c",
+      "evaluated_through": "2025-04-21T00:00:00",
+      "summary": {
+        "original_event_count": 451,
+        "ai_record_count": 454,
+        "event_count": 490,
+        "group_count": 231,
+        "voltage_severe_count": 91,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 399,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-21": {
+      "file": "2025-04-21.json.gz",
+      "size": 79726,
+      "uncompressed_size": 597133,
+      "sha256": "2e66215d0602289b6ed704b59fb03caea8ccf5e706fc90102ffc1ebcfc0157f1",
+      "source_partition_sha256": "cf4d2772e35b954175107cedba1380089b2730396e791b18aaba7a96642ff07e",
+      "evaluated_through": "2025-04-22T00:00:00",
+      "summary": {
+        "original_event_count": 443,
+        "ai_record_count": 445,
+        "event_count": 428,
+        "group_count": 247,
+        "voltage_severe_count": 95,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 333,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-22": {
+      "file": "2025-04-22.json.gz",
+      "size": 82804,
+      "uncompressed_size": 615055,
+      "sha256": "59a11a97fb979347d34d485d0d13e886a42160486065b7dcc2d602f448710c82",
+      "source_partition_sha256": "e956da1dd9ec4c3e49b2f0f298ae48c70ba5d006e5c389107c42e5ba1a046da1",
+      "evaluated_through": "2025-04-23T00:00:00",
+      "summary": {
+        "original_event_count": 443,
+        "ai_record_count": 446,
+        "event_count": 473,
+        "group_count": 237,
+        "voltage_severe_count": 101,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 372,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-23": {
+      "file": "2025-04-23.json.gz",
+      "size": 83885,
+      "uncompressed_size": 620346,
+      "sha256": "66556a3468b4fa8043e844a03efe1ff3b341a0529d0f568cdddc257aa428856c",
+      "source_partition_sha256": "e2a9b688653bd5e50500a752694cb69869887009965a46e8e4e9cf975d8b9ea7",
+      "evaluated_through": "2025-04-24T00:00:00",
+      "summary": {
+        "original_event_count": 475,
+        "ai_record_count": 480,
+        "event_count": 455,
+        "group_count": 229,
+        "voltage_severe_count": 97,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 358,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-24": {
+      "file": "2025-04-24.json.gz",
+      "size": 86165,
+      "uncompressed_size": 646087,
+      "sha256": "80be03dca71e31a6890a9be10a9df4adc6602ec5796bbea2549eae6aad5e18de",
+      "source_partition_sha256": "63f840aaaef5557dbca92cf443d00134600105fd13aad75df6b9c68c4f68435c",
+      "evaluated_through": "2025-04-25T00:00:00",
+      "summary": {
+        "original_event_count": 474,
+        "ai_record_count": 477,
+        "event_count": 479,
+        "group_count": 252,
+        "voltage_severe_count": 108,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 371,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-25": {
+      "file": "2025-04-25.json.gz",
+      "size": 82799,
+      "uncompressed_size": 614651,
+      "sha256": "938196981c9b7e66d70d1dbe8ec11eb0eb772b8e4c6609c3afc350314cbba837",
+      "source_partition_sha256": "111afbfecd9ad21e3642dcc1212cac7388ffa82f09d660808a21b9489436762f",
+      "evaluated_through": "2025-04-26T00:00:00",
+      "summary": {
+        "original_event_count": 464,
+        "ai_record_count": 467,
+        "event_count": 458,
+        "group_count": 220,
+        "voltage_severe_count": 81,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 377,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-26": {
+      "file": "2025-04-26.json.gz",
+      "size": 70672,
+      "uncompressed_size": 527130,
+      "sha256": "0dc822a28de83b5ab210047d69897ce38f9a2d3ea2e52c5598e1fecc3218822b",
+      "source_partition_sha256": "a86116781a9edc590c0095c53f3448ca9084d434533f20dab42f160ce2011f0c",
+      "evaluated_through": "2025-04-27T00:00:00",
+      "summary": {
+        "original_event_count": 385,
+        "ai_record_count": 389,
+        "event_count": 383,
+        "group_count": 217,
+        "voltage_severe_count": 75,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 308,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-27": {
+      "file": "2025-04-27.json.gz",
+      "size": 81540,
+      "uncompressed_size": 608545,
+      "sha256": "ead740c3d874ac0a8544a2025f0284a1459f36d88651750ae7ffa29f70ab5475",
+      "source_partition_sha256": "443f10176ba69c94618d7e099e09f8daf49baae67453fe602c5adab4429154b7",
+      "evaluated_through": "2025-04-28T00:00:00",
+      "summary": {
+        "original_event_count": 438,
+        "ai_record_count": 441,
+        "event_count": 476,
+        "group_count": 212,
+        "voltage_severe_count": 86,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 390,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-28": {
+      "file": "2025-04-28.json.gz",
+      "size": 87292,
+      "uncompressed_size": 647489,
+      "sha256": "75687b16570906f10dcb9557090c41ab1607af6e16bad9958d16df1bbd83b261",
+      "source_partition_sha256": "d58f0870ef0c1041c8353d101ed240a2251e40766ca438791bae59035878df1d",
+      "evaluated_through": "2025-04-29T00:00:00",
+      "summary": {
+        "original_event_count": 478,
+        "ai_record_count": 488,
+        "event_count": 489,
+        "group_count": 244,
+        "voltage_severe_count": 104,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 385,
+        "pf_sustained_count": 0
+      }
+    },
+    "2025-04-29": {
+      "file": "2025-04-29.json.gz",
+      "size": 81034,
+      "uncompressed_size": 605927,
+      "sha256": "fbd2018f1d9d71dddc518343babbd185e0389c79ad4e2c6b682369cb8374598f",
+      "source_partition_sha256": "4edb23c3653ab60a333694eb2f65965344f6ca205d1c44ca82c7893cdb701c8d",
+      "evaluated_through": "2025-04-30T00:00:00",
+      "summary": {
+        "original_event_count": 459,
+        "ai_record_count": 461,
+        "event_count": 439,
+        "group_count": 226,
+        "voltage_severe_count": 91,
+        "voltage_sustained_count": 0,
+        "pf_sharp_count": 348,
+        "pf_sustained_count": 0
+      }
+    }
+  },
+  "note": "Complete-day default-policy replay from verified five-second source partitions. Every original AI interval and peak score is preserved and matched to the existing alert_events cache. Custom policy or intraday replay requires the verified raw cache. No raw CSV or local absolute paths included."
+}
